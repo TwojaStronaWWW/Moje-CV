@@ -1,229 +1,181 @@
+/* === Reset & Base === */
 body {
-  background-color: #f0f2f5;
-  padding: 40px;
+  margin: 20px 10px;
   font-family: 'Montserrat', sans-serif;
-  color: #333;
+  font-size: 14px;
+  color: #1a1a1a;
+  background-color: #fff;
 }
 
 .container {
   display: flex;
   max-width: 1100px;
-  margin: auto;
-  background-color: #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* LEFT SIDE */
-.left-side {
-  width: 350px;
-  background-color: #1f2937;
-  color: #fff;
-  padding: 40px 30px;
-}
-
-.photo {
+/* === Toggle Button (Mobile) === */
+.toggle-button {
+  display: none;
+  background-color: #005b82;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
-.photo:hover {
-  animation: pulse 0.6s ease;
+/* === Left Panel === */
+.left-side {
+  width: 30%;
+  background-color: #005b82;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.04); }
-  100% { transform: scale(1); }
+.profile-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.profile-header .bio-occupation {
+  font-size: 18px;
+  margin: 5px 0 20px 0;
 }
 
 .contacts-title,
 .skills-title {
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-size: 16px;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+  margin-top: 25px;
 }
 
 .contacts-list,
 .skills-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0 0;
 }
 
 .contacts-item,
 .skills-item {
-  font-size: 14px;
   margin-bottom: 10px;
-  line-height: 1.6;
+  line-height: 1.4em;
+  position: relative;
+  padding-left: 15px;
 }
 
 .skills-item::before {
-  content: "•";
-  margin-right: 8px;
-  color: #ff6b08;
+  content: "\2022";
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .contacts-link {
-  color: #fff;
-  opacity: 0.7;
+  color: white;
   text-decoration: none;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.contacts-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-  transform: scale(1.05);
-}
-
-.widget-link {
-  display: inline-block;
-  margin-top: 30px;
-  background-color: #ff6b08;
-  color: #fff;
-  padding: 12px 28px;
-  font-size: 12px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(255, 107, 8, 0.4);
-  transition: all 0.3s ease-in-out;
-}
-
-.widget-link:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 107, 8, 0.7);
-}
-
-/* RIGHT SIDE */
+/* === Right Panel === */
 .right-side {
-  flex: 1;
-  padding: 60px;
-}
-
-.bio,
-.projects,
-.jobs,
-.education {
-  margin-bottom: 40px;
-}
-
-.bio-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
-
-.bio-occupation {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
+  width: 70%;
+  padding: 30px;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
 }
 
 .bio-about {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #444;
+  font-size: 15px;
+  margin-bottom: 30px;
 }
 
-.projects-title,
 .jobs-title,
-.education-title {
-  font-size: 20px;
-  margin-bottom: 16px;
-  color: #2a2a2a;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 6px;
+.education-title,
+.projects-title {
+  color: #005b82;
+  font-size: 18px;
+  border-bottom: 2px solid #005b82;
+  padding-bottom: 4px;
+  margin-top: 40px;
 }
 
-.projects-link {
-  color: #1a73e8;
-  text-decoration: none;
-  font-size: 14px;
-  transition: transform 0.2s ease;
+.jobs-occupation {
+  font-weight: bold;
+  font-size: 15px;
+  margin: 15px 0 5px 0;
 }
 
-.projects-link:hover {
-  color: #4421df;
-  transform: scale(1.05);
-}
-
-.jobs-occupation,
-.education-degree {
-  font-size: 16px;
-  font-weight: 600;
-  color: #2a2a2a;
+.accent {
+  font-style: italic;
+  font-weight: normal;
+  color: #444;
 }
 
 .jobs-time,
 .education-time {
-  font-size: 12px;
-  color: #828282;
-  margin-bottom: 6px;
-}
-
-.experience-item {
-  font-size: 14px;
-  color: #595959;
-  line-height: 1.7;
+  font-size: 13px;
+  color: #888;
   margin-bottom: 10px;
 }
 
-.accent {
-  color: #240555;
+.experience {
+  list-style: disc;
+  padding-left: 20px;
+  margin-bottom: 20px;
 }
 
-/* MEDIA QUERIES */
-@media (max-width: 992px) {
+.experience-item {
+  margin-bottom: 5px;
+}
+
+.education-degree {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.projects-link {
+  color: #005b82;
+  text-decoration: none;
+}
+
+.projects-link:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
   .container {
     flex-direction: column;
     width: 100%;
-    border-radius: 0;
   }
 
   .left-side,
   .right-side {
     width: 100%;
-    padding: 30px;
   }
 
-  .right-side {
-    padding-top: 0;
+  .toggle-button {
+    display: block;
   }
 
-  .photo {
-    width: 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  body {
-    padding: 20px;
+  .left-side {
+    display: none;
+    text-align: center;
   }
 
-  .bio-title {
-    font-size: 22px;
+  .left-side.active {
+    display: block;
   }
 
-  .projects-title,
-  .jobs-title,
-  .education-title {
-    font-size: 18px;
-  }
-
-  .widget-link {
-    font-size: 10px;
-    padding: 10px 20px;
-  }
-
-  .contacts-title,
-  .skills-title {
-    font-size: 18px;
+  .skills-item::before {
+    left: calc(50% - 60px);
   }
 }

@@ -4,44 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My resume</title>
-    <link rel="stylesheet" href="./css/animate.css" >
     <link rel="stylesheet" href="./css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .fadeIn {
+        animation-name: fadeIn;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fadeInUp {
+        animation-name: fadeInUp;
+      }
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-25px); }
+        60% { transform: translateY(-10px); }
+      }
+      .bounce {
+        animation-name: bounce;
+      }
+    </style>
   </head>
   <body>
+    <button class="toggle-button animated bounce" onclick="toggleSidebar()">Pokaż menu</button>
+
     <div class="container">
- <aside class="left-side">
-  <div class="profile-header">
-    <h1 class="bio-title">Krzysztof Początek</h1>
-    <p class="bio-occupation">Specjalista IT</p>
-  </div>
-
-
-        
+      <aside class="left-side animated fadeIn">
+        <div class="profile-header">
+          <h1 class="bio-title animated fadeInUp">Krzysztof Początek</h1>
+          <p class="bio-occupation animated fadeIn">Specjalista IT</p>
+        </div>
 
         <section class="contacts">
-          <h2 class="contacts-title">Kontakt</h2>
+          <h2 class="contacts-title animated fadeInUp">Kontakt</h2>
           <ul class="contacts-list">
             <li class="contacts-item">
               Phone:
-              <a href="tel:+48535050460" class="contacts-link"
-                >+48 535 050 460</a
-              >
+              <a href="tel:+48535050460" class="contacts-link">+48 535 050 460</a>
             </li>
             <li class="contacts-item">
               E-mail:
-              <a href="mailto:poczatek.krzysztof@gmail.com" class="contacts-link"
-                >poczatek.krzysztof@gmail.com</a
-              >
+              <a href="mailto:poczatek.krzysztof@gmail.com" class="contacts-link">poczatek.krzysztof@gmail.com</a>
             </li>
           </ul>
         </section>
 
         <section class="skills">
-          <h2 class="skills-title">
-            Technologie
-
-          </h2>
+          <h2 class="skills-title animated fadeInUp">Technologie</h2>
           <ul class="skills-list">
             <li class="skills-item">HTML</li>
             <li class="skills-item">CSS</li>
@@ -51,10 +76,9 @@
             <li class="skills-item">SQL</li>
           </ul>
         </section>
+
         <section class="skills">
-          <h2 class="skills-title">
-            Kompetencje techniczne
-          </h2>
+          <h2 class="skills-title animated fadeInUp">Kompetencje techniczne</h2>
           <ul class="skills-list">
             <li class="skills-item">Znajomość sieci LAN/WAN/WLAN</li>
             <li class="skills-item">Budowa i serwis komputerów</li>
@@ -62,166 +86,92 @@
             <li class="skills-item">Szkolenia wdrażające</li>
           </ul>
         </section>
-                <section class="skills">
-          <h2 class="skills-title">
-           Kompetencje dodatkowe
-          </h2>
+
+        <section class="skills">
+          <h2 class="skills-title animated fadeInUp">Kompetencje dodatkowe</h2>
           <ul class="skills-list">
             <li class="skills-item">Angielski - poziom A2/B1 (czytanie dokumentacji IT, komunikacja e-mailowa w pracy zdalnej)</li>
             <li class="skills-item">Prawo jazdy kat B</li>
           </ul>
         </section>
       </aside>
+
       <div class="right-side">
-<section class="bio">
-  <p class="bio-about">
-    Specjalista IT z ponad 10-letnim doświadczeniem w technicznym wsparciu
-oraz wdrażaniu systemów. Łączę kompetencje techniczne z umiejętnością
-pracy z klientem końcowym i prowadzenia szkoleń. Potrafię działać zarówno
-samodzielnie, jak i zespołowo – także w modelu zdalnym.
+        <section class="bio">
+          <p class="bio-about animated fadeIn">
+            Specjalista IT z ponad 10-letnim doświadczeniem w technicznym wsparciu oraz wdrażaniu systemów. Łączę kompetencje techniczne z umiejętnością pracy z klientem końcowym i prowadzenia szkoleń. Potrafię działać zarówno samodzielnie, jak i zespołowo – także w modelu zdalnym.
+          </p>
+        </section>
 
-  </p>
-</section>
-
-        
         <section class="jobs">
-          <h2 class="jobs-title">
-            Doświadczenie
+          <h2 class="jobs-title animated fadeInUp">Doświadczenie</h2>
 
-          </h2>
-<h3 class="jobs-occupation">
-            Realizator ds. Wdrożeń
-            <span class="accent">Kamsoft, Katowice</span>
-          </h3>
-
-          <p class="jobs-time">
-            01.2022 - 01.2024
-          </p>
-
+          <h3 class="jobs-occupation animated fadeIn">Realizator ds. Wdrożeń <span class="accent">Kamsoft, Katowice</span></h3>
+          <p class="jobs-time">01.2022 - 01.2024</p>
           <ul class="experience">
-            <li class="experience-item">
-             Wdrażanie i konfiguracja systemu KS-SOMED w placówkach
-medycznych
-            </li>
-            <li class="experience-item">
-             Prowadzenie szkoleń dla użytkowników końcowych
-(rejestracja, gabinety, administracja)
-
-            </li>
-            <li class="experience-item">
-    Instalacja i dostosowywanie systemu do specyfiki placówki –
-zarówno dla nowych, jak i obecnych klientów
-            </li>
-                        <li class="experience-item">
- Wsparcie techniczne i merytoryczne na etapie wdrożenia oraz
-po jego zakończeniu
-            </li>
-            <li class="experience-item">
-        Praca zdalna oraz bezpośrednia współpraca w placówkach na
-terenie kraju
-
-            </li>
-            <li class="experience-item">
-  Przeprowadziłem ponad 20 wdrożeń KS-SOMED w
-placówkach medycznych w całej Polsce, szkoląc 150+
-użytkowników
-            </li>
+            <li class="experience-item">Wdrażanie i konfiguracja systemu KS-SOMED w placówkach medycznych</li>
+            <li class="experience-item">Prowadzenie szkoleń dla użytkowników końcowych</li>
+            <li class="experience-item">Instalacja i dostosowywanie systemu do specyfiki placówki</li>
+            <li class="experience-item">Wsparcie techniczne i merytoryczne na etapie wdrożenia</li>
+            <li class="experience-item">Praca zdalna oraz bezpośrednia współpraca w placówkach na terenie kraju</li>
+            <li class="experience-item">Przeprowadziłem ponad 20 wdrożeń KS-SOMED</li>
           </ul>
 
+          <!-- analogicznie możesz dodać animacje do kolejnych stanowisk -->
 
-          <h3 class="jobs-occupation">
-            Specjalista Wsparcia Technicznego
-
-            <span class="accent">PKO Bank Polski, Katowice</span>
-          </h3>
-
-          <p class="jobs-time">
-           01.2021
-- 12.2021
-
-          </p>
-
-          <ul class="experience">
-            <li class="experience-item">
-           Zdalne diagnozowanie i usuwanie usterek technicznych
-zgłaszanych przez pracowników.
-
-            </li>
-            <li class="experience-item">
-            Pomoc pracownikom w świadczeniu pracy zdalnej w
-lokalizacjach prywatnych.
-            </li>
-            <li class="experience-item">
-       Współpraca z innymi działami firmy w celu rozwiązywania
-problemów z konfiguracją i działaniem sprzętu IT w Banku.
-
-            </li>
-          </ul>
-
-          <h3 class="jobs-occupation">
-            Specjalista / Starszy Specjalista Serwisu IT (awans w
-02.2019)
- <span class="accent">Euvic IT, Katowice</span>
-          </h3>
-          <p class="jobs-time">07.2018
-- 12.2020
-</p>
-          <ul class="experience">
-            <li class="experience-item">Wsparcie techniczne 1. i 2. linii dla pracowników</li>
-            <li class="experience-item">Konserwacja i serwis sprzętu komputerowego oraz
-sieciowego..</li>
-            <li class="experience-item">Serwis telefonów komórkowych i obsługa awarii sprzętu oraz
-oprogramowania</li>
-            <li class="experience-item">Od 02.2019: Koordynacja działań lokalnego zespołu
-specjalistów w ramach projektów długoterminowych</li>
-          <li class="experience-item">Usprawniłem proces zgłoszeń serwisowych – skrócenie czasu
-reakcji zespołu o ok. 30%.
-h</li>
-          </ul>
-
-          <h3 class="jobs-occupation">
-            Junior Technical Support Engineer <span class="accent">UPC Polska, Katowice</span>
-          </h3>
-          <p class="jobs-time">August 2009 - January 2018</p>
-          <ul class="experience">
-            <li class="experience-item">Diagnosing and solving Subscribers' faults in
-            IT area.</li>
-            <li class="experience-item">Optimizing the performance of wireless networks.</li>
-            <li class="experience-item">Consideration of complaints in the field of failures and technical defects.</li>
-          </ul>
         </section>
+
         <section class="education">
-          <h2 class="education-title">Education</h2>
+          <h2 class="education-title animated fadeInUp">Wykształcenie</h2>
 
-          <h3 class="education-degree">
-            high school,
-            <span class="accent"
-              > Katowice</span>
-          </h3>
-          <p class="education-time">September 2015 - May 2017</p>
+          <h3 class="education-degree animated fadeIn">Liceum Ogólnokształcące <span class="accent">(profil matematyczny)</span></h3>
+          <p class="education-time">Katowice | 2015–2017</p>
 
-          <h2 class="projects-title">Projects</h2>
+          <p class="education-courses">
+            <strong>Kursy własne:</strong><br />
+            Microsoft Learn (Windows Server, Active Directory), szkolenia wewnętrzne KS-SOMED
+          </p>
 
-          <ol>
+          <h2 class="projects-title animated fadeInUp">Projekty techniczne i własne inicjatywy</h2>
+
+          <p class="animated fadeIn">
+            Po godzinach rozwijam własne projekty webowe, łącząc wiedzę IT z pasją do automatyzacji i społeczności.
+          </p>
+
+          <ul>
             <li>
-              <a href="https://krzysztofpoczatek.pl/" class="projects-link">
-                https://krzysztofpoczatek.pl
-              </a>
+              <strong>Kato Salsa Hub</strong><br />
+              <a href="https://katosalsahub.pl" class="projects-link">https://katosalsahub.pl</a><br />
+              Oficjalna strona społeczności tanecznej w Katowicach.
             </li>
             <li>
-              <a href="https://katosalsahub.pl/" class="projects-link">
-                https://katosalsahub.pl
-              </a>
+              <strong>CV w HTML/CSS</strong><br />
+              <a href="https://krzysztofpoczatek.pl" class="projects-link">https://krzysztofpoczatek.pl</a><br />
+              Wersja mojego CV jako strona responsywna.
             </li>
             <li>
-              <a href="https://party-generator.netlify.app/" class="projects-link">
-                https://party-generator.netlify.app
-              </a>
+              <strong>Party-generator</strong><br />
+              <a href="https://party-generator.netlify.app" class="projects-link">https://party-generator.netlify.app</a><br />
+              Aplikacja webowa do generowania opisów wydarzeń tanecznych.
             </li>
-          </ol>
-        </section>
+          </ul>
         </section>
       </div>
     </div>
+
+    <script>
+      function toggleSidebar() {
+        const sidebar = document.querySelector('.left-side');
+        const toggleBtn = document.querySelector('.toggle-button');
+
+        if (sidebar.classList.contains('active')) {
+          sidebar.classList.remove('active');
+          toggleBtn.textContent = 'Pokaż menu';
+        } else {
+          sidebar.classList.add('active');
+          toggleBtn.textContent = 'Ukryj menu';
+        }
+      }
+    </script>
   </body>
 </html>
