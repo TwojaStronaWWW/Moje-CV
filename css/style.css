@@ -150,7 +150,7 @@ body {
 }
 
 .projects-link:hover {
-  color: #ff6b08;
+  color: #4421df;
   transform: scale(1.05);
 }
 
@@ -176,7 +176,7 @@ body {
 }
 
 .accent {
-  color: #ff6b08;
+  color: #240555;
 }
 
 /* MEDIA QUERIES */
