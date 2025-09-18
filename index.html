@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My resume</title>
     <link rel="stylesheet" href="./css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       .animated {
         animation-duration: 1s;
         animation-fill-mode: both;
       }
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
       .fadeIn {
         animation-name: fadeIn;
@@ -32,9 +39,19 @@
         animation-name: fadeInUp;
       }
       @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-25px); }
-        60% { transform: translateY(-10px); }
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-25px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
       }
       .bounce {
         animation-name: bounce;
@@ -42,8 +59,9 @@
     </style>
   </head>
   <body>
-    <button class="toggle-button animated bounce" onclick="toggleSidebar()">Pokaż menu</button>
-
+    <button class="toggle-button animated bounce" onclick="toggleSidebar()">
+      Pokaż menu
+    </button>
 
     <div class="container">
       <aside class="left-side animated fadeIn">
@@ -57,11 +75,17 @@
           <ul class="contacts-list">
             <li class="contacts-item">
               Phone:
-              <a href="tel:+48535050460" class="contacts-link">+48 535 050 460</a>
+              <a href="tel:+48535050460" class="contacts-link"
+                >+48 535 050 460</a
+              >
             </li>
             <li class="contacts-item">
               E-mail:
-              <a href="mailto:poczatek.krzysztof@gmail.com" class="contacts-link">poczatek.krzysztof@gmail.com</a>
+              <a
+                href="mailto:poczatek.krzysztof@gmail.com"
+                class="contacts-link"
+                >poczatek.krzysztof@gmail.com</a
+              >
             </li>
             <li>Katowice</li>
           </ul>
@@ -70,16 +94,16 @@
         <section class="skills">
           <h2 class="skills-title animated fadeInUp">Technologie</h2>
           <ul class="skills-list">
-            <li class="skills-item">HTML/CSS</li>
             <li class="skills-item">Docer</li>
             <li class="skills-item">Zabbix</li>
             <li class="skills-item">Prometeus</li>
             <li class="skills-item">Grafana</li>
-            <li class="skills-item">Mikrotik</li> 
-            <li class="skills-item">PowwerShell</li>
+            <li class="skills-item">Mikrotik</li>
+            <li class="skills-item">PowerShell</li>
             <li class="skills-item">Microsoft Office</li>
             <li class="skills-item">Windows 10/11</li>
-            
+            <li class="skills-item">HTML/CSS</li>
+            <li class="skills-item">Clonezilla/Acroniss</li>
             <li class="skills-item">GitHub</li>
             <li class="skills-item">Windows Serwer</li>
             <li class="skills-item">Jira</li>
@@ -99,143 +123,212 @@
         <section class="skills">
           <h2 class="skills-title animated fadeInUp">Kompetencje dodatkowe</h2>
           <ul class="skills-list">
-            <li class="skills-item">Angielski - poziom A2/B1 (czytanie dokumentacji IT, komunikacja e-mailowa w pracy zdalnej)</li>
+            <li class="skills-item">
+              Angielski - poziom A2/B1 (czytanie dokumentacji IT, komunikacja
+              e-mailowa w pracy zdalnej)
+            </li>
             <li class="skills-item">Prawo jazdy kat B</li>
           </ul>
         </section>
-                
       </aside>
 
       <div class="right-side">
         <section class="bio">
           <p class="bio-about animated fadeIn">
-            Specjalista IT z ponad 10-letnim doświadczeniem w technicznym wsparciu oraz wdrażaniu systemów. Łączę kompetencje techniczne z umiejętnością pracy z klientem końcowym i prowadzenia szkoleń. Potrafię działać zarówno samodzielnie, jak i zespołowo – także w modelu zdalnym.
+            Specjalista IT z ponad 10-letnim doświadczeniem w technicznym
+            wsparciu oraz wdrażaniu systemów. Łączę kompetencje techniczne z
+            umiejętnością pracy z klientem końcowym i prowadzenia szkoleń.
+            Potrafię działać zarówno samodzielnie, jak i zespołowo – także w
+            modelu zdalnym.
           </p>
         </section>
 
-<section class="jobs">
-  <h2 class="jobs-title animated fadeInUp">Doświadczenie</h2>
+        <section class="jobs">
+          <h2 class="jobs-title animated fadeInUp">Doświadczenie</h2>
 
-  <h3 class="jobs-occupation animated fadeIn">Realizator ds. Wdrożeń <span class="accent">Kamsoft, Katowice</span></h3>
-  <p class="jobs-time">01.2022 - 01.2024</p>
-  <ul class="experience">
-    <li class="experience-item">Wdrażanie i konfiguracja systemu KS-SOMED w placówkach medycznych</li>
-    <li class="experience-item">Prowadzenie szkoleń dla użytkowników końcowych</li>
-    <li class="experience-item">Instalacja i dostosowywanie systemu do specyfiki placówki</li>
-    <li class="experience-item">Wsparcie techniczne i merytoryczne na etapie wdrożenia</li>
-    <li class="experience-item">Praca zdalna oraz bezpośrednia współpraca w placówkach na terenie kraju</li>
-    <li class="experience-item">Przeprowadziłem ponad 20 wdrożeń KS-SOMED</li>
-  </ul>
+          <h3 class="jobs-occupation animated fadeIn">
+            Realizator ds. Wdrożeń <span class="accent">Kamsoft, Katowice</span>
+          </h3>
+          <p class="jobs-time">01.2022 - 01.2024</p>
+          <ul class="experience">
+            <li class="experience-item">
+              Wdrażanie i konfiguracja systemu KS-SOMED w placówkach medycznych
+            </li>
+            <li class="experience-item">
+              Prowadzenie szkoleń dla użytkowników końcowych
+            </li>
+            <li class="experience-item">
+              Instalacja i dostosowywanie systemu do specyfiki placówki
+            </li>
+            <li class="experience-item">
+              Wsparcie techniczne i merytoryczne na etapie wdrożenia
+            </li>
+            <li class="experience-item">
+              Praca zdalna oraz bezpośrednia współpraca w placówkach na terenie
+              kraju
+            </li>
+            <li class="experience-item">
+              Przeprowadziłem ponad 20 wdrożeń KS-SOMED
+            </li>
+          </ul>
 
-  <h3 class="jobs-occupation animated fadeIn">Specjalista Wsparcia Technicznego <span class="accent">PKO Bank Polski, Katowice</span></h3>
-  <p class="jobs-time">01.2021 - 12.2021</p>
-  <ul class="experience">
-    <li class="experience-item">Zdalne diagnozowanie i usuwanie usterek technicznych zgłaszanych przez pracowników</li>
-    <li class="experience-item">Pomoc w pracy zdalnej – lokalizacje prywatne</li>
-    <li class="experience-item">Współpraca z innymi działami firmy przy konfiguracji sprzętu IT w banku</li>
-  </ul>
+          <h3 class="jobs-occupation animated fadeIn">
+            Specjalista Wsparcia Technicznego
+            <span class="accent">PKO Bank Polski, Katowice</span>
+          </h3>
+          <p class="jobs-time">01.2021 - 12.2021</p>
+          <ul class="experience">
+            <li class="experience-item">
+              Zdalne diagnozowanie i usuwanie usterek technicznych zgłaszanych
+              przez pracowników
+            </li>
+            <li class="experience-item">
+              Pomoc w pracy zdalnej – lokalizacje prywatne
+            </li>
+            <li class="experience-item">
+              Współpraca z innymi działami firmy przy konfiguracji sprzętu IT w
+              banku
+            </li>
+          </ul>
 
-  <h3 class="jobs-occupation animated fadeIn">Specjalista / Starszy Specjalista Serwisu IT (awans w
-02.2019) <span class="accent">Euvic IT, Katowice</span></h3>
-  <p class="jobs-time">07.2018 - 12.2020</p>
-  <ul class="experience">
-    <li class="experience-item">Wsparcie techniczne 1. i 2. linii</li>
-    <li class="experience-item">Serwis sprzętu komputerowego i sieciowego</li>
-    <li class="experience-item">Administracja kontami w Active Directory</li>
-    <li class="experience-item">Serwis telefonów komórkowych, awarie sprzętu i oprogramowania</li>
-    <li class="experience-item">Od 02.2019: koordynacja lokalnego zespołu IT</li>
-    <li class="experience-item">Usprawnienie procesu zgłoszeń – skrócenie czasu reakcji o ok. 30%</li>
-  </ul>
+          <h3 class="jobs-occupation animated fadeIn">
+            Specjalista / Starszy Specjalista Serwisu IT (awans w 02.2019)
+            <span class="accent">Euvic IT, Katowice</span>
+          </h3>
+          <p class="jobs-time">07.2018 - 12.2020</p>
+          <ul class="experience">
+            <li class="experience-item">Wsparcie techniczne 1. i 2. linii</li>
+            <li class="experience-item">
+              Serwis sprzętu komputerowego i sieciowego
+            </li>
+            <li class="experience-item">
+              Administracja kontami w Active Directory
+            </li>
+            <li class="experience-item">
+              Serwis telefonów komórkowych, awarie sprzętu i oprogramowania
+            </li>
+            <li class="experience-item">
+              Od 02.2019: koordynacja lokalnego zespołu IT
+            </li>
+            <li class="experience-item">
+              Usprawnienie procesu zgłoszeń – skrócenie czasu reakcji o ok. 30%
+            </li>
+          </ul>
 
-  <h3 class="jobs-occupation animated fadeIn">Specjalista / Młodszy Inżynier ds. Wsparcia Technicznego (awans w 2016)
- <span class="accent">UPC Polska, Katowice</span></h3>
-  <p class="jobs-time">08.2013 - 06.2018</p>
-  <ul class="experience">
-    <li class="experience-item">Rozwiązywanie usterek IT i obsługa reklamacji</li>
-    <li class="experience-item">Optymalizacja ustawień sieci Wi-Fi – zmniejszenie liczby reklamacji o ~20%</li>
-  </ul>
+          <h3 class="jobs-occupation animated fadeIn">
+            Specjalista / Młodszy Inżynier ds. Wsparcia Technicznego (awans w
+            2016) <span class="accent">UPC Polska, Katowice</span>
+          </h3>
+          <p class="jobs-time">08.2013 - 06.2018</p>
+          <ul class="experience">
+            <li class="experience-item">
+              Rozwiązywanie usterek IT i obsługa reklamacji
+            </li>
+            <li class="experience-item">
+              Optymalizacja ustawień sieci Wi-Fi – zmniejszenie liczby
+              reklamacji o ~20%
+            </li>
+          </ul>
 
-  <h3 class="jobs-occupation animated fadeIn">Konsultant ds. Obsługi Klientów <span class="accent">Katowice</span></h3>
-  <p class="jobs-time">09.2009 - 07.2013</p>
-  <ul class="experience">
-    <li class="experience-item">Obsługa połączeń dotyczących umów i rozliczeń</li>
-    <li class="experience-item">Rozpatrywanie reklamacji i przygotowanie odpowiedzi</li>
-  </ul>
-</section>
-<section class="education">
-  <h2 class="education-title animated fadeInUp">Zainteresowania</h2>
+          <h3 class="jobs-occupation animated fadeIn">
+            Konsultant ds. Obsługi Klientów <span class="accent">Katowice</span>
+          </h3>
+          <p class="jobs-time">09.2009 - 07.2013</p>
+          <ul class="experience">
+            <li class="experience-item">
+              Obsługa połączeń dotyczących umów i rozliczeń
+            </li>
+            <li class="experience-item">
+              Rozpatrywanie reklamacji i przygotowanie odpowiedzi
+            </li>
+          </ul>
+        </section>
+        <section class="education">
+          <h2 class="education-title animated fadeInUp">Zainteresowania</h2>
 
-  <ul class="experience interests-list animated fadeIn">
-    <li class="interests-item">
-      Organizuję i promuję wydarzenia taneczne w ramach społeczności salsy kubańskiej w Katowicach (Kato Salsa Hub).
-      Umiejętności: koordynacja, komunikacja, tworzenie treści promocyjnych.
-    </li>
-  </ul>
-</section>
-
-
+          <ul class="experience interests-list animated fadeIn">
+            <li class="interests-item">
+              Organizuję i promuję wydarzenia taneczne w ramach społeczności
+              salsy kubańskiej w Katowicach (Kato Salsa Hub). Umiejętności:
+              koordynacja, komunikacja, tworzenie treści promocyjnych.
+            </li>
+          </ul>
+        </section>
 
         <section class="education">
           <h2 class="education-title animated fadeInUp">Wykształcenie</h2>
 
-          <h3 class="education-degree animated fadeIn">Liceum Ogólnokształcące <span class="accent">(profil matematyczny)</span></h3>
+          <h3 class="education-degree animated fadeIn">
+            Liceum Ogólnokształcące
+            <span class="accent">(profil matematyczny)</span>
+          </h3>
           <p class="education-time">Katowice | 2015–2017</p>
 
           <p class="education-courses">
             <strong>Kursy własne:</strong><br />
-            Microsoft Learn (Windows Server, Active Directory), szkolenia wewnętrzne KS-SOMED
+            Microsoft Learn (Windows Server, Active Directory), szkolenia
+            wewnętrzne KS-SOMED
           </p>
 
-          <h2 class="projects-title animated fadeInUp">Projekty techniczne i własne inicjatywy</h2>
+          <h2 class="projects-title animated fadeInUp">
+            Projekty techniczne i własne inicjatywy
+          </h2>
 
           <p class="animated fadeIn">
-            Po godzinach rozwijam własne projekty webowe, łącząc wiedzę IT z pasją do automatyzacji i społeczności.
+            Po godzinach rozwijam własne projekty webowe, łącząc wiedzę IT z
+            pasją do automatyzacji i społeczności.
           </p>
 
           <ul>
             <li>
               <strong>Kato Salsa Hub</strong><br />
-              <a href="https://katosalsahub.pl" class="projects-link">https://katosalsahub.pl</a><br />
+              <a href="https://katosalsahub.pl" class="projects-link"
+                >https://katosalsahub.pl</a
+              ><br />
               Oficjalna strona społeczności tanecznej w Katowicach. Projekt
-informacyjno-promocyjny zrealizowany w HTML/CSS.
-Strona hostowana na Netlify i zintegrowana z repozytorium
-GitHub oraz własną domeną.
-
+              informacyjno-promocyjny zrealizowany w HTML/CSS. Strona hostowana
+              na Netlify i zintegrowana z repozytorium GitHub oraz własną
+              domeną.
             </li>
             <li>
               <strong>CV w HTML/CSS</strong><br />
-              <a href="https://krzysztofpoczatek.pl" class="projects-link">https://krzysztofpoczatek.pl</a><br />
+              <a href="https://krzysztofpoczatek.pl" class="projects-link"
+                >https://krzysztofpoczatek.pl</a
+              ><br />
               Wersja mojego CV jako strona responsywna z lekką animacją,
-opublikowana na Netlify i połączona z własną domeną.
-
+              opublikowana na Netlify i połączona z własną domeną.
             </li>
             <li>
               <strong>Party-generator</strong><br />
-              <a href="https://party-generator.netlify.app" class="projects-link">https://party-generator.netlify.app</a><br />
+              <a
+                href="https://party-generator.netlify.app"
+                class="projects-link"
+                >https://party-generator.netlify.app</a
+              ><br />
               Aplikacja webowa do szybkiego generowania opisów wydarzeń
-tanecznych na podstawie wprowadzonych danych. Projekt
-hostowany na Netlify, stworzony z użyciem HTML, CSS i
-JavaScript.
-
+              tanecznych na podstawie wprowadzonych danych. Projekt hostowany na
+              Netlify, stworzony z użyciem HTML, CSS i JavaScript.
             </li>
           </ul>
         </section>
-        
-        <button class="print-button" onclick="window.print()">Pobierz do PDF albo wydruj</button>
+
+        <button class="print-button" onclick="window.print()">
+          Pobierz do PDF albo wydruj
+        </button>
       </div>
     </div>
 
     <script>
       function toggleSidebar() {
-        const sidebar = document.querySelector('.left-side');
-        const toggleBtn = document.querySelector('.toggle-button');
+        const sidebar = document.querySelector(".left-side");
+        const toggleBtn = document.querySelector(".toggle-button");
 
-        if (sidebar.classList.contains('active')) {
-          sidebar.classList.remove('active');
-          toggleBtn.textContent = 'Pokaż menu';
+        if (sidebar.classList.contains("active")) {
+          sidebar.classList.remove("active");
+          toggleBtn.textContent = "Pokaż menu";
         } else {
-          sidebar.classList.add('active');
-          toggleBtn.textContent = 'Ukryj menu';
+          sidebar.classList.add("active");
+          toggleBtn.textContent = "Ukryj menu";
         }
       }
     </script>
