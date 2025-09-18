@@ -37,13 +37,15 @@ body {
 }
 
 .profile-header h1 {
+  /* text-align: center; */
   font-size: 24px;
-  margin: 0;
+  margin: 10px 0 10px 0;
 }
 
 .profile-header .bio-occupation {
+  /* text-align: center; */
   font-size: 18px;
-  margin: 5px 0 20px 0;
+  margin: 10px 0 10px 0;
 }
 
 .contacts-title,
@@ -258,6 +260,9 @@ body {
   font-weight: bold; /* pogrubienie tekstu */
   width: fit-content; /* dopasowanie szerokości do zawartości */
 }
+.klauzura {
+  font-size: 10px;
+}
 
 .print-button:hover {
   background-color: #004362;
@@ -265,9 +270,11 @@ body {
 }
 
 left-side {
-  /* Dodaj łamanie długich wyrazów e-maila w lewej kolumnie */
-  overflow-wrap: break-word !important;
-  word-break: break-word !important;
+  .left-side {
+    overflow-wrap: break-word !;
+    word-break: break-word !;
+    white-space: normal !;
+  }
 }
 
 /* Print styles */
@@ -276,7 +283,16 @@ left-side {
   .toggle-button {
     display: none !important;
   }
+  .profile-header h1 {
+    text-align: center;
+  }
+  .klauzura {
+    position: absolute;
+  }
 
+  .profile-header .bio-occupation {
+    text-align: center;
+  }
   .container {
     display: flex !important;
     flex-direction: row !important;
@@ -313,11 +329,6 @@ left-side {
     margin-left: 0 !important;
   }
 
-  .left-side .contacts-list li,
-  .left-side .skills-list li {
-    white-space: nowrap !important;
-  }
-
   .right-side {
     width: 70% !important;
     background-color: #f8f9fa !important;
@@ -329,21 +340,14 @@ left-side {
     font-size: 14px !important;
   }
 
-  .bio-about {
-    margin-top: 4px !important;
-    margin-bottom: 10px !important;
-  }
-
   /* Jednolite odstępy między sekcjami w prawej kolumnie */
   .right-side > section {
-    margin-bottom: 15px !important;
+    margin-bottom: 10px !important;
   }
 
   body {
     margin: 0 !important;
     padding: 0 !important;
-    background-color: #fff !important;
-    color: #000 !important;
   }
 
   ul,
