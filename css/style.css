@@ -227,4 +227,24 @@ body {
   margin-bottom: 6px;
   line-height: 1.4;
 }
+.print-button {
+  background-color: #005b82;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0,91,130,0.4);
+  transition: background-color 0.3s ease;
+  margin: 20px auto;      /* automatyczne marginesy poziome wyśrodkują blok */
+  display: block;         /* przycisk jako element blokowy */
+  font-weight: bold;      /* pogrubienie tekstu */
+  width: fit-content;     /* dopasowanie szerokości do zawartości */
+}
 
+.print-button:hover {
+  background-color: #004362;
+  box-shadow: 0 4px 8px rgba(0,69,97,0.6);
+}
