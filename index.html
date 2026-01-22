@@ -1,270 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My resume</title>
-  <link rel="stylesheet" href="./css/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krzysztof Początek - CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <button class="toggle-button animated bounce" onclick="toggleSidebar()">
-    Pokaż menu
-  </button>
+  <button class="toggle-menu" id="toggleBtn">Menu</button>
 
   <div class="container">
-    <aside class="left-side animated fadeIn">
-      <div class="profile-header">
-        <h1 class="bio-title animated fadeInUp">Krzysztof Początek</h1>
-        <p class="bio-occupation animated fadeIn">Specjalista IT</p>
-      </div>
+    <aside id="sidebar">
+      <h1>Krzysztof Początek</h1>
+      <p class="occupation">Specjalista IT</p>
 
-      <section class="contacts">
-        <h2 class="contacts-title animated fadeInUp">Kontakt</h2>
-        <ul class="contacts-list">
-          <li class="contacts-item">
-            <a href="tel:+48535050460" class="contacts-link">+48 535 050 460</a>
-          </li>
-          <li class="contacts-item">
-            <a href="mailto:poczatek.krzysztof@gmail.com" class="contacts-link">poczatek.krzysztof@gmail.com</a>
-          </li>
-          <li>Katowice</li>
-        </ul>
-      </section>
-
-      <section class="skills">
-        <h2 class="skills-title animated fadeInUp">Wsparcie użytkowników (L1/L2)</h2>
-        <ul class="skills-list">
-          <li class="skills-item">Diagnozowanie i rozwiązywanie problemów sprzętowych i systemowych</li>
-          <li class="skills-item">Obsługa zgłoszeń (telefon, e-mail, systemy ticketowe)</li>
-          <li class="skills-item">Wsparcie użytkowników zdalnych</li>
-          <li class="skills-item">Eskalacja problemów i współpraca z innymi zespołami IT</li>
-        </ul>
-      </section>
-
-      <section class="skills">
-        <h2 class="skills-title animated fadeInUp">Systemy i środowiska</h2>
-        <ul class="skills-list">
-          <li class="skills-item">Windows 10 / 11</li>
-          <li class="skills-item">Windows Server (podstawy administracji)</li>
-          <li class="skills-item">Active Directory (konta, uprawnienia, reset haseł)</li>
-          <li class="skills-item">Praca w środowisku domenowym</li>
-        </ul>
-      </section>
-
-      </section class="skills">
-      <h2 class="skills-title animated fadeInUp">Sprzęt i sieci</h2>
-      <ul class="skills-list">
-        <li class="skills-item">Konfiguracja i serwis komputerów PC i laptopów</li>
-        <li class="skills-item">Podstawowa diagnostyka sieci LAN / WLAN</li>
-        <li class="skills-item">Wsparcie urządzeń peryferyjnych</li>
-        <li class="skills-item">Praca z kopią zapasową (Clonezilla / Acronis)</li>
+      <h2>Kontakt</h2>
+      <ul>
+        <li><a href="tel:+48535050460">+48 535 050 460</a></li>
+        <li><a href="mailto:poczatek.krzysztof@gmail.com">poczatek.krzysztof@gmail.com</a></li>
+        <li>Katowice</li>
       </ul>
-      </section>
 
-      <section class="skills">
-        <h2 class="skills-title animated fadeInUp">Narzędzia i procesy</h2>
-        <ul class="skills-list">
-          <li class="skills-item">Systemy zgłoszeniowe (Jira / podobne)</li>
-          <li class="skills-item">Praca zgodnie z procedurami i SLA </li>
-          <li class="skills-item">Dokumentowanie rozwiązań</li>
-          <li class="skills-item">Współpraca zespołowa i komunikacja techniczna </li>
-        </ul>
+      <h2>Wsparcie użytkowników (L1/L2)</h2>
+      <ul>
+        <li>Diagnozowanie i rozwiązywanie problemów sprzętowych i systemowych</li>
+        <li>Obsługa zgłoszeń (telefon, e-mail, systemy ticketowe)</li>
+        <li>Wsparcie użytkowników zdalnych</li>
+        <li>Eskalacja problemów i współpraca z innymi zespołami IT</li>
+      </ul>
 
+      <h2>Systemy i środowiska</h2>
+      <ul>
+        <li>Windows 10 / 11</li>
+        <li>Windows Server (podstawy administracji)</li>
+        <li>Active Directory (konta, uprawnienia, reset haseł)</li>
+        <li>Praca w środowisku domenowym</li>
+      </ul>
 
+      <h2>Sprzęt i sieci</h2>
+      <ul>
+        <li>Konfiguracja i serwis komputerów PC i laptopów</li>
+        <li>Podstawowa diagnostyka sieci LAN / WLAN</li>
+        <li>Wsparcie urządzeń peryferyjnych</li>
+        <li>Praca z kopią zapasową (Clonezilla / Acronis)</li>
+      </ul>
 
-        <section class="skills">
-          <h2 class="skills-title animated fadeInUp">Kompetencje dodatkowe</h2>
-          <ul class="skills-list">
-            <li class="skills-item">
-              Angielski - Czytanie dokumentacji IT, komunikacja e-mailowa w środowisku IT
-            </li>
-            <li class="skills-item">Dyspozycyjność do pracy w terenie (prawo jazdy kat. B)</li>
-          </ul>
-        </section>
+      <h2>Narzędzia i procesy</h2>
+      <ul>
+        <li>Systemy zgłoszeniowe (Jira / podobne)</li>
+        <li>Praca zgodnie z procedurami i SLA</li>
+        <li>Dokumentowanie rozwiązań</li>
+        <li>Współpraca zespołowa i komunikacja techniczna</li>
+      </ul>
+
+      <h2>Kompetencje dodatkowe</h2>
+      <ul>
+        <li>Angielski - Czytanie dokumentacji IT, komunikacja e-mailowa</li>
+        <li>Dyspozycyjność do pracy w terenie (prawo jazdy kat. B)</li>
+      </ul>
     </aside>
 
-    <div class="right-side">
-      <section class="bio">
-        <p class="bio-about animated fadeIn">
-        Specjalista IT z ponad 10-letnim doświadczeniem w technicznym wsparciu użytkowników (L1/L2) oraz pracy w środowiskach korporacyjnych (bankowość, medycyna). Specjalizuję się w diagnozowaniu problemów sprzętowych i systemowych, pracy z Active Directory oraz wsparciu użytkowników zdalnych. Skoncentrowany na stabilnym wsparciu użytkowników końcowych oraz pracy zgodnej z procedurami i SLA.
-        </p>
-      </section>
+    <main>
+      <p>
+        Specjalista IT z ponad 10-letnim doświadczeniem w technicznym wsparciu użytkowników (L1/L2) oraz pracy w
+        środowiskach korporacyjnych (bankowość, medycyna). Specjalizuję się w diagnozowaniu problemów sprzętowych i
+        systemowych, pracy z Active Directory oraz wsparciu użytkowników zdalnych. Skoncentrowany na stabilnym wsparciu
+        użytkowników końcowych oraz pracy zgodnej z procedurami i SLA.
+      </p>
 
-      <section class="jobs">
-        <h2 class="jobs-title animated fadeInUp">Doświadczenie</h2>
+      <h2>Doświadczenie</h2>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          01.2024 - 01.2026 <span class="accent"></span>
-        </h3>
-        <ul class="experience">
-          <li class="experience-item">
-            Obsługa klienta (infolinia TAURON)
-          </li>
-          <li class="experience-item">
-            Praca magazynowa (Amazon)
-          </li>
-        </ul>
+      <h3>01.2024 - 01.2026</h3>
+      <ul>
+        <li>Obsługa klienta (infolinia TAURON)</li>
+        <li>Praca magazynowa (Amazon)</li>
+      </ul>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          Realizator ds. Wdrożeń <span class="accent">Kamsoft, Katowice</span>
-        </h3>
-        <p class="jobs-time">01.2022 - 01.2024</p>
-        <ul class="experience">
-          <li class="experience-item">
-            Wdrażanie i konfiguracja systemu KS-SOMED w placówkach medycznych
-          </li>
-          <li class="experience-item">
-            Prowadzenie szkoleń dla użytkowników końcowych
-          </li>
-          <li class="experience-item">
-            Instalacja i dostosowywanie systemu do specyfiki placówki
-          </li>
-          <li class="experience-item">
-            Wsparcie techniczne i merytoryczne na etapie wdrożenia
-          </li>
-          <li class="experience-item">
-            Praca zdalna oraz bezpośrednia współpraca w placówkach na terenie
-            kraju
-          </li>
-          <li class="experience-item">
-            Przeprowadziłem ponad 20 wdrożeń KS-SOMED
-          </li>
-        </ul>
+      <h3>Realizator ds. Wdrożeń <span class="accent">Kamsoft, Katowice</span></h3>
+      <p class="time">01.2022 - 01.2024</p>
+      <ul>
+        <li>Wdrażanie i konfiguracja systemu KS-SOMED w placówkach medycznych</li>
+        <li>Prowadzenie szkoleń dla użytkowników końcowych</li>
+        <li>Instalacja i dostosowywanie systemu do specyfiki placówki</li>
+        <li>Wsparcie techniczne i merytoryczne na etapie wdrożenia</li>
+        <li>Praca zdalna oraz bezpośrednia współpraca w placówkach na terenie kraju</li>
+        <li>Przeprowadziłem ponad 20 wdrożeń KS-SOMED</li>
+      </ul>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          Specjalista Wsparcia Technicznego
-          <span class="accent">PKO Bank Polski, Katowice</span>
-        </h3>
-        <p class="jobs-time">01.2021 - 12.2021</p>
-        <ul class="experience">
-          <li class="experience-item">
-            Zdalne diagnozowanie i usuwanie usterek technicznych zgłaszanych
-            przez pracowników
-          </li>
-          <li class="experience-item">
-            Pomoc w pracy zdalnej – lokalizacje prywatne
-          </li>
-          <li class="experience-item">
-            Współpraca z innymi działami firmy przy konfiguracji sprzętu IT w
-            banku
-          </li>
-        </ul>
+      <h3>Specjalista Wsparcia Technicznego <span class="accent">PKO Bank Polski, Katowice</span></h3>
+      <p class="time">01.2021 - 12.2021</p>
+      <ul>
+        <li>Zdalne diagnozowanie i usuwanie usterek technicznych zgłaszanych przez pracowników</li>
+        <li>Pomoc w pracy zdalnej – lokalizacje prywatne</li>
+        <li>Współpraca z innymi działami firmy przy konfiguracji sprzętu IT w banku</li>
+      </ul>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          Specjalista → Starszy Specjalista Serwisu IT (awans w 02.2019)
-          <span class="accent">Euvic IT, Katowice</span>
-        </h3>
-        <p class="jobs-time">07.2018 - 12.2020</p>
-        <ul class="experience">
-          <li class="experience-item">Wsparcie techniczne 1. i 2. linii</li>
-          <li class="experience-item">
-            Serwis sprzętu komputerowego i sieciowego
-          </li>
-          <li class="experience-item">
-            Administracja kontami w Active Directory
-          </li>
-          <li class="experience-item">
-            Serwis telefonów komórkowych, awarie sprzętu i oprogramowania
-          </li>
-          <li class="experience-item">
-            Od 02.2019: koordynacja lokalnego zespołu IT
-          </li>
-          <li class="experience-item">
-            Usprawnienie procesu zgłoszeń – skrócenie czasu reakcji o ok. 30%
-          </li>
-        </ul>
+      <h3>Specjalista → Starszy Specjalista Serwisu IT <span class="accent">Euvic IT, Katowice</span></h3>
+      <p class="time">07.2018 - 12.2020 (awans w 02.2019)</p>
+      <ul>
+        <li>Wsparcie techniczne 1. i 2. linii</li>
+        <li>Serwis sprzętu komputerowego i sieciowego</li>
+        <li>Administracja kontami w Active Directory</li>
+        <li>Serwis telefonów komórkowych, awarie sprzętu i oprogramowania</li>
+        <li>Od 02.2019: koordynacja lokalnego zespołu IT</li>
+        <li>Usprawnienie procesu zgłoszeń – skrócenie czasu reakcji o ok. 30%</li>
+      </ul>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          Specjalista → Młodszy Inżynier ds. Wsparcia Technicznego (awans w
-          2016) <span class="accent">UPC Polska, Katowice</span>
-        </h3>
-        <p class="jobs-time">08.2013 - 06.2018</p>
-        <ul class="experience">
-          <li class="experience-item">
-            Rozwiązywanie usterek IT i obsługa reklamacji
-          </li>
-          <li class="experience-item">
-            Optymalizacja ustawień sieci Wi-Fi – zmniejszenie liczby
-            reklamacji o ~20%
-          </li>
-        </ul>
+      <h3>Specjalista → Młodszy Inżynier ds. Wsparcia Technicznego <span class="accent">UPC Polska, Katowice</span></h3>
+      <p class="time">08.2013 - 06.2018 (awans w 2016)</p>
+      <ul>
+        <li>Rozwiązywanie usterek IT i obsługa reklamacji</li>
+        <li>Optymalizacja ustawień sieci Wi-Fi – zmniejszenie liczby reklamacji o ~20%</li>
+      </ul>
 
-        <h3 class="jobs-occupation animated fadeIn">
-          Konsultant ds. Obsługi Klientów
-          <span class="accent">UPC Polska, Katowice</span>
-        </h3>
-        <p class="jobs-time">09.2009 - 07.2013</p>
-        <ul class="experience">
-          <li class="experience-item">
-            Obsługa połączeń dotyczących umów i rozliczeń
-          </li>
-          <li class="experience-item">
-            Rozpatrywanie reklamacji i przygotowanie odpowiedzi
-          </li>
-        </ul>
-      </section>
-      <section class="education">
-        <h2 class="interests-title animated fadeInUp">Zainteresowania</h2>
+      <h3>Konsultant ds. Obsługi Klientów <span class="accent">UPC Polska, Katowice</span></h3>
+      <p class="time">09.2009 - 07.2013</p>
+      <ul>
+        <li>Obsługa połączeń dotyczących umów i rozliczeń</li>
+        <li>Rozpatrywanie reklamacji i przygotowanie odpowiedzi</li>
+      </ul>
 
-        <ul class="experience interests-list animated fadeIn">
-          <li class="interests-item">
-            Organizuję i promuję wydarzenia taneczne w ramach społeczności
-            salsy kubańskiej w Katowicach (Kato Salsa Hub). Umiejętności:
-            koordynacja, komunikacja, tworzenie treści promocyjnych.
-          </li>
-        </ul>
-      </section>
+      <h2>Zainteresowania</h2>
+      <p>
+        Organizuję i promuję wydarzenia taneczne w ramach społeczności salsy kubańskiej w Katowicach (Kato Salsa Hub).
+        Umiejętności: koordynacja, komunikacja, tworzenie treści promocyjnych.
+      </p>
 
-      <section class="education">
-        <h2 class="education-title animated fadeInUp">Wykształcenie</h2>
+      <h2>Wykształcenie</h2>
+      <h3>Liceum Ogólnokształcące <span class="accent">(profil matematyczny)</span></h3>
+      <p class="time">Katowice | 2015–2017</p>
 
-        <h3 class="education-degree animated fadeIn">
-          Liceum Ogólnokształcące
-          <span class="accent">(profil matematyczny)</span>
-        </h3>
-        <p class="education-time">Katowice | 2015–2017</p>
-        <h2 class="projects-title animated fadeInUp">
+      <h2>Projekty własne</h2>
 
+      <div class="project">
+        <strong>Kato Salsa Hub</strong>
+        <a href="https://katosalsahub.pl">katosalsahub.pl</a>
+        <p>Strona informacyjno-promocyjna społeczności tanecznej. HTML/CSS, hosting Netlify, własna domena.</p>
+      </div>
 
-          Projekty własne (dodatkowo)
-        </h2>
+      <div class="project">
+        <strong>CV w HTML/CSS</strong>
+        <a href="https://krzysztofpoczatek.pl">krzysztofpoczatek.pl</a>
+        <p>Responsywne CV jako strona webowa z animacjami. Netlify + domena własna.</p>
+      </div>
 
+      <div class="project">
+        <strong>Party-generator</strong>
+        <a href="https://party-generator.netlify.app">party-generator.netlify.app</a>
+        <p>Aplikacja do generowania opisów wydarzeń tanecznych. HTML/CSS/JavaScript, hosting Netlify.</p>
+      </div>
 
+      <p class="gdpr">
+        Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji obecnego oraz
+        przyszłych procesów rekrutacyjnych, również na inne stanowiska.
+      </p>
 
-        <ul>
-          <li>
-            <strong>Kato Salsa Hub</strong><br />
-            <a href="https://katosalsahub.pl" class="projects-link">https://katosalsahub.pl</a><br />
-            Strona informacyjno-promocyjna społeczności tanecznej. HTML/CSS, hosting Netlify, własna domena.
-          </li>
-          <li>
-            <strong>CV w HTML/CSS</strong><br />
-            <a href="https://krzysztofpoczatek.pl" class="projects-link">https://krzysztofpoczatek.pl</a><br />
-            Responsywne CV jako strona webowa z animacjami. Netlify + domena własn
-          </li>
-          <li>
-            <strong>Party-generator</strong><br />
-            <a href="https://party-generator.netlify.app"
-              class="projects-link">https://party-generator.netlify.app</a><br />
-            Aplikacja do generowania opisów wydarzeń tanecznych. HTML/CSS/JavaScript, hosting Netlify.
-          </li>
-        </ul>
-      </section>
-      <section class="klauzura">
-        Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb
-        niezbędnych do realizacji obecnego oraz przyszłych procesów
-        rekrutacyjnych, również na inne stanowiska
-      </section>
-
-      <button class="print-button" onclick="window.print()">
-        Wygeneruj plik PDF albo wydrukuj
-      </button>
-    </div>
+      <button id="printBtn">Wygeneruj PDF / Wydrukuj</button>
+    </main>
   </div>
-  <script src="./javascript/script.js"></script>
+
+  <script src="javascript/script.js"></script>
 </body>
 
 </html>

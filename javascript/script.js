@@ -1,12 +1,24 @@
-function toggleSidebar() {
-  const sidebar = document.querySelector(".left-side");
-  const toggleBtn = document.querySelector(".toggle-button");
+// Toggle sidebar na mobile
+const toggleBtn = document.getElementById('toggleBtn');
+const sidebar = document.getElementById('sidebar');
 
-  if (sidebar.classList.contains("active")) {
-    sidebar.classList.remove("active");
-    toggleBtn.textContent = "Pokaż menu";
-  } else {
-    sidebar.classList.add("active");
-    toggleBtn.textContent = "Ukryj menu";
-  }
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', function() {
+    sidebar.classList.toggle('active');
+    
+    if (sidebar.classList.contains('active')) {
+      toggleBtn.textContent = 'Ukryj menu';
+    } else {
+      toggleBtn.textContent = 'Menu';
+    }
+  });
+}
+
+// Przycisk drukowania
+const printBtn = document.getElementById('printBtn');
+
+if (printBtn) {
+  printBtn.addEventListener('click', function() {
+    window.print();
+  });
 }
