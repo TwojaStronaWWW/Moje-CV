@@ -260,7 +260,7 @@ button:focus {
 		flex-shrink: 0;
 		background: var(--color-primary);
 		color: white;
-		padding: 15px 18px;
+		padding: 15px 10px;
 		display: block;
 		font-size: 11px;
 	}
@@ -321,13 +321,13 @@ button:focus {
 		width: 70%;
 		flex-shrink: 0;
 		background: white;
-		padding: 15px 22px;
-		font-size: 11px;
+		padding: 15px 15px;
+		font-size: 12px;
 		color: #1a1a1a;
 	}
 
 	main > p:first-child {
-		font-size: 11px;
+		font-size: 12px;
 		line-height: 1.5;
 		margin-bottom: 15px;
 		page-break-after: avoid;
@@ -335,7 +335,7 @@ button:focus {
 
 	main h2 {
 		color: var(--color-primary);
-		font-size: 15px;
+		font-size: 16px;
 		border-bottom: 2px solid var(--color-primary);
 		padding-bottom: 3px;
 		margin: 15px 0 10px;
@@ -355,7 +355,7 @@ button:focus {
 	}
 
 	main h3 {
-		font-size: 12px;
+		font-size: 13px;
 		margin: 10px 0 4px;
 		page-break-after: avoid;
 		page-break-inside: avoid;
@@ -363,7 +363,7 @@ button:focus {
 	}
 
 	main .time {
-		font-size: 10px;
+		font-size: 11px;
 		margin-bottom: 5px;
 		color: #666;
 		page-break-after: avoid;
@@ -383,7 +383,7 @@ button:focus {
 	}
 
 	main li {
-		font-size: 10px;
+		font-size: 11px;
 		line-height: 1.5;
 		margin-bottom: 3px;
 		color: #1a1a1a;
@@ -403,17 +403,24 @@ button:focus {
 		page-break-inside: avoid;
 	}
 
+	.project .accent {
+		display: block;
+		font-size: 0;
+		margin-top: 1px;
+	}
+
 	.project strong {
-		font-size: 12px;
+		font-size: 13px;
 		margin-bottom: 3px;
 	}
 
-	.project a {
-		font-size: 10px;
+	.project a,
+	.project .accent a {
+		font-size: 11px;
 	}
 
 	.project p {
-		font-size: 10px;
+		font-size: 11px;
 		margin-bottom: 0;
 	}
 
@@ -429,7 +436,7 @@ button:focus {
 	}
 
 	@page {
-		margin: 10mm;
+		margin: 5mm;
 		size: A4 portrait;
 	}
 }
