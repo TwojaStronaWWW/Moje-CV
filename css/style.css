@@ -241,8 +241,10 @@ button:focus {
 	body {
 		margin: 0;
 		padding: 0;
-		background: white;
+		/* Slight overlap to prevent white line artifact */
+		background: linear-gradient(to right, var(--color-primary) 0%, var(--color-primary) 30.1%, white 30%);
 		font-size: 12px;
+		-webkit-print-color-adjust: exact;
 	}
 
 	.container {
@@ -258,29 +260,33 @@ button:focus {
 	aside {
 		width: 30%;
 		flex-shrink: 0;
-		background: var(--color-primary);
+		background: transparent !important;
 		color: white;
-		padding: 15px 10px;
+		padding: 20px 15px 20px 20px;
 		display: block;
-		font-size: 11px;
+		font-size: 12px;
+	}
+
+	aside header {
+		text-align: center;
 	}
 
 	aside h1 {
-		font-size: 20px;
-		margin-bottom: 4px;
+		font-size: 24px;
+		margin-bottom: 6px;
 		color: white;
 	}
 
 	aside .occupation {
-		font-size: 14px;
-		margin-bottom: 18px;
+		font-size: 16px;
+		margin-bottom: 20px;
 		color: white;
 	}
 
 	aside h2 {
-		font-size: 13px;
-		padding-bottom: 3px;
-		margin: 14px 0 7px;
+		font-size: 15px;
+		padding-bottom: 4px;
+		margin: 16px 0 8px;
 		border-bottom: 1px solid white;
 		color: white;
 	}
@@ -291,10 +297,10 @@ button:focus {
 	}
 
 	aside li {
-		font-size: 11px;
+		font-size: 12px;
 		line-height: 1.5;
-		margin-bottom: 5px;
-		padding-left: 13px;
+		margin-bottom: 6px;
+		padding-left: 14px;
 		position: relative;
 		color: white;
 	}
@@ -307,7 +313,7 @@ button:focus {
 	}
 
 	aside a {
-		font-size: 11px;
+		font-size: 12px;
 		color: white;
 		text-decoration: none;
 	}
@@ -321,24 +327,24 @@ button:focus {
 		width: 70%;
 		flex-shrink: 0;
 		background: white;
-		padding: 15px 15px;
-		font-size: 12px;
+		padding: 20px 20px 20px 20px;
+		font-size: 13px;
 		color: #1a1a1a;
 	}
 
 	main > p:first-child {
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 1.5;
-		margin-bottom: 15px;
+		margin-bottom: 16px;
 		page-break-after: avoid;
 	}
 
 	main h2 {
 		color: var(--color-primary);
-		font-size: 16px;
+		font-size: 18px;
 		border-bottom: 2px solid var(--color-primary);
-		padding-bottom: 3px;
-		margin: 15px 0 10px;
+		padding-bottom: 4px;
+		margin: 18px 0 12px;
 		page-break-after: avoid;
 		page-break-inside: avoid;
 	}
@@ -351,20 +357,20 @@ button:focus {
 	/* Zainteresowania (druga sekcja) pozostają na pierwszej stronie */
 	main section:nth-of-type(3) h2 {
 		page-break-before: always;
-		margin-top: 0;
+		margin-top: 40px;
 	}
 
 	main h3 {
-		font-size: 13px;
-		margin: 10px 0 4px;
+		font-size: 15px;
+		margin: 12px 0 5px;
 		page-break-after: avoid;
 		page-break-inside: avoid;
 		color: #1a1a1a;
 	}
 
 	main .time {
-		font-size: 11px;
-		margin-bottom: 5px;
+		font-size: 12px;
+		margin-bottom: 6px;
 		color: #666;
 		page-break-after: avoid;
 	}
@@ -378,14 +384,14 @@ button:focus {
 	main ul {
 		list-style: disc;
 		padding-left: 20px;
-		margin-bottom: 12px;
+		margin-bottom: 14px;
 		page-break-inside: avoid;
 	}
 
 	main li {
-		font-size: 11px;
+		font-size: 12px;
 		line-height: 1.5;
-		margin-bottom: 3px;
+		margin-bottom: 4px;
 		color: #1a1a1a;
 	}
 
@@ -399,7 +405,7 @@ button:focus {
 	}
 
 	.project {
-		margin-bottom: 10px;
+		margin-bottom: 12px;
 		page-break-inside: avoid;
 	}
 
@@ -410,24 +416,24 @@ button:focus {
 	}
 
 	.project strong {
-		font-size: 13px;
-		margin-bottom: 3px;
+		font-size: 14px;
+		margin-bottom: 4px;
 	}
 
 	.project a,
 	.project .accent a {
-		font-size: 11px;
+		font-size: 12px;
 	}
 
 	.project p {
-		font-size: 11px;
+		font-size: 12px;
 		margin-bottom: 0;
 	}
 
 	.gdpr {
-		font-size: 9px;
+		font-size: 10px;
 		color: #666;
-		margin: 12px 0 10px;
+		margin: 14px 0 10px;
 	}
 
 	button,
@@ -436,7 +442,7 @@ button:focus {
 	}
 
 	@page {
-		margin: 5mm;
+		margin: 0;
 		size: A4 portrait;
 	}
 }
