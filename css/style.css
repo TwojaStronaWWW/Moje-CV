@@ -227,5 +227,10 @@ button:focus {
 	main {
 		padding: var(--spacing-md);
 	}
+
+	.gdpr {
+		padding-left: var(--spacing-md);
+		padding-right: var(--spacing-md);
+	}
 }
 
