@@ -24,11 +24,6 @@ jobs:
           remote_path: '/home/platne/serwer417204/public_html/krzysztofpoczatek.pl'
           sftp_args: '-o ConnectTimeout=60'
 
-
-
-
-
-          
           # local-dir: ./
           # server-dir: "/home/platne/serwer417204/public_html/dancepuls.katosalsahub.pl/"
           # exclude: |
