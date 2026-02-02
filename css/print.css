@@ -142,7 +142,7 @@ main section:nth-of-type(3) h2 {
 
 main h3 {
 	font-size: 15px;
-	margin: 12px 0 5px;
+	margin: 12px 0 2px;
 	page-break-after: avoid;
 	page-break-inside: avoid;
 	color: #1a1a1a;
@@ -207,19 +207,20 @@ article {
 
 .project p {
 	font-size: 12px;
-	margin-bottom: 0;
+	margin-bottom: 8px;
 }
 
 .gdpr {
 	font-size: 10px;
 	color: #666;
-	margin-top: 82px;
+	margin-top: 30px;
 	padding: 15px 0 0;
 	position: static;
 	width: auto;
 	box-sizing: border-box;
 	border-top: 1px solid #ccc;
 	page-break-inside: avoid;
+	background: transparent;
 }
 
 button,
