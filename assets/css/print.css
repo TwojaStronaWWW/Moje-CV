@@ -1,20 +1,40 @@
-/* === Print === */
+/* === PRINT – Krzysztof Początek CV ===
+ * Nadpisujemy główny main.css (display:grid) zachowując layout grid, ale ze skalą print.
+ * !important tam gdzie main.css musi zostać nadpisany.
+ */
+
 *,
 *::before,
 *::after {
 	-webkit-print-color-adjust: exact;
 	print-color-adjust: exact;
+	box-sizing: border-box;
+}
+
+@page {
+	margin: 0;
+	size: A4 portrait;
+}
+
+:root {
+	--color-primary: #005b82;
+	--color-text-dark: #1a1a1a;
+	--color-text-light: #555;
+	--color-text-muted: #888;
+	--color-bg-light: #f8f9fa;
+	--color-white: #ffffff;
 }
 
 body {
 	margin: 0;
 	padding: 0;
 	background: white;
-	font-size: 12px;
-	position: relative;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 10.5px;
+	line-height: 1.5;
 }
 
-/* Fixed background for sidebar on every page */
+/* Niebieskie tło sidebara pokrywa lewą kolumnę na każdej stronie */
 body::before {
 	content: "";
 	position: fixed;
@@ -22,213 +42,199 @@ body::before {
 	left: 0;
 	height: 100%;
 	width: 30%;
-	background: #005b82; /* Hardcoded var due to separate file scope if vars not present, but vars usually work if imported. However root is in style.css. Print media often ignores root specific styles if not shared. Safe to hardcode or ensure root is available. Let's use the variable assuming style.css is also loaded or redraft variables. Usually style.css is loaded for screen. for Print, style.css might not be loaded if I restrict it? No, usually we rely on style.css for shared vars. But to be safe and clean let's copy the variable or use the code as is. The original code used var(--color-primary). If style.css is media='all' or no media, it works. I'll stick to the original code content. */
 	background: var(--color-primary);
 	-webkit-print-color-adjust: exact;
 	print-color-adjust: exact;
 	z-index: -1;
 }
 
+/* ===== LAYOUT – nadpisanie grid z main.css ===== */
 .container {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	max-width: none;
-	box-shadow: none;
-	margin: 0;
-	min-height: auto;
+	display: grid !important;
+	grid-template-columns: 30% 70% !important;
+	width: 100% !important;
+	max-width: none !important;
+	margin: 0 !important;
+	box-shadow: none !important;
+	min-height: 0 !important;
 }
 
+/* ===== SIDEBAR ===== */
 aside {
-	width: 30%;
-	flex-shrink: 0;
 	background: transparent !important;
-	color: white;
-	padding: 20px 15px 20px 20px;
-	display: block;
-	font-size: 12px;
+	color: var(--color-white) !important;
+	padding: 20px 14px 20px 18px !important;
+	font-size: 10px;
+	display: block !important;
 }
 
-
+aside header {
+	margin-bottom: 14px;
+}
 
 aside h1 {
-	font-size: 24px;
-	margin-bottom: 6px;
-	color: white;
+	font-size: 17px !important;
+	margin-bottom: 4px !important;
+	color: var(--color-white) !important;
+	line-height: 1.2;
 }
 
 aside .occupation {
-	font-size: 16px;
-	margin-bottom: 20px;
-	color: white;
+	font-size: 8px !important;
+	line-height: 1.4;
+	opacity: 0.95;
+	color: var(--color-white) !important;
 }
 
 aside h2 {
-	font-size: 15px;
-	padding-bottom: 4px;
-	margin: 16px 0 8px;
-	border-bottom: 1px solid white;
-	color: white;
+	font-size: 10.5px !important;
+	font-weight: 700;
+	border-bottom: 1px solid rgba(255,255,255,0.7) !important;
+	padding-bottom: 3px !important;
+	margin: 12px 0 6px !important;
+	color: var(--color-white) !important;
 }
 
 aside ul {
-	list-style: none;
-	margin: 0;
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 aside li {
-	font-size: 12px;
-	line-height: 1.5;
-	margin-bottom: 6px;
-	padding-left: 14px;
+	margin-bottom: 4px !important;
+	padding-left: 12px !important;
 	position: relative;
-	color: white;
+	font-size: 10px !important;
+	line-height: 1.4;
+	color: var(--color-white) !important;
 }
 
 aside li::before {
 	content: '▸';
 	position: absolute;
 	left: 0;
-	color: white;
+	color: var(--color-white) !important;
 }
 
 aside a {
-	font-size: 12px;
-	color: white;
-	text-decoration: none;
+	color: var(--color-white) !important;
+	text-decoration: none !important;
 }
 
-/* Sekcja "Kompetencje dodatkowe" w sidebarze na drugiej stronie */
-aside section:last-of-type {
-	page-break-before: always;
+aside section {
+	page-break-inside: avoid;
 }
 
+/* ===== MAIN ===== */
 main {
-	width: 70%;
-	flex-shrink: 0;
-	background: white;
-	padding: 20px 20px 20px 20px;
-	font-size: 13px;
-	color: #1a1a1a;
+	background: white !important;
+	padding: 20px 18px 14px 24px !important;
+	font-size: 10.5px;
+	color: var(--color-text-dark);
+}
+
+main p {
+	margin-bottom: 8px !important;
 }
 
 main > p:first-child {
-	font-size: 13px;
+	font-size: 10.5px;
 	line-height: 1.5;
-	margin-bottom: 16px;
+	margin-bottom: 10px !important;
 	page-break-after: avoid;
 }
 
 main h2 {
-	color: var(--color-primary);
-	font-size: 18px;
-	border-bottom: 2px solid var(--color-primary);
-	padding-bottom: 4px;
-	margin: 18px 0 12px;
+	color: var(--color-primary) !important;
+	font-size: 13px !important;
+	font-weight: 700;
+	border-bottom: 1.5px solid var(--color-primary) !important;
+	padding-bottom: 3px !important;
+	margin: 16px 0 9px !important;
 	page-break-after: avoid;
-	page-break-inside: avoid;
 }
 
 main h2:first-of-type {
-	margin-top: 0;
-}
-
-/* KLUCZOWA ZMIANA: Sekcja "Wykształcenie" (trzecia) na drugiej stronie */
-/* Zainteresowania (druga sekcja) pozostają na pierwszej stronie */
-main section:nth-of-type(3) h2 {
-	page-break-before: always;
-	margin-top: 40px;
+	margin-top: 0 !important;
 }
 
 main h3 {
-	font-size: 15px;
-	margin: 12px 0 2px;
+	font-size: 11px !important;
+	font-weight: 700;
+	margin: 8px 0 2px !important;
+	color: var(--color-text-dark);
 	page-break-after: avoid;
-	page-break-inside: avoid;
-	color: #1a1a1a;
 }
 
 main .time {
-	font-size: 12px;
-	margin-bottom: 6px;
-	color: #666;
+	font-size: 9px !important;
+	color: var(--color-text-muted) !important;
+	margin-bottom: 4px !important;
 	page-break-after: avoid;
 }
 
 main .accent {
 	font-style: italic;
 	font-weight: normal;
-	color: #555;
+	color: var(--color-text-light) !important;
 }
 
 main ul {
-	list-style: disc;
-	padding-left: 20px;
-	margin-bottom: 14px;
-	page-break-inside: avoid;
+	list-style: disc !important;
+	padding-left: 16px !important;
+	margin-bottom: 12px !important;
 }
 
 main li {
-	font-size: 12px;
-	line-height: 1.5;
-	margin-bottom: 4px;
-	color: #1a1a1a;
+	font-size: 10.5px;
+	line-height: 1.4;
+	margin-bottom: 2px !important;
+	color: var(--color-text-dark);
 }
 
 main a {
-	color: var(--color-primary);
-	text-decoration: none;
+	color: var(--color-primary) !important;
+	text-decoration: none !important;
 }
 
 article {
 	page-break-inside: avoid;
-}
-
-.project {
-	margin-bottom: 12px;
-	page-break-inside: avoid;
-}
-
-.project .accent {
-	display: block;
-	font-size: 0;
-	margin-top: 1px;
-}
-
-.project strong {
-	font-size: 14px;
-	margin-bottom: 4px;
-}
-
-.project a,
-.project .accent a {
-	font-size: 12px;
-}
-
-.project p {
-	font-size: 12px;
 	margin-bottom: 8px;
 }
 
-.gdpr {
-	font-size: 10px;
-	color: #666;
-	margin-top: 30px;
-	padding: 15px 0 0;
-	position: static;
-	width: auto;
-	box-sizing: border-box;
-	border-top: 1px solid #ccc;
-	page-break-inside: avoid;
-	background: transparent;
+/* Wymuszenie strony 2 dla stanowiska Konsultant UPC */
+.page-break-before {
+	page-break-before: always;
+	padding-top: 14px;
 }
 
+/* Projekty */
+.projects-list {
+	list-style: disc !important;
+	padding-left: 16px !important;
+	margin: 2px 0 6px !important;
+}
+
+.projects-list li {
+	font-size: 10.5px;
+	line-height: 1.5;
+	margin-bottom: 5px !important;
+}
+
+/* RODO */
+.gdpr {
+	font-size: 8px !important;
+	color: #666 !important;
+	margin-top: 24px !important;
+	padding-top: 10px !important;
+	border-top: 1px solid #ccc !important;
+	page-break-inside: avoid;
+	background: transparent !important;
+}
+
+/* Ukrycie elementów interaktywnych */
 button,
 .toggle-menu {
-	display: none;
-}
-
-@page {
-	margin: 0;
-	size: A4 portrait;
+	display: none !important;
 }
