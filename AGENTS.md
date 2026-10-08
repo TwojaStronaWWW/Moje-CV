@@ -47,7 +47,7 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
   * **UPC Polska (08.2013 – 06.2018):** Młodszy Inżynier Wsparcia Technicznego, Wi-Fi, redukcja reklamacji o 20%.
   * **UPC Polska (09.2009 – 07.2013):** Konsultant ds. Obsługi Klientów.
 - **Kluczowe filary kompetencji:**
-  1. **Systemy Medyczne i Wsparcie (L1/L2):** AMMS (Asseco), KS-SOMED (Kamsoft), Active Directory, Windows 10/11 & Server, SLA/ITIL.
+  1. **Systemy Medyczne, Service Desk i Wsparcie (L1/L2):** AMMS (Asseco), KS-SOMED (Kamsoft), osTicket (samodzielne wdrożenie i administracja Service Desk pod hd.twojastronawww.pl), Jira Service Management, Active Directory, Windows 10/11 & Server, SLA/ITIL.
   2. **Bezpieczeństwo i Zarządzanie:** Certyfikowany Audytor Wewnętrzny ISO/IEC 27001:2023, ITIL® 4 Foundation.
   3. **Sieci i Infrastruktura:** Cisco Networking Academy (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), LAN/WLAN, VLAN, routing, Cloudflare.
   4. **Development, Bezpieczeństwo Danych i Narzędzia:** 
