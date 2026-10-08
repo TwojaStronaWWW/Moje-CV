@@ -54,7 +54,7 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
      * **Gal Anonim:** Autorska aplikacja desktopowa w C# (.NET 10 / Windows Forms / WebView2 / SQLite) do automatycznej anonimizacji i maskowania danych wrażliwych (RODO / ISO 27001) w plikach PDF, DOCX, ODT i TXT.
      * PHP, JavaScript, SQL (100% certyfikat IEES), AI-assisted Dev & Prompt Engineering, Web Scraping, CI/CD, HTML5/CSS3.
      * *(Uwaga: Krzysztof programuje w C#, nie w Pythonie).*
-  5. **Leadership & Działalność Społeczna:** Fundator i Prezes Zarządu Fundacji Kato Salsa Hub (inicjatywa oddolna od 01.2020 r., notarialne powołanie 2026 r., w trakcie rejestracji w KRS; logistyka wyjazdów i wydarzeń kulturalnych, portal na Cloudflare, system DancePuls).
+  5. **Leadership & Działalność Społeczna:** Fundator i Prezes Zarządu Fundacji Kato Salsa Hub (inicjatywa oddolna od 01.2020 r., notarialne powołanie 2026 r., w trakcie rejestracji w KRS; organizacja spotkań salsowych w plenerze i lokalach, wyjazdy integracyjne, portal na Cloudflare, system DancePuls).
 
 ---
 
