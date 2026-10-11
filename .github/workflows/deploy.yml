@@ -12,6 +12,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Prepare production build
+        run: |
+          mkdir -p dist
+          cp index.html dist/
+          cp -r assets dist/
+
       - name: Upload via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -19,14 +25,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
-          local_path: './*'
-          # Ścieżka na LH dla SFTP zazwyczaj zaczyna się od /home/...
+          local_path: './dist/*'
           remote_path: '/home/platne/serwer417204/public_html/krzysztofpoczatek.pl'
           sftp_args: '-o ConnectTimeout=60'
-
-          # local-dir: ./
-          # server-dir: "/home/platne/serwer417204/public_html/dancepuls.katosalsahub.pl/"
-          # exclude: |
-          #   **/.git*
-          #   **/.github/**
-          #   **/node_modules/**
