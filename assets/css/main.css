@@ -47,6 +47,21 @@ aside {
 
 aside header {
 	margin-bottom: var(--spacing-lg);
+	text-align: center;
+}
+
+.profile-photo {
+	width: 180px;
+	max-width: 85%;
+	height: auto;
+	aspect-ratio: 4 / 5;
+	border-radius: 12px;
+	object-fit: cover;
+	object-position: center top;
+	display: block;
+	margin: 0 auto var(--spacing-md);
+	border: 3px solid rgba(255, 255, 255, 0.9);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 aside h1 {
@@ -204,6 +219,71 @@ button:focus {
 	display: none;
 	width: 100%;
 	margin-bottom: var(--spacing-sm);
+}
+
+/* === Unified Print Buttons === */
+.btn-print {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	border-radius: 25px;
+	padding: 10px 22px;
+	width: fit-content;
+	transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-print svg {
+	flex-shrink: 0;
+	transition: stroke 0.2s;
+}
+
+/* Wariant w sidebarze (pod danymi kontaktowymi) */
+.sidebar-print-btn {
+	background: var(--color-white);
+	color: var(--color-primary);
+	border: 2px solid var(--color-white);
+	margin: 16px auto 0;
+	display: flex;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-print-btn:hover {
+	background: rgba(255, 255, 255, 0.9);
+	color: var(--color-primary-dark);
+	border-color: rgba(255, 255, 255, 0.9);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-print-btn:active {
+	transform: translateY(0);
+}
+
+/* Wariant na dole strony (w sekcji głównej) */
+.main-print-btn {
+	background: var(--color-white);
+	color: var(--color-primary);
+	border: 2px solid var(--color-primary);
+	margin: 24px auto 0;
+	display: flex;
+	box-shadow: 0 4px 12px rgba(0, 91, 130, 0.15);
+}
+
+.main-print-btn:hover {
+	background: var(--color-primary);
+	color: var(--color-white);
+	border-color: var(--color-primary);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 91, 130, 0.25);
+}
+
+.main-print-btn:active {
+	transform: translateY(0);
 }
 
 /* === Mobile === */

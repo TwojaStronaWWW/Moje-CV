@@ -19,11 +19,10 @@ if (toggleBtn && sidebar) {
 	})
 }
 
-// Przycisk drukowania
-const printBtn = document.getElementById('printBtn')
-
-if (printBtn) {
-	printBtn.addEventListener('click', () => {
+// Obsługa przycisków drukowania / pobrania PDF
+const printButtons = document.querySelectorAll('.btn-print, #printBtn')
+printButtons.forEach(btn => {
+	btn.addEventListener('click', () => {
 		window.print()
 	})
-}
+})

@@ -41,7 +41,7 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
 - **Doświadczenie:** 10+ lat w sektorze IT i technicznym:
   * **Maxbit (03.2026 – Obecnie):** Specjalista ds. Oprogramowania – wsparcie L2 dla szpitali i przychodni w systemie AMMS (Asseco), wdrożenia i uruchomienia szpitalne, szkolenia personelu.
   * **Freelance IT & Dev (02.2024 – Obecnie):** Prowadzona równolegle działalność projektowa – systemy webowe (Raricart, DancePuls), hosting, Cloudflare, optymalizacja bezpieczeństwa.
-  * **Kamsoft S.A. (01.2022 – 01.2024):** Ponad 20 wdrożeń systemu medycznego KS-SOMED.
+  * **Kamsoft S.A. (01.2022 – 06.2024):** Ponad 20 wdrożeń systemu medycznego KS-SOMED.
   * **PKO Bank Polski (01.2021 – 12.2021):** Wsparcie L1/L2, rygor bankowy, praca zdalna, SLA.
   * **Euvic IT (07.2018 – 12.2020):** Starszy Specjalista Serwisu IT (L2 on-site), Active Directory, redukcja przestojów o 30%.
   * **UPC Polska (08.2013 – 06.2018):** Młodszy Inżynier Wsparcia Technicznego, Wi-Fi, redukcja reklamacji o 20%.
@@ -49,9 +49,10 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
 - **Kluczowe filary kompetencji:**
   1. **Systemy Medyczne, Service Desk i Wsparcie (L1/L2):** AMMS (Asseco), KS-SOMED (Kamsoft), osTicket (samodzielne wdrożenie i administracja Service Desk pod hd.twojastronawww.pl), Jira Service Management, Active Directory, Windows 10/11 & Server, SLA/ITIL.
   2. **Bezpieczeństwo i Zarządzanie:** Certyfikowany Audytor Wewnętrzny ISO/IEC 27001:2023, ITIL® 4 Foundation.
-  3. **Sieci i Infrastruktura:** Cisco Networking Academy (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), LAN/WLAN, VLAN, routing, Cloudflare.
+  3. **Sieci i Infrastruktura:** Cisco Networking Academy 2026 (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), LAN/WLAN, VLAN, routing, Cloudflare.
   4. **Development, Bezpieczeństwo Danych i Narzędzia:** 
-     * **Gal Anonim:** Autorska aplikacja desktopowa w C# (.NET 10 / Windows Forms / WebView2 / SQLite) do automatycznej anonimizacji i maskowania danych wrażliwych (RODO / ISO 27001) w plikach PDF, DOCX, ODT i TXT.
+     * **Gal Anonim:** Autorska aplikacja desktopowa w C# (.NET 10 / Windows Forms / WebView2 / SQLite) do automatycznej anonimizacji i maskowania danych wrażliwych (RODO / ISO 27001) w plikach PDF, DOCX, ODT i TXT (kod prywatny, oficjalne wydania instalacyjne: github.com/zeslownikiem/galanonim-release).
+     * **Repozytoria publiczne:** github.com/TwojaStronaWWW (organizacja firmowa).
      * PHP, JavaScript, SQL (100% certyfikat IEES), AI-assisted Dev & Prompt Engineering, Web Scraping, CI/CD, HTML5/CSS3.
      * *(Uwaga: Krzysztof programuje w C#, nie w Pythonie).*
   5. **Leadership & Działalność Społeczna:** Fundator i Prezes Zarządu Fundacji Kato Salsa Hub (inicjatywa oddolna od 01.2020 r., notarialne powołanie 2026 r., w trakcie rejestracji w KRS; organizacja spotkań salsowych w plenerze i lokalach, wyjazdy integracyjne, portal na Cloudflare, system DancePuls).

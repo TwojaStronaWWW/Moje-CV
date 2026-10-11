@@ -69,7 +69,20 @@ aside {
 }
 
 aside header {
-	margin-bottom: 14px;
+	margin-bottom: 10px;
+	text-align: center !important;
+}
+
+.profile-photo {
+	width: 80px !important;
+	height: auto !important;
+	aspect-ratio: 4 / 5 !important;
+	border-radius: 6px !important;
+	object-fit: cover !important;
+	object-position: center top !important;
+	display: block !important;
+	margin: 0 auto 6px !important;
+	border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
 }
 
 aside h1 {
@@ -235,6 +248,8 @@ article {
 
 /* Ukrycie elementów interaktywnych */
 button,
-.toggle-menu {
+.toggle-menu,
+.btn-floating-print,
+.btn-print {
 	display: none !important;
 }
