@@ -1,71 +1,109 @@
-# Krzysztof Początek – Oficjalne CV & Portfolio IT
+# Krzysztof Początek — Interaktywne CV & Portfolio IT
 
-[![CI/CD Pipeline](https://img.shields.io/badge/CI%2FCD%20Pipeline-Passing-success?style=flat-square&logo=githubactions)](.github/workflows/deploy.yml)
-[![Unit Tests](https://img.shields.io/badge/Unit%20Tests-56%20Passed-blue?style=flat-square&logo=node.js)](tests/)
-[![Code Coverage](https://img.shields.io/badge/Coverage-%3E86%25-brightgreen?style=flat-square)](tests/)
-[![Lighthouse CI](https://img.shields.io/badge/Lighthouse-Validated-success?style=flat-square&logo=lighthouse)](.lighthouserc.json)
-[![Security](https://img.shields.io/badge/Security-Dependabot%20Active-blue?style=flat-square&logo=dependabot)](.github/dependabot.yml)
-[![Standards](https://img.shields.io/badge/Standards-ISO%2F27001%20%7C%20WCAG%202.1-informational?style=flat-square)](AGENTS.md)
+<p align="center">
+  <img src="assets/img/krzysztof-poczatek.jpg" alt="Krzysztof Początek - IT Specialist" width="140" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+</p>
 
-Oficjalne, produkcyjne repozytorium interaktywnego CV oraz portfolio zawodowego **Krzysztofa Początka** (Specjalista IT, Wdrożeniowiec systemów medycznych AMMS/KS-SOMED, Certyfikowany Audytor Wewnętrzny ISO/IEC 27001:2023, ITIL® 4 Foundation).
+<p align="center">
+  <strong>Oficjalne, produkcyjne portfolio i interaktywne CV klasy Enterprise o zerowej liczbie zależności zewnętrznych.</strong><br>
+  Specjalista ds. Wdrożeń AMMS / KS-SOMED • Audytor Wewnętrzny ISO/IEC 27001:2023 • ITIL® 4 Foundation • Cisco CCNA.
+</p>
 
-Projekt zaprojektowany zgodnie z rygorem inżynierskim klasy Enterprise, wzorowany na architekturze CI/CD i standardach testów aplikacji **Gal Anonim**.
+<p align="center">
+  <a href="https://github.com/TwojaStronaWWW/Moje-CV/actions/workflows/deploy.yml"><img src="https://img.shields.io/badge/CI%2FCD%20Pipeline-Passing-success?style=flat-square&logo=githubactions" alt="CI/CD Pipeline"></a>
+  <img src="https://img.shields.io/badge/Unit%20Tests-56%20Passed-blue?style=flat-square&logo=node.js" alt="Unit Tests">
+  <img src="https://img.shields.io/badge/Coverage-%3E86%25-brightgreen?style=flat-square" alt="Code Coverage">
+  <img src="https://img.shields.io/badge/Lighthouse-WCAG%202.1%20%7C%20SEO%20100-orange?style=flat-square&logo=lighthouse" alt="Lighthouse CI">
+  <img src="https://img.shields.io/badge/Security-Dependabot%20Active-blue?style=flat-square&logo=dependabot" alt="Security">
+  <img src="https://img.shields.io/badge/Standards-ISO%2F27001%20%7C%20WCAG%202.1-informational?style=flat-square" alt="Standards">
+</p>
+
+<p align="center">
+  <a href="https://krzysztofpoczatek.pl" target="_blank">
+    <img src="https://img.shields.io/badge/%F0%9F%8C%90_ZOBACZ_CV_ONLINE-krzysztofpoczatek.pl-0078D4?style=for-the-badge" alt="Odwiedź CV Online" />
+  </a>
+  <a href="https://krzysztofpoczatek.pl/Krzysztof_Poczatek_CV.pdf" target="_blank">
+    <img src="https://img.shields.io/badge/%F0%9F%93%84_POBIERZ_OFICJALNY_PDF-A4_Druk-28a745?style=for-the-badge" alt="Pobierz PDF" />
+  </a>
+</p>
 
 ---
 
-## 🏛️ Architektura i Standardy Techniczne
+## 📸 Podgląd Wizualny
 
-* **Zero-Dependency Runtime**: Czysty, semantyczny HTML5, nowoczesny Vanilla CSS3 zoptymalizowany pod A4 oraz Vanilla JavaScript (ES6+). Zero zewnętrznych ciężkich frameworków, błyskawiczne ładowanie.
-* **Dostępność i UX (WCAG 2.1)**:
-  - Pełna obsługa nawigacji klawiaturą (zamykanie menu klawiszem `Escape` z przywracaniem fokusu).
-  - Płynna responsywność (automatyczny reset menu przy obrocie urządzenia lub zmianie szerokości okna > 768px).
-  - Precyzyjne atrybuty ARIA (`aria-expanded`, `aria-controls`, `aria-label`).
-* **Format Wydruku A4 i PDF**: Dedykowany arkusz `assets/css/print.css` z precyzyjnymi regułami `@page`, `.page-break-before` i ochroną przed rozrywaniem wpisów doświadczenia zawodowego.
-* **SEO & Social Graph**: Kompletne tagi Open Graph, Twitter Cards, kanoniczne linki URL, `robots.txt`, `sitemap.xml` oraz strukturyzowane dane Schema.org (JSON-LD) dla typu `Person`.
+<p align="center">
+  <img src="assets/img/og-preview.png" alt="Podgląd serwisu krzysztofpoczatek.pl" width="850" onerror="this.style.display='none'" style="border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);" />
+</p>
 
 ---
 
-## 🚀 Trójstopniowy Pipeline CI/CD (.github/workflows/deploy.yml)
+## 🎯 Czym jest projekt Moje-CV?
 
-Pipeline uruchamia się na każdym pushu do gałęzi `main`, weryfikuje Pull Requesty oraz pozwala na ręczne wywołanie (`workflow_dispatch`):
+**Moje-CV** to interaktywne portfolio oraz oficjalne CV **Krzysztofa Początka**, zaprojektowane i wdrożone z myślą o najwyższych standardach inżynierskich branży IT. Łączy natychmiastową czytelność rekruterską (test pierwszych 6 sekund ATS) z bezkompromisową architekturą techniczną wzorowaną na ekosystemie produkcyjnym **Gal Anonim**.
 
+> 🔒 **Filozofia Zero-Dependency & Pure Performance:**  
+> Strona została zbudowana w 100% z czystego, semantycznego kodu (HTML5, Vanilla CSS3, ES6+ modules) bez żadnych ociężałych frameworków (brak Reacta, Vue czy TailwindCSS). Wszelkie testy, generowanie PDF oraz audyty a11y opierają się na natywnych narzędziach systemowych.
+
+---
+
+## ✨ Kluczowe Możliwości i Moduły
+
+### 📄 Format Prezentacyjny i Druk A4
+| Moduł / Widok | Technologia | Specyfikacja i Gwarancje |
+| :--- | :--- | :--- |
+| **Wersja Web (Interaktywna)** | Semantic HTML5 & CSS Grid/Flexbox | Pełna responsywność (Mobile / Desktop / 4K), obsługa a11y, Dark/Light Mode Tokens. |
+| **Wersja Druk / PDF (A4)** | `assets/css/print.css` (`@page`) | Precyzyjne łamanie stron (`.page-break-before`), marginesy 10mm, zero urwanych wpisów doświadczenia. |
+| **Kompilator PDF (Headless)** | `scripts/generate-pdf.js` (Chromium) | Automatyczny eksport do oficjalnego PDF `Krzysztof_Poczatek_CV.pdf` w potoku GitHub Actions. |
+| **Optymalizacja ATS & SEO** | Open Graph, Twitter Cards, Schema.org | Twardy słownik kompetencji IT, semantyczna struktura JSON-LD dla encji `Person`. |
+
+### 🧠 Kluczowe Kompetencje i Ramy Certyfikacyjne
+* **Systemy Medyczne i Service Desk:** AMMS (Asseco), KS-SOMED (Kamsoft), osTicket (własne wdrożenie hd.twojastronawww.pl), Jira Service Management, Active Directory, SLA/ITIL.
+* **Bezpieczeństwo i Zarządzanie:** Certyfikowany Audytor Wewnętrzny **ISO/IEC 27001:2023**, **ITIL® 4 Foundation**.
+* **Sieci i Infrastruktura:** Cisco Networking Academy (cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), LAN/WLAN, VLAN, Routing, Cloudflare.
+* **Development i Bezpieczeństwo Danych:** C# .NET 10 (twórca aplikacji desktopowej **Gal Anonim** do anonimizacji RODO), PHP 8, Vanilla JS, SQL (100% certyfikat IEES), CI/CD.
+
+---
+
+## 🏛️ Architektura i Potok CI/CD
+
+```plaintext
+Moje-CV/
+├── .github/
+│   ├── dependabot.yml              # Comiesięczny nadzór nad bezpieczeństwem akcji
+│   └── workflows/
+│       └── deploy.yml              # Trójstopniowy potok CI/CD (Testy -> PDF & Audit -> Deploy)
+├── .githooks/
+│   ├── pre-commit                  # Blokada commitów przy niezaliczonych testach (npm run check)
+│   └── commit-msg                  # Walidator Conventional Commits
+├── assets/
+│   ├── css/
+│   │   ├── main.css                # Style ekranowe (zmienne CSS, typografia, układ)
+│   │   └── print.css               # Dedykowany arkusz wydruku formatu A4
+│   ├── js/
+│   │   └── main.js                 # Logika interakcji UI (ARIA, Escape focus trap)
+│   └── img/                        # Zoptymalizowane grafiki i favicon
+├── scripts/
+│   └── generate-pdf.js             # Skrypt kompilacji PDF przez Headless Chromium
+├── tests/
+│   ├── helpers/mock-dom.js         # Lekkie środowisko przeglądarki bez ociężałego jsdom
+│   └── unit/                       # Zestaw 56 testów jednostkowych (node:test)
+├── index.html                      # Główny semantyczny dokument HTML5 (WCAG 2.1)
+├── robots.txt & sitemap.xml        # Kompletna mapa i indeksowanie SEO
+└── package.json                    # Konfiguracja skryptów jakościowych npm
 ```
-┌─────────────────────────────────┐
-│ 1. Quality Gate & Testy         │
-│    • Weryfikacja składni JS     │
-│    • 50+ testów jednostkowych   │
-│    • Raport pokrycia (Coverage) │
-└────────────────┬────────────────┘
-                 │ (needs: [test])
-                 ▼
-┌─────────────────────────────────┐
-│ 2. Budowa PDF & Lighthouse CI   │
-│    • Headless Chromium Print    │
-│    • Upload artefaktu PDF (GH)  │
-│    • Audyt a11y, SEO, Best-Pr.  │
-└────────────────┬────────────────┘
-                 │ (needs: [build-and-audit], if: main)
-                 ▼
-┌─────────────────────────────────┐
-│ 3. Wdrożenie Produkcyjne (LH)   │
-│    • Transfer SFTP (HTML + PDF) │
-│    • krzysztofpoczatek.pl       │
-└─────────────────────────────────┘
-```
 
 ---
 
-## 🧪 Zestaw Testów Jednostkowych i Integralności
+## 🛡️ Brama Jakości & Testy Jednostkowe (Quality Gate)
 
-Wszystkie testy działają w oparciu o natywny silnik `node:test` i `node:assert/strict` w Node.js (bez zewnętrznych bibliotek npm, czas wykonania: **<200 ms**):
+Wszystkie testy działają w oparciu o natywny silnik `node:test` i asercje `node:assert/strict` w Node.js (czas wykonania: **< 200 ms**):
 
-| Plik testowy | Obszar testowany |
+| Plik testowy | Zakres Weryfikacji |
 | :--- | :--- |
-| `tests/unit/main.test.js` | Logika UI, zamykanie menu (ESC, kliknięcie poza, kliknięcie w link, resize > 768px), idempotencja, druk. |
-| `tests/unit/html-integrity.test.js` | Semantyka HTML5, unikalny `<h1>`, SEO, Open Graph, Twitter Card, walidacja Schema.org JSON-LD. |
-| `tests/unit/css-integrity.test.js` | Walidacja składni CSS, zbalansowanie nawiasów `{}`, spójność zmiennych `:root`. |
-| `tests/unit/print-css.test.js` | Reguły wydruku A4 portrait, `print-color-adjust: exact`, łamanie stron `.page-break-before`. |
-| `tests/unit/assets-integrity.test.js` | Fizyczna obecność zasobów statycznych (zdjęcie, favicon SVG, podgląd og-preview, CSS, JS). |
+| `tests/unit/main.test.js` | Logika UI, obsługa klawisza Escape, reset menu przy zmianie szerokości okna (> 768px), focus management. |
+| `tests/unit/html-integrity.test.js` | Semantyka HTML5, dokładnie jeden nagłówek `<h1>`, tagi Open Graph, Twitter Cards, Schema.org JSON-LD. |
+| `tests/unit/css-integrity.test.js` | Integralność reguł CSS, zbalansowanie nawiasów, spójność tokenów `:root`. |
+| `tests/unit/print-css.test.js` | Poprawność formatu A4, `print-color-adjust: exact`, klasy `.page-break-before`. |
 | `tests/unit/pdf-generator.test.js` | Wykrywanie silnika Chromium (Edge/Chrome) oraz kompilacja pliku PDF. |
 | `tests/unit/repo-hygiene.test.js` | Higiena repozytorium wzorowana na Gal Anonim (hook pre-commit, dependabot, sitemap, brak konfliktów git). |
 
@@ -74,30 +112,36 @@ Wszystkie testy działają w oparciu o natywny silnik `node:test` i `node:assert
 ## 💻 Komendy Deweloperskie
 
 ```bash
-# Uruchomienie wszystkich testów jednostkowych
+# 1. Uruchomienie wszystkich testów jednostkowych
 npm test
 
-# Wyświetlenie pełnego raportu pokrycia kodu (Code Coverage)
+# 2. Pełny raport pokrycia kodu (Code Coverage)
 npm run test:coverage
 
-# Kompilacja oficjalnego pliku PDF z zachowaniem układu A4
+# 3. Kompilacja oficjalnego pliku PDF z zachowaniem układu A4
 npm run build:pdf
 
-# Pełna weryfikacja składni i testów (Quality Gate)
+# 4. Pełna brama jakościowa (składnia JS + testy)
 npm run check
 
-# Konfiguracja git hooka pre-commit
+# 5. Aktywacja lokalnych hooków gita
 npm run prepare
 ```
 
 ---
 
-## 🔒 Bezpieczeństwo i Higiena Kodu
+## 🚀 Trójstopniowy Pipeline Wdrożeniowy (.github/workflows/deploy.yml)
 
-* **Git Pre-commit Hook**: Plik `.githooks/pre-commit` blokuje lokalnie commity, jeśli `npm run check` zwróci błąd.
-* **Dependabot**: Plik `.github/dependabot.yml` automatycznie monitoruje wersje akcji CI/CD i zależności pod kątem luk bezpieczeństwa.
+Potok uruchamia się na każdym pushu do gałęzi `main`:
+1. **Krok 1 (Quality Gate):** Weryfikacja składni JavaScript, uruchomienie 56 testów jednostkowych, analiza pokrycia.
+2. **Krok 2 (Budowa PDF & Lighthouse):** Uruchomienie Headless Chromium, wygenerowanie pliku `Krzysztof_Poczatek_CV.pdf`, upload artefaktu do GitHub Releases oraz audyt a11y i SEO przez Lighthouse CI.
+3. **Krok 3 (Wdrożenie SFTP):** Bezpieczny transfer plików HTML i PDF na hosting serwera LH pod domenę **`krzysztofpoczatek.pl`**.
 
 ---
 
-© 2026 Krzysztof Początek. All rights reserved.
-Strona domowa: [krzysztofpoczatek.pl](https://krzysztofpoczatek.pl)
+## 👥 Autor i Kontakt
+
+* **Kandydat / Właściciel:** Krzysztof Początek
+* **Strona domowa:** [krzysztofpoczatek.pl](https://krzysztofpoczatek.pl)
+* **Organizacja firmowa:** [TwojaStronaWWW](https://github.com/TwojaStronaWWW)
+* **Prawa autorskie:** &copy; 2026 Krzysztof Początek. All rights reserved.
