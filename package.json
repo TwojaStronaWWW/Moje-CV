@@ -8,6 +8,8 @@
     "test:unit": "node --test tests/unit/*.test.js",
     "test:coverage": "node --test --experimental-test-coverage tests/**/*.test.js",
     "build:pdf": "node scripts/generate-pdf.js",
+    "serve": "node scripts/serve.js",
+    "dev": "node scripts/serve.js",
     "check:syntax": "node --check assets/js/main.js",
     "check": "npm run check:syntax && npm test",
     "prepare": "git config core.hooksPath .githooks || true"
