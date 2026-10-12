@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Git Pre-commit Hook dla repozytorium Moje-CV
+# Wzorowany na standardach jakościowych projektu Gal Anonim.
+# Uruchamia sprawdzenie składni oraz wszystkie testy jednostkowe przed zatwierdzeniem zmian.
+
+set -e
+
+echo "🔍 [pre-commit] Uruchamianie lokalnej bramy jakościowej (Quality Gate)..."
+
+npm run check
+
+echo "✅ [pre-commit] Wszystkie testy przeszły pomyślnie! Zezwolono na commit."
