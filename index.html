@@ -62,6 +62,7 @@
       "ISO/IEC 27001",
       "ITIL 4",
       "Active Directory",
+      "Docker",
       "Cisco CCNA",
       "C# .NET",
       "Cloudflare",
@@ -111,8 +112,9 @@
         <ul>
           <li>Windows 10/11 &amp; Server</li>
           <li>Active Directory (Tożsamość, GPO)</li>
-          <li>Systemy medyczne: AMMS (Asseco), KS-SOMED</li>
-          <li>Systemy Ticketowe: Jira Service Mgmt, osTicket</li>
+          <li>Docker &amp; Docker Compose</li>
+          <li>Systemy medyczne: AMMS, KS-SOMED</li>
+          <li>Systemy Ticketowe: Jira Service, osTicket</li>
           <li>Narzędzia: VS Code, Git, WSL2</li>
         </ul>
       </section>
@@ -122,8 +124,8 @@
         <ul>
           <li>Cisco CCNA (Cykl 3 modułów)</li>
           <li>Diagnostyka LAN/WLAN, VLAN, Routing</li>
-          <li>Cloudflare (DNS, SSL, Security)</li>
-          <li>Serwis PC/Laptop/Peryferia</li>
+          <li>Cloudflare (Zero Trust, DNS, Tunele)</li>
+          <li>Linux / Ubuntu (Hardening, UFW)</li>
           <li>Backup: Clonezilla, Acronis</li>
         </ul>
       </section>
@@ -238,7 +240,7 @@
           <li><strong><a href="https://github.com/TwojaStronaWWW/_site-template" target="_blank" rel="noopener">_site-template</a></strong> - Publiczny blueprint architektoniczny i starter CI/CD dla ekosystemu webowego: bezbiblioteczny zestaw testów jednostkowych (node:test z Mock DOM), audyt jakości Lighthouse CI, pre-commit hooks oraz automatyzacja wdrożeń. Skrócenie czasu konfiguracji nowego środowiska produkcyjnego o ~80%.</li>
           <li><strong><a href="https://github.com/TwojaStronaWWW/hd-osticket-helpdesk" target="_blank" rel="noopener">HD Service Desk (osTicket)</a></strong> - Samodzielne wdrożenie i administracja instancją helpdesk pod domeną <a href="https://hd.twojastronawww.pl/" target="_blank" rel="noopener">hd.twojastronawww.pl</a> (LAMP, Cloudflare SSL): konfiguracja kolejek zgłoszeń, reguł eskalacji SLA i integracji pocztowej SMTP/IMAP w standardzie ITIL 4.</li>
           <li><strong><a href="https://github.com/TwojaStronaWWW/raricart" target="_blank" rel="noopener">Raricart.pl</a></strong> - Komercyjny system automatyzacji wycen i pozyskiwania leadów dla <a href="https://raricart.pl" target="_blank" rel="noopener">raricart.pl</a> z panelem administracyjnym w PHP, integracją z Cloudflare R2 Object Storage oraz skryptami audytowymi backendu.</li>
-          <li><strong><a href="https://github.com/TwojaStronaWWW/katosalsahub" target="_blank" rel="noopener">Kato Salsa Hub &amp; DancePuls</a></strong> - Zintegrowany ekosystem webowy pod domeną <a href="https://katosalsahub.pl" target="_blank" rel="noopener">katosalsahub.pl</a>: portal społecznościowy Vanilla JS SPA (Cloudflare CDN, radio z MediaSession API) połączony z autorskim silnikiem agregacji wydarzeń DancePuls (Node.js, web scraping, CI/CD).</li>
+          <li><strong><a href="https://github.com/TwojaStronaWWW/devops-stack" target="_blank" rel="noopener">DevOps Stack &amp; Monitoring</a></strong> - Projekt i wdrożenie kontenerowej infrastruktury serwerowej opartej na Docker &amp; Compose, integrującej stos telemetryczny (Prometheus, Grafana, Uptime Kuma, cAdvisor, Node Exporter) z hardeningiem systemu Linux (Fail2Ban, UFW, standard ISO/IEC 27001), tunelem Cloudflare Zero Trust (brak otwartych portów publicznych) oraz automatyzacją backupów z procedurą Disaster Recovery (RTO &lt; 15 min).</li>
         </ul>
       </section>
 
@@ -250,7 +252,7 @@
           <ul>
             <li><strong>Zarządzanie i formalizacja:</strong> Ponad 6 lat rozwoju oddolnej społeczności, zwieńczone notarialnym powołaniem Fundacji, nadaniem statutu oraz procedurą wpisu do KRS (2026 r.).</li>
             <li><strong>Koordynacja wydarzeń społecznościowych:</strong> Organizacja cyklicznych spotkań tanecznych (letnie spotkania salsowe w plenerze, wydarzenia w lokalach w sezonie zimowym) oraz wyjazdów integracyjnych; zarządzanie budżetami, negocjacje z właścicielami obiektów i obsługa logistyczna grup do 70 osób.</li>
-            <li><strong>Własny ekosystem IT:</strong> Zaprojektowanie i samodzielne utrzymanie infrastruktury technologicznej organizacji (portal katosalsahub.pl, system publikacji DancePuls).</li>
+            <li><strong>Własny ekosystem IT:</strong> Zaprojektowanie i samodzielne utrzymanie infrastruktury technologicznej organizacji (portal katosalsahub.pl zintegrowany z autorskim silnikiem agregacji wydarzeń DancePuls).</li>
           </ul>
         </article>
       </section>

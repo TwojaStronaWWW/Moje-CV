@@ -49,9 +49,10 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
 - **Kluczowe filary kompetencji:**
   1. **Systemy Medyczne, Service Desk i Wsparcie (L1/L2):** AMMS (Asseco), KS-SOMED (Kamsoft), osTicket (samodzielne wdrożenie i administracja Service Desk pod hd.twojastronawww.pl), Jira Service Management, Active Directory, Windows 10/11 & Server, SLA/ITIL.
   2. **Bezpieczeństwo i Zarządzanie:** Certyfikowany Audytor Wewnętrzny ISO/IEC 27001:2023, ITIL® 4 Foundation.
-  3. **Sieci i Infrastruktura:** Cisco Networking Academy 2026 (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), LAN/WLAN, VLAN, routing, Cloudflare.
+  3. **Sieci, Infrastruktura i DevOps:** Cisco Networking Academy 2026 (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), Docker & Compose, Linux Hardening, Prometheus, Grafana, Uptime Kuma, LAN/WLAN, VLAN, routing, Cloudflare Zero Trust.
   4. **Development, Bezpieczeństwo Danych i Narzędzia:** 
      * **Gal Anonim:** Autorska aplikacja desktopowa w C# (.NET 10 / Windows Forms / WebView2 / SQLite) do automatycznej anonimizacji i maskowania danych wrażliwych (RODO / ISO 27001) w plikach PDF, DOCX, ODT i TXT (kod prywatny, oficjalne wydania instalacyjne: github.com/zeslownikiem/galanonim-release).
+     * **DevOps Stack & Monitoring:** Zintegrowana infrastruktura serwerowa VPS (Docker Compose, Prometheus, Grafana, Uptime Kuma, Cloudflare Zero Trust, Disaster Recovery: github.com/TwojaStronaWWW/devops-stack).
      * **Repozytoria publiczne:** github.com/TwojaStronaWWW (organizacja firmowa).
      * PHP, JavaScript, SQL (100% certyfikat IEES), AI-assisted Dev & Prompt Engineering, Web Scraping, CI/CD, HTML5/CSS3.
      * *(Uwaga: Krzysztof programuje w C#, nie w Pythonie).*
