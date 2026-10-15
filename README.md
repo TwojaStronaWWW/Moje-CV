@@ -1,7 +1,7 @@
 # Krzysztof Początek — Interaktywne CV & Portfolio IT
 
 <p align="center">
-  <img src="assets/img/krzysztof-poczatek.jpg" alt="Krzysztof Początek - IT Specialist" width="140" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
+  <img src="assets/images/photo.jpg" alt="Krzysztof Początek - IT Specialist" width="140" style="border-radius: 50%; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" />
 </p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="https://github.com/TwojaStronaWWW/Moje-CV/actions/workflows/deploy.yml"><img src="https://img.shields.io/badge/CI%2FCD%20Pipeline-Passing-success?style=flat-square&logo=githubactions" alt="CI/CD Pipeline"></a>
-  <img src="https://img.shields.io/badge/Unit%20Tests-56%20Passed-blue?style=flat-square&logo=node.js" alt="Unit Tests">
+  <img src="https://img.shields.io/badge/Unit%20Tests-77%20Passed-blue?style=flat-square&logo=node.js" alt="Unit Tests">
   <img src="https://img.shields.io/badge/Coverage-%3E86%25-brightgreen?style=flat-square" alt="Code Coverage">
   <img src="https://img.shields.io/badge/Lighthouse-WCAG%202.1%20%7C%20SEO%20100-orange?style=flat-square&logo=lighthouse" alt="Lighthouse CI">
   <img src="https://img.shields.io/badge/Security-Dependabot%20Active-blue?style=flat-square&logo=dependabot" alt="Security">
@@ -32,7 +32,7 @@
 ## 📸 Podgląd Wizualny
 
 <p align="center">
-  <img src="assets/img/og-preview.png" alt="Podgląd serwisu krzysztofpoczatek.pl" width="850" onerror="this.style.display='none'" style="border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);" />
+  <img src="assets/images/og-preview.png" alt="Podgląd serwisu krzysztofpoczatek.pl" width="850" onerror="this.style.display='none'" style="border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);" />
 </p>
 
 ---
@@ -70,10 +70,12 @@
 Moje-CV/
 ├── .github/
 │   ├── dependabot.yml              # Comiesięczny nadzór nad bezpieczeństwem akcji
+│   ├── pull_request_template.md    # Checklista jakościowa dla Pull Requestów
+│   ├── ISSUE_TEMPLATE/             # Szablony zgłoszeń (bug_report, task, config)
 │   └── workflows/
 │       └── deploy.yml              # Trójstopniowy potok CI/CD (Testy -> PDF & Audit -> Deploy)
 ├── .githooks/
-│   ├── pre-commit                  # Blokada commitów przy niezaliczonych testach (npm run check)
+│   ├── pre-commit                  # Blokada commitów przy niezaliczonych testach lub wycieku sekretów
 │   └── commit-msg                  # Walidator Conventional Commits
 ├── assets/
 │   ├── css/
@@ -81,13 +83,17 @@ Moje-CV/
 │   │   └── print.css               # Dedykowany arkusz wydruku formatu A4
 │   ├── js/
 │   │   └── main.js                 # Logika interakcji UI (ARIA, Escape focus trap)
-│   └── img/                        # Zoptymalizowane grafiki i favicon
+│   └── images/                     # Zoptymalizowane grafiki (photo.jpg, og-preview.png, favicon.svg)
 ├── scripts/
-│   └── generate-pdf.js             # Skrypt kompilacji PDF przez Headless Chromium
+│   ├── generate-pdf.js             # Skrypt kompilacji PDF przez Headless Chromium
+│   └── serve.js                    # Lokalny bezbiblioteczny serwer HTTP z ochroną Directory Traversal
 ├── tests/
 │   ├── helpers/mock-dom.js         # Lekkie środowisko przeglądarki bez ociężałego jsdom
-│   └── unit/                       # Zestaw 56 testów jednostkowych (node:test)
+│   └── unit/                       # Zestaw 77 testów jednostkowych (node:test)
+├── .editorconfig & .gitattributes  # Spójność kodowania UTF-8 i końców linii LF
 ├── index.html                      # Główny semantyczny dokument HTML5 (WCAG 2.1)
+├── site.webmanifest                # Manifest PWA zgodny ze standardem _site-template
+├── SECURITY.md                     # Polityka bezpieczeństwa zgodna z ISO/IEC 27001
 ├── robots.txt & sitemap.xml        # Kompletna mapa i indeksowanie SEO
 └── package.json                    # Konfiguracja skryptów jakościowych npm
 ```
@@ -96,16 +102,16 @@ Moje-CV/
 
 ## 🛡️ Brama Jakości & Testy Jednostkowe (Quality Gate)
 
-Wszystkie testy działają w oparciu o natywny silnik `node:test` i asercje `node:assert/strict` w Node.js (czas wykonania: **< 200 ms**):
+Wszystkie testy działają w oparciu o natywny silnik `node:test` i asercje `node:assert/strict` w Node.js (czas wykonania: **< 200 ms** dla czystych testów jednostkowych):
 
 | Plik testowy | Zakres Weryfikacji |
 | :--- | :--- |
-| `tests/unit/main.test.js` | Logika UI, obsługa klawisza Escape, reset menu przy zmianie szerokości okna (> 768px), focus management. |
-| `tests/unit/html-integrity.test.js` | Semantyka HTML5, dokładnie jeden nagłówek `<h1>`, tagi Open Graph, Twitter Cards, Schema.org JSON-LD. |
+| `tests/unit/main.test.js` | Logika UI, obsługa klawisza Escape, reset menu przy zmianie szerokości okna (> 900px), idempotentność i focus management. |
+| `tests/unit/html-integrity.test.js` | Semantyka HTML5, dokładnie jeden nagłówek `<h1>`, Asset Integrity Check, `rel="noopener"`, manifest PWA, Open Graph, Schema.org JSON-LD. |
 | `tests/unit/css-integrity.test.js` | Integralność reguł CSS, zbalansowanie nawiasów, spójność tokenów `:root`. |
 | `tests/unit/print-css.test.js` | Poprawność formatu A4, `print-color-adjust: exact`, klasy `.page-break-before`. |
-| `tests/unit/pdf-generator.test.js` | Wykrywanie silnika Chromium (Edge/Chrome) oraz kompilacja pliku PDF. |
-| `tests/unit/repo-hygiene.test.js` | Higiena repozytorium wzorowana na Gal Anonim (hook pre-commit, dependabot, sitemap, brak konfliktów git). |
+| `tests/unit/pdf-generator.test.js` | Wykrywanie silnika Chromium (Edge/Chrome) oraz kompilacja pliku PDF w izolowanym profilu. |
+| `tests/unit/repo-hygiene.test.js` | Higiena repozytorium wzorowana na Gal Anonim i `_site-template` (`pre-commit`, `commit-msg`, `.gitattributes`, `SECURITY.md`, Directory Traversal w `serve.js`, Dependabot). |
 
 ---
 
@@ -133,9 +139,9 @@ npm run prepare
 ## 🚀 Trójstopniowy Pipeline Wdrożeniowy (.github/workflows/deploy.yml)
 
 Potok uruchamia się na każdym pushu do gałęzi `main`:
-1. **Krok 1 (Quality Gate):** Weryfikacja składni JavaScript, uruchomienie 56 testów jednostkowych, analiza pokrycia.
+1. **Krok 1 (Quality Gate):** Weryfikacja składni JavaScript (`main.js`, `serve.js`, `generate-pdf.js`), uruchomienie 77 testów jednostkowych, analiza pokrycia.
 2. **Krok 2 (Budowa PDF & Lighthouse):** Uruchomienie Headless Chromium, wygenerowanie pliku `Krzysztof_Poczatek_CV.pdf`, upload artefaktu do GitHub Releases oraz audyt a11y i SEO przez Lighthouse CI.
-3. **Krok 3 (Wdrożenie SFTP):** Bezpieczny transfer plików HTML i PDF na hosting serwera LH pod domenę **`krzysztofpoczatek.pl`**.
+3. **Krok 3 (Wdrożenie SFTP & Cloudflare Purge):** Bezpieczny transfer plików HTML, PWA i PDF na hosting serwera LH pod domenę **`krzysztofpoczatek.pl`** oraz opcjonalne czyszczenie cache Cloudflare CDN.
 
 ---
 

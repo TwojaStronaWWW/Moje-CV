@@ -3,6 +3,8 @@
  * Obsługa mobilnego menu bocznego oraz akcji drukowania / generowania PDF.
  */
 
+const MOBILE_BREAKPOINT = 900;
+
 function initSidebar(
   doc = (typeof document !== 'undefined' ? document : null),
   win = (typeof window !== 'undefined' ? window : null)
@@ -62,9 +64,9 @@ function initSidebar(
     }
   };
 
-  // Obsługa zmiany orientacji/rozmiaru ekranu: reset do układu desktopowego (> 768px)
+  // Obsługa zmiany orientacji/rozmiaru ekranu: reset do układu desktopowego (> 900px, zgodnie z main.css)
   const handleResize = () => {
-    if (win && typeof win.innerWidth === 'number' && win.innerWidth > 768) {
+    if (win && typeof win.innerWidth === 'number' && win.innerWidth > MOBILE_BREAKPOINT) {
       closeSidebar();
     }
   };
@@ -89,11 +91,17 @@ function initPrintButtons(doc = (typeof document !== 'undefined' ? document : nu
 
   const registered = [];
   printButtons.forEach((btn) => {
+    if (btn._printInitialized) {
+      registered.push({ btn, handler: btn._printHandler });
+      return;
+    }
     const handler = () => {
       if (win && typeof win.print === 'function') {
         win.print();
       }
     };
+    btn._printInitialized = true;
+    btn._printHandler = handler;
     btn.addEventListener('click', handler);
     registered.push({ btn, handler });
   });
@@ -112,6 +120,7 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     initSidebar,
     initPrintButtons,
+    MOBILE_BREAKPOINT,
   };
 }
 

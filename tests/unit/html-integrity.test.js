@@ -111,5 +111,54 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
     it('panel boczny <aside id="sidebar"> powinien posiadać etykietę dostępności aria-label', () => {
       assert.match(htmlContent, /<aside\s+id="sidebar"[^>]+aria-label="[^"]+"/i);
     });
+
+    it('powinien zawierać główny semantyczny kontener <main> oraz nie zawierać pustych odnośników (href="#")', () => {
+      assert.match(htmlContent, /<main[\s>]/i, 'Strona musi zawierać semantyczny znacznik <main>');
+      const emptyLinks = htmlContent.match(/href=["']#["']/gi) || [];
+      assert.strictEqual(emptyLinks.length, 0, 'Wykryto puste odnośniki href="#". Użyj znaczników <button> lub pełnych kotwic #id.');
+    });
+
+    it('powinien podpinać manifest PWA (site.webmanifest) oraz deklarować meta theme-color', () => {
+      assert.match(htmlContent, /<link\s+rel="manifest"\s+href="site\.webmanifest">/i);
+      assert.match(htmlContent, /<meta\s+name="theme-color"\s+content="#[0-9a-fA-F]{6}">/i);
+    });
+
+    it('wszystkie odnośniki zewnętrzne z target="_blank" powinny posiadać rel="noopener" (ochrona przed Reverse Tabnabbing)', () => {
+      const targetBlankLinks = htmlContent.match(/<a\s+[^>]*target=["']_blank["'][^>]*>/gi) || [];
+      assert.ok(targetBlankLinks.length > 0, 'Oczekiwano odnośników zewnętrznych w CV');
+      for (const linkTag of targetBlankLinks) {
+        assert.match(linkTag, /rel=["'][^"']*noopener[^"']*["']/i, `Link z target="_blank" nie posiada rel="noopener": ${linkTag}`);
+      }
+    });
+
+    it('wszystkie lokalne zasoby powiązane w index.html (CSS, JS, grafiki, manifest) powinny fizycznie istnieć na dysku (Zero-Dependency Asset Integrity)', () => {
+      const rootDir = path.join(__dirname, '..', '..');
+      const attrRegex = /(?:src|href)=["']([^"']+)["']/gi;
+      let match;
+      let checkedCount = 0;
+
+      while ((match = attrRegex.exec(htmlContent)) !== null) {
+        const rawRef = match[1];
+        if (
+          rawRef.startsWith('http://') ||
+          rawRef.startsWith('https://') ||
+          rawRef.startsWith('mailto:') ||
+          rawRef.startsWith('tel:') ||
+          rawRef.startsWith('#')
+        ) {
+          continue;
+        }
+
+        const cleanRelativePath = rawRef.split('?')[0].split('#')[0];
+        const resolvedPath = path.join(rootDir, cleanRelativePath);
+        assert.ok(
+          fs.existsSync(resolvedPath),
+          `Zasób lokalny zadeklarowany w index.html nie istnieje na dysku: ${rawRef} (${resolvedPath})`
+        );
+        checkedCount++;
+      }
+
+      assert.ok(checkedCount >= 5, `Oczekiwano sprawdzenia co najmniej 5 lokalnych zasobów, sprawdzono: ${checkedCount}`);
+    });
   });
 });

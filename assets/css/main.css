@@ -170,13 +170,8 @@ main a:focus {
 	text-decoration: underline;
 }
 
-.project {
-	margin-bottom: 15px;
-}
-
-.project strong {
-	display: block;
-	margin-bottom: 3px;
+.projects-list li {
+	margin-bottom: var(--spacing-sm);
 }
 
 .gdpr {

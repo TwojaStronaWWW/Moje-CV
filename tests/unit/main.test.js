@@ -157,7 +157,7 @@ describe('Moduł UI (assets/js/main.js)', () => {
       assert.strictEqual(sidebar.classList.contains('active'), true);
     });
 
-    it('powinien automatycznie zamknąć sidebar, gdy okno zostanie powiększone powyżej 768px (np. obrót urządzenia na tryb horyzontalny)', () => {
+    it('powinien automatycznie zamknąć sidebar, gdy okno zostanie powiększone powyżej 900px (zgodnie z @media max-width: 900px w main.css)', () => {
       const mockWin = new MockWindow(375); // Ekran mobilny
       initSidebar(mockDoc, mockWin);
 
@@ -165,7 +165,7 @@ describe('Moduł UI (assets/js/main.js)', () => {
       toggleBtn.click();
       assert.strictEqual(sidebar.classList.contains('active'), true);
 
-      // Zmiana rozmiaru na desktop (np. 1024px)
+      // Zmiana rozmiaru na desktop (> 900px, np. 1024px)
       mockWin.dispatchResize(1024);
 
       assert.strictEqual(sidebar.classList.contains('active'), false);
@@ -173,16 +173,18 @@ describe('Moduł UI (assets/js/main.js)', () => {
       assert.strictEqual(toggleBtn.textContent, 'Menu');
     });
 
-    it('NIE powinien zamykać sidebara przy zmianie rozmiaru, jeśli szerokość nadal pozostaje mobilna (<= 768px)', () => {
+    it('NIE powinien zamykać sidebara przy zmianie rozmiaru, jeśli szerokość nadal pozostaje mobilna/tabletowa (<= 900px)', () => {
       const mockWin = new MockWindow(375);
       initSidebar(mockDoc, mockWin);
 
       toggleBtn.click();
       assert.strictEqual(sidebar.classList.contains('active'), true);
 
-      // Niewielka zmiana szerokości nadal w zakresie mobile (np. 412px)
+      // Zmiana szerokości nadal w zakresie mobile/tablet (np. 412px oraz 820px)
       mockWin.dispatchResize(412);
+      assert.strictEqual(sidebar.classList.contains('active'), true);
 
+      mockWin.dispatchResize(820);
       assert.strictEqual(sidebar.classList.contains('active'), true);
     });
   });
@@ -224,6 +226,17 @@ describe('Moduł UI (assets/js/main.js)', () => {
       // Kliknięcie drugiego przycisku
       btn2.click();
       assert.strictEqual(printCalled, 2);
+    });
+
+    it('powinien być idempotentny i nie duplikować wywołań window.print() przy wielokrotnym wywołaniu initPrintButtons', () => {
+      const btn = new MockElement('printBtn', 'button', ['btn-print']);
+      mockDoc.registerElement(btn);
+
+      initPrintButtons(mockDoc, mockWin);
+      initPrintButtons(mockDoc, mockWin);
+
+      btn.click();
+      assert.strictEqual(printCalled, 1);
     });
 
     it('powinien działać bezpiecznie nawet jeśli window.print nie jest zdefiniowane', () => {

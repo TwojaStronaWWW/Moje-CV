@@ -249,7 +249,6 @@ article {
 /* Ukrycie elementów interaktywnych */
 button,
 .toggle-menu,
-.btn-floating-print,
 .btn-print {
 	display: none !important;
 }

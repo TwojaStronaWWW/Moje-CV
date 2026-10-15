@@ -6,6 +6,7 @@
 
 const { execFileSync } = require('node:child_process');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
 const { pathToFileURL } = require('node:url');
 
@@ -84,12 +85,15 @@ function generatePdf(destinationPath = OUTPUT_PDF, options = {}) {
   }
 
   const fileUrl = pathToFileURL(inputHtml).href;
+  const tempProfileDir = fs.mkdtempSync(path.join(os.tmpdir(), 'moje-cv-pdf-'));
 
   const args = [
     '--headless=new',
     '--disable-gpu',
     '--no-sandbox',
     '--disable-setuid-sandbox',
+    '--disable-extensions',
+    `--user-data-dir=${tempProfileDir}`,
     '--no-pdf-header-footer',
     '--run-all-compositor-stages-before-draw',
     '--virtual-time-budget=2000',
@@ -101,7 +105,15 @@ function generatePdf(destinationPath = OUTPUT_PDF, options = {}) {
   console.log(`[PDF Generator] Źródło: ${fileUrl}`);
   console.log(`[PDF Generator] Generowanie: ${resolvedDest}...`);
 
-  execFileSync(browser, args, { stdio: 'inherit' });
+  try {
+    execFileSync(browser, args, { stdio: 'inherit' });
+  } finally {
+    try {
+      fs.rmSync(tempProfileDir, { recursive: true, force: true });
+    } catch {
+      // Ignoruj ewentualne blokady plików tymczasowych na Windows
+    }
+  }
 
   if (!fs.existsSync(resolvedDest)) {
     throw new Error('Plik PDF nie został utworzony.');
