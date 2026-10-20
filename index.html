@@ -68,9 +68,12 @@
       "ITIL 4",
       "Active Directory",
       "Docker",
+      "Prometheus",
+      "Grafana",
       "Cisco CCNA",
       "C# .NET",
       "Cloudflare",
+      "AI RAG",
       "PHP",
       "SQL"
     ]
@@ -118,6 +121,7 @@
           <li>Windows 10/11 &amp; Server</li>
           <li>Active Directory (Tożsamość, GPO)</li>
           <li>Docker &amp; Docker Compose</li>
+          <li>Prometheus, Grafana, Uptime Kuma</li>
           <li>Systemy medyczne: AMMS, KS-SOMED</li>
           <li>Systemy Ticketowe: Jira Service, osTicket</li>
           <li>Narzędzia: VS Code, Git, WSL2</li>
@@ -129,9 +133,9 @@
         <ul>
           <li>Cisco CCNA (Cykl 3 modułów)</li>
           <li>Diagnostyka LAN/WLAN, VLAN, Routing</li>
-          <li>Cloudflare (Zero Trust, DNS, Tunele)</li>
-          <li>Linux / Ubuntu (Hardening, UFW)</li>
-          <li>Backup: Clonezilla, Acronis</li>
+          <li>Cloudflare (Zero Trust, R2, WAF)</li>
+          <li>Linux Hardening (CIS, UFW, Fail2Ban)</li>
+          <li>Backup &amp; DR: AES-256, R2, Clonezilla</li>
         </ul>
       </section>
 
@@ -139,11 +143,11 @@
         <h2>Development i Dane</h2>
         <ul>
           <li>C# (.NET 10, Windows Forms, WebView2)</li>
-          <li>Vanilla PHP &amp; JavaScript</li>
-          <li>SQL (Certyfikat IEES – 100%)</li>
-          <li>AI-assisted Dev &amp; Prompt Engineering</li>
+          <li>PHP 8 &amp; Vanilla JS (ES6+, SPA/PWA)</li>
+          <li>SQL (Oracle, SQLite FTS5 – IEES 100%)</li>
+          <li>AI RAG, Multi-LLM Router &amp; Prompting</li>
           <li>Ochrona danych: Anonimizacja PII / RODO</li>
-          <li>Web Scraping, CI/CD, HTML5/CSS3</li>
+          <li>CI/CD (GitHub Actions, Playwright)</li>
         </ul>
       </section>
 
@@ -181,8 +185,8 @@
           <p class="time">03.2026 - Obecnie</p>
           <ul>
             <li><strong>Wsparcie systemów medycznych:</strong> Samodzielne rozwiązywanie incydentów i bieżące wsparcie techniczne (L2) personelu szpitali i przychodni w zakresie systemu AMMS (Asseco), zapewniające ciągłość operacyjną placówek.</li>
-            <li><strong>Wdrożenia i uruchomienia:</strong> Współudział w kompleksowym wdrożeniu i procedurach uruchomieniowych systemu AMMS w szpitalu (konfiguracja środowiska, asysta przy starcie produkcyjnym).</li>
-            <li><strong>Transfer wiedzy:</strong> Prowadzenie szkoleń stanowiskowych dla personelu medycznego i administracyjnego z obsługi wdrożonych funkcjonalności systemu.</li>
+            <li><strong>Diagnostyka baz danych i R&amp;D (AI RAG):</strong> Wykorzystanie autorskiego asystenta eksperckiego AMMS &amp; Oracle DBA (silnik RAG SQLite FTS5 BM25 indeksujący 314 dokumentów PDF i 69 schematów tabel Oracle) do błyskawicznej weryfikacji struktur bazodanowych i skrócenia czasu analizy zgłoszeń L2.</li>
+            <li><strong>Wdrożenia i transfer wiedzy:</strong> Współudział w kompleksowym wdrożeniu i uruchomieniu produkcyjnym systemu AMMS w szpitalu oraz prowadzenie szkoleń stanowiskowych dla personelu medycznego i administracyjnego.</li>
           </ul>
         </article>
 
@@ -190,9 +194,9 @@
           <h3>Freelance IT Specialist &amp; Web Developer</h3>
           <p class="time">02.2024 - Obecnie</p>
           <ul>
-            <li><strong>Projektowanie i wdrożenia:</strong> Realizacja autorskich systemów webowych (m.in. Raricart.pl, DancePuls), w tym budowa paneli administracyjnych w PHP i automatyzacja formularzy.</li>
-            <li><strong>Architektura i Jakość:</strong> Opracowanie potoków CI/CD i publicznego blueprintu architektonicznego _site-template (Lighthouse CI, testy jednostkowe bez zależności), standaryzującego jakość kodu i automatyzację wdrożeń.</li>
-            <li><strong>DevOps &amp; Security:</strong> Samodzielna administracja infrastrukturą (hosting, DNS, SSL) oraz optymalizacja bezpieczeństwa i wydajności witryn (Cloudflare) zgodnie z normami ISO 27001.</li>
+            <li><strong>Projektowanie i wdrożenia:</strong> Realizacja autorskich systemów webowych i platform SPA/PWA (m.in. TwojaStronaWWW.pl, Raricart.pl, FuegoLingua.pl, KatoSalsaHub.pl), w tym budowa paneli administracyjnych w PHP 8, integracja z bramką AI RAG i automatyzacja obsługi leadów (osTicket / Ntfy).</li>
+            <li><strong>Architektura i Jakość:</strong> Opracowanie sekwencyjnych potoków Zero-Trust CI/CD i publicznego blueprintu _site-template (testy jednostkowe node:test, testy dymne Playwright, skaner Gitleaks, Lighthouse CI), standaryzującego jakość kodu i automatyczne wdrożenia z backupem Pre-Deploy.</li>
+            <li><strong>DevOps &amp; Security:</strong> Samodzielna administracja infrastrukturą VPS i hostingową (Docker, DNS, SSL, WAF L7) oraz optymalizacja bezpieczeństwa i wydajności witryn (Cloudflare Zero Trust, R2) zgodnie z normami ISO/IEC 27001 i RODO.</li>
           </ul>
         </article>
 
@@ -242,10 +246,10 @@
         <h2>Projekty i Narzędzia</h2>
         <ul class="projects-list">
           <li><strong><a href="https://github.com/zeslownikiem/galanonim-release" target="_blank" rel="noopener">Gal Anonim</a></strong> - Autorska aplikacja desktopowa w C# (.NET 10, Windows Forms, WebView2, SQLite) do automatycznego wyszukiwania i maskowania danych wrażliwych (PESEL, NIP, numery dowodów, dane adresowe) w dokumentach biurowych (Word, PDF, ODT, TXT). Projekt opracowany pod rygorystyczne wytyczne RODO i ISO/IEC 27001.</li>
-          <li><strong><a href="https://github.com/TwojaStronaWWW/_site-template" target="_blank" rel="noopener">_site-template</a></strong> - Publiczny blueprint architektoniczny i starter CI/CD dla ekosystemu webowego: bezbiblioteczny zestaw testów jednostkowych (node:test z Mock DOM), audyt jakości Lighthouse CI, pre-commit hooks oraz automatyzacja wdrożeń. Skrócenie czasu konfiguracji nowego środowiska produkcyjnego o ~80%.</li>
-          <li><strong><a href="https://github.com/TwojaStronaWWW/hd-osticket-helpdesk" target="_blank" rel="noopener">HD Service Desk (osTicket)</a></strong> - Samodzielne wdrożenie i administracja instancją helpdesk pod domeną <a href="https://hd.twojastronawww.pl/" target="_blank" rel="noopener">hd.twojastronawww.pl</a> (LAMP, Cloudflare SSL): konfiguracja kolejek zgłoszeń, reguł eskalacji SLA i integracji pocztowej SMTP/IMAP w standardzie ITIL 4.</li>
+          <li><strong><a href="https://github.com/TwojaStronaWWW/devops-stack" target="_blank" rel="noopener">DevOps Stack, AI Router &amp; Monitoring</a></strong> - Kontenerowa infrastruktura serwerowa (Oracle Cloud ARM64, Docker Compose) w architekturze Cloudflare Zero Trust (brak otwartych portów publicznych) i standardzie ISO/IEC 27001 / CIS. Integruje stos telemetryczny (Prometheus, Grafana, Uptime Kuma, Dozzle), centralną bramkę AI Router RAG (kaskada 11 modeli LLM, cache &lt;5 ms, WAF L7 z IP Penalty Box, bezciasteczkowa analityka WWW oraz silnik SQLite FTS5 BM25 indeksujący 314 PDF i 69 schematów Oracle AMMS), autonomicznego strażnika 24/7 (78 testów IoC/SUID/Fail2Ban) oraz szyfrowane kopie AES-256 do Cloudflare R2 z automatycznym nocnym testem odtwarzania (Restore Drill, RTO &lt; 15 min).</li>
+          <li><strong><a href="https://github.com/TwojaStronaWWW/_site-template" target="_blank" rel="noopener">_site-template</a></strong> - Publiczny blueprint architektoniczny i sekwencyjny potok Zero-Trust CI/CD dla ekosystemu webowego: bezbiblioteczne testy jednostkowe (node:test z Mock DOM), testy dymne UI (Playwright), skaner sekretów Gitleaks, audyt Lighthouse CI (90%+), widget AI RAG (Web Speech API) oraz Pre-Deploy Snapshot. Skrócenie czasu konfiguracji nowego środowiska produkcyjnego o ~80%.</li>
+          <li><strong><a href="https://github.com/TwojaStronaWWW/hd-osticket-helpdesk" target="_blank" rel="noopener">HD Service Desk (osTicket)</a></strong> - Samodzielne wdrożenie i administracja instancją helpdesk pod domeną <a href="https://hd.twojastronawww.pl/" target="_blank" rel="noopener">hd.twojastronawww.pl</a> (LAMP, Cloudflare SSL): konfiguracja kolejek zgłoszeń, reguł eskalacji SLA i centralnego API przechwytującego zgłoszenia z formularzy i czatów AI w standardzie ITIL 4.</li>
           <li><strong><a href="https://github.com/TwojaStronaWWW/raricart" target="_blank" rel="noopener">Raricart.pl</a></strong> - Komercyjny system automatyzacji wycen i pozyskiwania leadów dla <a href="https://raricart.pl" target="_blank" rel="noopener">raricart.pl</a> z panelem administracyjnym w PHP, integracją z Cloudflare R2 Object Storage oraz skryptami audytowymi backendu.</li>
-          <li><strong><a href="https://github.com/TwojaStronaWWW/devops-stack" target="_blank" rel="noopener">DevOps Stack &amp; Monitoring</a></strong> - Projekt i wdrożenie kontenerowej infrastruktury serwerowej opartej na Docker &amp; Compose, integrującej stos telemetryczny (Prometheus, Grafana, Uptime Kuma, cAdvisor, Node Exporter) z hardeningiem systemu Linux (Fail2Ban, UFW, standard ISO/IEC 27001), tunelem Cloudflare Zero Trust (brak otwartych portów publicznych) oraz automatyzacją backupów z procedurą Disaster Recovery (RTO &lt; 15 min).</li>
         </ul>
       </section>
 
@@ -257,7 +261,7 @@
           <ul>
             <li><strong>Zarządzanie i formalizacja:</strong> Ponad 6 lat rozwoju oddolnej społeczności, zwieńczone notarialnym powołaniem Fundacji, nadaniem statutu oraz procedurą wpisu do KRS (2026 r.).</li>
             <li><strong>Koordynacja wydarzeń społecznościowych:</strong> Organizacja cyklicznych spotkań tanecznych (letnie spotkania salsowe w plenerze, wydarzenia w lokalach w sezonie zimowym) oraz wyjazdów integracyjnych; zarządzanie budżetami, negocjacje z właścicielami obiektów i obsługa logistyczna grup do 70 osób.</li>
-            <li><strong>Własny ekosystem IT:</strong> Zaprojektowanie i samodzielne utrzymanie infrastruktury technologicznej organizacji (portal <a href="https://katosalsahub.pl" target="_blank" rel="noopener">katosalsahub.pl</a> zintegrowany z autorskim silnikiem agregacji wydarzeń <a href="https://dancepuls.katosalsahub.pl" target="_blank" rel="noopener">DancePuls</a>).</li>
+            <li><strong>Własny ekosystem IT:</strong> Zaprojektowanie i utrzymanie monorepo organizacji – portalu SPA/PWA <a href="https://katosalsahub.pl" target="_blank" rel="noopener">katosalsahub.pl</a> (internetowy Radio Player z MediaSession API i watchdogiem strumienia, baza wiedzy Salsopedia z rankingiem trafności i moderacją, asystent AI RAG) oraz silnika agregacji wydarzeń <a href="https://dancepuls.katosalsahub.pl" target="_blank" rel="noopener">DancePuls</a> (Node.js).</li>
           </ul>
         </article>
       </section>
