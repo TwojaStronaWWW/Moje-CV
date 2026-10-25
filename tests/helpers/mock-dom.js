@@ -170,8 +170,19 @@ class MockWindow {
   }
 }
 
+function createForbiddenFetch() {
+  return async (url) => {
+    const err = new Error(`NETWORK_FORBIDDEN: Niezamockowane wywołanie fetch('${url}') w teście jednostkowym`);
+    err.code = 'NETWORK_FORBIDDEN';
+    throw err;
+  };
+}
+
+globalThis.fetch = createForbiddenFetch();
+
 module.exports = {
   MockElement,
   MockDocument,
   MockWindow,
+  createForbiddenFetch,
 };

@@ -1,6 +1,6 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
-const { MockElement, MockDocument, MockWindow } = require('../helpers/mock-dom');
+const { MockElement, MockDocument, MockWindow, createForbiddenFetch } = require('../helpers/mock-dom');
 
 describe('Helper testowy Mock DOM (tests/helpers/mock-dom.js)', () => {
   it('MockElement.closest powinien obsłużyć przypadek braku dopasowania', () => {
@@ -23,5 +23,13 @@ describe('Helper testowy Mock DOM (tests/helpers/mock-dom.js)', () => {
     assert.strictEqual(win.printCalled, 0);
     win.print();
     assert.strictEqual(win.printCalled, 1);
+  });
+
+  it('createForbiddenFetch oraz globalThis.fetch powinny blokować niezamockowane wywołania sieciowe (NETWORK_FORBIDDEN)', async () => {
+    const forbidden = createForbiddenFetch();
+    await assert.rejects(
+      async () => forbidden('https://example.com'),
+      (err) => err.code === 'NETWORK_FORBIDDEN' && err.message.includes('NETWORK_FORBIDDEN')
+    );
   });
 });
