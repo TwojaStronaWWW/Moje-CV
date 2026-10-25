@@ -52,7 +52,8 @@ jobs:
       - name: 2.3 Przygotowanie katalogu dist
         run: |
           mkdir -p dist
-          cp index.html robots.txt sitemap.xml site.webmanifest dist/
+          cp index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
+          cp -r .well-known dist/
           cp -r assets dist/
 
       - name: 2.4 Generowanie oficjalnego pliku PDF
@@ -92,7 +93,8 @@ jobs:
       - name: 3.3 Przygotowanie paczki produkcyjnej (HTML + SEO + PWA + Assets + PDF)
         run: |
           mkdir -p dist
-          cp index.html robots.txt sitemap.xml site.webmanifest dist/
+          cp index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
+          cp -r .well-known dist/
           cp -r assets dist/
           npm run build:pdf
 
@@ -103,7 +105,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
-          local_path: './dist/*'
+          local_path: './dist/* ./dist/.well-known'
           remote_path: '/home/platne/serwer417204/public_html/krzysztofpoczatek.pl'
           sftp_args: '-o ConnectTimeout=60'
 

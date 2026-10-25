@@ -79,6 +79,7 @@
     ]
   }
   </script>
+  <link rel="alternate" type="text/markdown" href="llms.txt" title="Baza wiedzy dla asystentów AI (llms.txt)">
 </head>
 
 <body>
@@ -288,6 +289,24 @@
   </div>
 
   <script src="assets/js/main.js?v=1.1"></script>
+  <!-- [REF-02] Speculation Rules API (Web Platform Baseline): natychmiastowa nawigacja 0 ms bez SPA przy najechaniu kursorem -->
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/api/*" } },
+            { "not": { "href_matches": "/assets/php/*" } },
+            { "not": { "href_matches": "/admin/*" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
 </body>
 
 </html>
