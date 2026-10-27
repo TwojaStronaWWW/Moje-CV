@@ -39,7 +39,7 @@ Nigdy nie pisz CV w stylu pasywnej listy obowiązków („odpowiedzialność za 
 
 Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
 - **Doświadczenie:** 10+ lat w sektorze IT i technicznym:
-  * **Maxbit (03.2026 – Obecnie):** Specjalista ds. Oprogramowania – wsparcie L2 dla szpitali i przychodni w systemie AMMS (Asseco), diagnostyka baz danych (Oracle SQL) wspierana autorskim silnikiem RAG (SQLite FTS5 BM25: 314 PDF + 69 schematów Oracle), wdrożenia i uruchomienia szpitalne, szkolenia personelu.
+  * **Maxbit (03.2026 – Obecnie):** Specjalista ds. Oprogramowania – wsparcie L2 dla szpitali i przychodni w systemie AMMS (Asseco), wdrożenia i uruchomienia szpitalne, szkolenia personelu.
   * **Freelance IT & Dev (02.2024 – Obecnie):** Prowadzona równolegle działalność projektowa – systemy webowe i platformy SPA/PWA (TwojaStronaWWW, Raricart, FuegoLingua, KatoSalsaHub, DancePuls), potoki Zero-Trust CI/CD (_site-template), hosting, Cloudflare Zero Trust/R2/WAF.
   * **Kamsoft S.A. (01.2022 – 06.2024):** Ponad 20 wdrożeń systemu medycznego KS-SOMED.
   * **PKO Bank Polski (01.2021 – 12.2021):** Wsparcie L1/L2, rygor bankowy, praca zdalna, SLA.
@@ -52,7 +52,7 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
   3. **Sieci, Infrastruktura i DevOps:** Cisco Networking Academy 2026 (ukończony 3-modułowy cykl CCNA: ITN, SRWE, ENSA; przygotowanie do 200-301 CCNA), Docker & Compose, Linux Hardening, Prometheus, Grafana, Uptime Kuma, LAN/WLAN, VLAN, routing, Cloudflare Zero Trust.
   4. **Development, Bezpieczeństwo Danych i Narzędzia:** 
      * **Gal Anonim:** Autorska aplikacja desktopowa w C# (.NET 10 / Windows Forms / WebView2 / SQLite) do automatycznej anonimizacji i maskowania danych wrażliwych (RODO / ISO 27001) w plikach PDF, DOCX, ODT i TXT (kod prywatny, oficjalne wydania instalacyjne: github.com/zeslownikiem/galanonim-release).
-     * **DevOps Stack, AI Router & Monitoring:** Zintegrowana infrastruktura serwerowa VPS Oracle Cloud ARM64 (Docker Compose, Prometheus, Grafana, Uptime Kuma, Dozzle, Cloudflare Zero Trust, centralna bramka AI Router RAG z kaskadą 11 modeli LLM, cache <5 ms, WAF L7 z IP Penalty Box, bezciasteczkowa analityka WWW, silnik RAG SQLite FTS5 BM25 dla AMMS/Oracle, autonomiczny strażnik bezpieczeństwa 24/7 z 78 testami IoC/CIS oraz szyfrowane kopie AES-256 do Cloudflare R2 z nocnym Restore Drill: github.com/TwojaStronaWWW/devops-stack).
+     * **DevOps Stack, AI Router & Monitoring:** Zintegrowana infrastruktura serwerowa VPS Oracle Cloud ARM64 (Docker Compose, Prometheus, Grafana, Uptime Kuma, Dozzle, Cloudflare Zero Trust, centralna bramka AI Router RAG z kaskadą 11 modeli LLM, cache <5 ms, WAF L7 z IP Penalty Box, bezciasteczkowa analityka WWW, silnik RAG SQLite FTS5 BM25, autonomiczny strażnik bezpieczeństwa 24/7 z 78 testami IoC/CIS oraz szyfrowane kopie AES-256 do Cloudflare R2 z nocnym Restore Drill: github.com/TwojaStronaWWW/devops-stack).
      * **Repozytoria publiczne:** github.com/TwojaStronaWWW (organizacja firmowa).
      * PHP 8, Vanilla JavaScript (ES6+, SPA/PWA), SQL (Oracle, SQLite FTS5, MySQL – 100% certyfikat IEES), AI RAG & Prompt Engineering, CI/CD (GitHub Actions, Playwright, Gitleaks), HTML5/CSS3.
      * *(Uwaga: Krzysztof programuje w C#, nie w Pythonie).*
