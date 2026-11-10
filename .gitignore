@@ -1,7 +1,37 @@
+# Dependencies & Build Artifacts
 node_modules/
 dist/
+coverage/
+.lighthouseci/
+
+# Secrets, Keys & Credentials (ISO/IEC 27001 Zero Data Leakage)
+.env*
+!.env.example
+.env.bak*
+*.pem
+*.key
+*.pfx
+*.p12
+*.ppk
+*.kdbx
+id_ed25519*
+*token*.json
+.htpasswd
+
+# Databases & Local State
+*.sqlite*
+*.db
+
+# Local Browser Profiles & Temporary Audit Reports
+.chrome-*/
+docs/audits/
+
+# OS & Editor Noise
 .DS_Store
 Thumbs.db
+*.bak
+*.swp
+*.tmp
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

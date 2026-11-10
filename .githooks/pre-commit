@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 # Git Pre-commit Hook dla repozytorium Moje-CV
-# Wzorowany na standardach jakościowych projektu Gal Anonim.
-# Uruchamia sprawdzenie składni oraz wszystkie testy jednostkowe przed zatwierdzeniem zmian.
+# Wzorowany na standardach jakościowych projektu Gal Anonim i _site-template.
+# Uruchamia blokadę sekretów, sprawdzenie składni oraz wszystkie testy jednostkowe przed zatwierdzeniem zmian.
 
 set -e
 
 echo "🔍 [pre-commit] Uruchamianie lokalnej bramy jakościowej (Quality Gate)..."
 
-# 1. Blokada przypadkowego commitowania sekretów (.env, config/secrets.php, .htpasswd)
-if git diff --cached --name-only | grep -E "(\.env|config/secrets\.php|\.htpasswd)$"; then
-  echo "❌ BŁĄD: Wykryto plik z wrażliwymi sekretami w paczce do zatwierdzenia!"
+# 1. Blokada przypadkowego commitowania sekretów (.env, klucze prywatne, bazy KeePass/SQLite, docs/audits)
+STAGED_SECRET_FILES=$(git diff --cached --name-only | grep -E '(^|/)((\.env(\..+)?)|config/secrets\.php|\.htpasswd|id_ed25519.*|.*token.*\.json)$|\.(pem|key|kdbx|pfx|p12|sqlite3?|db)$|^docs/audits/' | grep -vE '(^|/)\.env\.example$' || true)
+if [ -n "$STAGED_SECRET_FILES" ]; then
+  echo "❌ BŁĄD: Wykryto plik z wrażliwymi sekretami lub lokalnym audytem w paczce do zatwierdzenia:"
+  echo "$STAGED_SECRET_FILES"
   echo "Usuń plik z indeksu poleceniem: git reset HEAD <plik>"
   exit 1
 fi

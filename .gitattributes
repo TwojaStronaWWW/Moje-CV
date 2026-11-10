@@ -16,6 +16,7 @@
 *.jpg binary
 *.jpeg binary
 *.webp binary
+*.avif binary
 *.gif binary
 *.mp4 binary
 *.woff binary

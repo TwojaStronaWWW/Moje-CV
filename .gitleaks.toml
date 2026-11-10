@@ -1,0 +1,26 @@
+title = "Gitleaks Security Configuration — Moje-CV (ISO/IEC 27001)"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Wykluczenie artefaktów budowania, zależności i makiet testowych"
+paths = [
+  '''^node_modules/''',
+  '''^dist/''',
+  '''^docs/audits/''',
+  '''^\.lighthouseci/''',
+  '''^package-lock\.json$'''
+]
+
+[[rules]]
+id = "private-key-material"
+description = "Wykryto klucz prywatny PEM/OpenSSH"
+regex = '''-----BEGIN (RSA |EC |DSA |OPENSSH |ENCRYPTED )?PRIVATE KEY-----'''
+tags = ["key", "security", "iso27001"]
+
+[[rules]]
+id = "env-api-secret-assignment"
+description = "Wykryto jawne przypisanie klucza API lub hasła produkcyjnego"
+regex = '''(?i)(ANTHROPIC_API_KEY|GEMINI_API_KEY|GROQ_API_KEY|CEREBRAS_API_KEY|MISTRAL_API_KEY|OPENROUTER_API_KEY|CF_AI_API_TOKEN|CLOUDFLARE_TOKEN|FTP_PASSWORD)\s*=\s*["']?[A-Za-z0-9_\-\.]{16,}["']?'''
+tags = ["secret", "api-key", "iso27001"]

@@ -1,0 +1,93 @@
+# ==============================================================================
+# Moje-CV (krzysztofpoczatek.pl) — Production Apache Hardening & Web Standards
+# Standardy: ISO/IEC 27001:2023, OWASP ASVS, Evergreen Web Standards [REF-01]..[REF-08]
+# ==============================================================================
+
+# 1. Wyłączenie listowania katalogów i sygnatury serwera
+Options -Indexes -MultiViews
+ServerSignature Off
+
+# 2. [REF-01] Nowoczesne typy MIME i kodowanie UTF-8
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType text/markdown .md .markdown
+  AddType application/manifest+json .webmanifest
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddCharset utf-8 .html .css .js .json .webmanifest .xml .txt .md
+</IfModule>
+
+# 3. Silnik Rewrite: ochrona query-string (PHP2Shell), ukryte pliki, HTTPS i non-www
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 3.1 PHP2Shell & Stream Wrapper Query-String Guard (OWASP / CVE-2012-1823 / CVE-2024-4577)
+  RewriteCond %{QUERY_STRING} (allow_url_include|allow_url_fopen|auto_prepend_file|auto_append_file|php://|phar://|zlib://|data://|glob://|expect://|%00) [NC,OR]
+  RewriteCond %{QUERY_STRING} (^|&)(-d|-s|-n|-w|%2d%64|%2d%73|%2d%6e|%2d%77) [NC]
+  RewriteRule .* - [F,L]
+
+  # 3.2 Blokada dostępu do ukrytych plików i katalogów (.git, .env, .npmrc) z wyjątkiem /.well-known/
+  RewriteCond %{REQUEST_URI} "!(^|/)\.well-known/" [NC]
+  RewriteRule "(^|/)\." - [F,L]
+
+  # 3.3 Wymuszenie szyfrowania HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+  RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 3.4 [REF-08] Przekierowanie 301 z www na kanoniczną domenę non-www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# 4. Blokada dostępu do plików wrażliwych, konfiguracyjnych, baz danych i dokumentacji roboczej
+<FilesMatch "(?i)(^\.env|^\.git|^\.npmrc$|^\.gitleaks\.toml$|^\.htaccess$|^\.htpasswd$|^\.editorconfig$|^\.lighthouserc\.json$|^package(-lock)?\.json$|^composer\.(json|lock)$|\.(sqlite3?|db|pem|key|kdbx|pfx|p12|md|bak|sql|log|sh|swp|ya?ml|toml|ini))$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# 5. [REF-01] Nagłówki bezpieczeństwa HTTP (HSTS, CSP, COOP, CORP, Anti-Clickjacking, Anti-MIME-Sniffing)
+<IfModule mod_headers.c>
+  Header unset X-Powered-By
+  Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" "expr=%{HTTPS} == 'on' || %{HTTP:X-Forwarded-Proto} == 'https'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+  Header always set Cross-Origin-Resource-Policy "same-site"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'inline-speculation-rules'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+</IfModule>
+
+# 6. [REF-01] Kompresja Brotli + Deflate (Gzip fallback)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript application/javascript application/json application/manifest+json application/ld+json application/xml text/xml image/svg+xml text/markdown
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/manifest+json application/ld+json application/xml text/xml image/svg+xml text/markdown
+</IfModule>
+
+# 7. Polityka Cache dla zasobów statycznych
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/avif "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 day"
+</IfModule>

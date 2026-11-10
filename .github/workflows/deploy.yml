@@ -52,7 +52,7 @@ jobs:
       - name: 2.3 Przygotowanie katalogu dist
         run: |
           mkdir -p dist
-          cp index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
+          cp .htaccess index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
           cp -r .well-known dist/
           cp -r assets dist/
 
@@ -93,7 +93,7 @@ jobs:
       - name: 3.3 Przygotowanie paczki produkcyjnej (HTML + SEO + PWA + Assets + PDF)
         run: |
           mkdir -p dist
-          cp index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
+          cp .htaccess index.html robots.txt sitemap.xml site.webmanifest llms.txt dist/
           cp -r .well-known dist/
           cp -r assets dist/
           npm run build:pdf

@@ -5,7 +5,7 @@ const path = require('node:path');
 
 const ROOT_DIR = path.join(__dirname, '..', '..');
 
-describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-template)', () => {
+describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen Web Standards)', () => {
   it('plik package.json powinien posiadać wymagane skrypty CI (test, test:watch, check, check:syntax, prepare, serve, dev)', () => {
     const pkgPath = path.join(ROOT_DIR, 'package.json');
     assert.ok(fs.existsSync(pkgPath), 'Brak package.json');
@@ -23,14 +23,110 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     assert.ok(pkg.scripts.dev, 'Brak skryptu dev');
   });
 
-  it('konfiguracja CI/CD (.github/workflows/deploy.yml) powinna istnieć i posiadać zdefiniowane etapy', () => {
+  it('katalog roboczych raportów docs/audits nie powinien istnieć w repozytorium i musi być zablokowany w .gitignore', () => {
+    const auditsDir = path.join(ROOT_DIR, 'docs', 'audits');
+    assert.strictEqual(fs.existsSync(auditsDir), false, 'Katalog docs/audits/ nie powinien znajdować się w repozytorium');
+
+    const gitignorePath = path.join(ROOT_DIR, '.gitignore');
+    assert.ok(fs.existsSync(gitignorePath), 'Brak pliku .gitignore');
+    const gitignore = fs.readFileSync(gitignorePath, 'utf-8');
+
+    const requiredPatterns = [
+      '.env*',
+      '!.env.example',
+      '.env.bak*',
+      '*.pem',
+      '*.key',
+      '*.kdbx',
+      '*.sqlite*',
+      '.chrome-*/',
+      '*token*.json',
+      'docs/audits/',
+    ];
+
+    for (const pattern of requiredPatterns) {
+      assert.ok(
+        gitignore.includes(pattern),
+        `Plik .gitignore musi zawierać regułę ochronną: ${pattern}`
+      );
+    }
+  });
+
+  it('pliki .npmrc (ignore-scripts=true) oraz .gitleaks.toml powinny istnieć i chronić przed Supply-Chain / Secret Leaks', () => {
+    const npmrcPath = path.join(ROOT_DIR, '.npmrc');
+    assert.ok(fs.existsSync(npmrcPath), 'Brak pliku .npmrc');
+    const npmrc = fs.readFileSync(npmrcPath, 'utf-8');
+    assert.match(npmrc, /^ignore-scripts\s*=\s*true/m, 'Brak ignore-scripts=true w .npmrc');
+
+    const gitleaksPath = path.join(ROOT_DIR, '.gitleaks.toml');
+    assert.ok(fs.existsSync(gitleaksPath), 'Brak pliku .gitleaks.toml');
+    const gitleaks = fs.readFileSync(gitleaksPath, 'utf-8');
+    assert.match(gitleaks, /useDefault\s*=\s*true/i, '.gitleaks.toml powinien rozszerzać domyślny zestaw reguł');
+  });
+
+  it('konfiguracja CI/CD (.github/workflows/deploy.yml) powinna istnieć, kopiować .htaccess i nie używać cache npm bez lockfile', () => {
     const workflowPath = path.join(ROOT_DIR, '.github', 'workflows', 'deploy.yml');
     assert.ok(fs.existsSync(workflowPath), 'Brak pliku .github/workflows/deploy.yml');
     const content = fs.readFileSync(workflowPath, 'utf-8');
 
     assert.match(content, /runs-on:\s*ubuntu-latest/i);
     assert.match(content, /actions\/checkout@v4/i);
+    assert.match(content, /cp\s+\.htaccess\b/, 'Potok deploy.yml powinien kopiować .htaccess do paczki dist/');
     assert.match(content, /purge_cache/i, 'Potok deploy.yml powinien posiadać opcjonalny krok czyszczenia cache Cloudflare');
+
+    const hasLockfile = fs.existsSync(path.join(ROOT_DIR, 'package-lock.json'));
+    if (!hasLockfile) {
+      const workflowsDir = path.join(ROOT_DIR, '.github', 'workflows');
+      for (const file of fs.readdirSync(workflowsDir)) {
+        if (!file.endsWith('.yml') && !file.endsWith('.yaml')) continue;
+        const wfContent = fs.readFileSync(path.join(workflowsDir, file), 'utf-8');
+        assert.doesNotMatch(
+          wfContent,
+          /cache:\s*['"]?npm['"]?/i,
+          `Workflow ${file} nie może używać cache: 'npm' przy braku package-lock.json`
+        );
+      }
+    }
+  });
+
+  it('bramka AI Security Review (.github/workflows/ai-security-review.yml) musi chronić sekrety przed forkami (author_association) i używać gemini-3.5-flash / 15-Model Cascade', () => {
+    const aiWorkflowPath = path.join(ROOT_DIR, '.github', 'workflows', 'ai-security-review.yml');
+    assert.ok(fs.existsSync(aiWorkflowPath), 'Brak .github/workflows/ai-security-review.yml');
+    const content = fs.readFileSync(aiWorkflowPath, 'utf-8');
+
+    assert.ok(
+      content.includes('contains(fromJSON(\'["OWNER", "MEMBER", "COLLABORATOR"]\'), github.event.pull_request.author_association)'),
+      'Brak warunku author_association chroniącego przed eksfiltracją sekretów z PR zewnętrznych'
+    );
+    assert.ok(content.includes('gemini-3.5-flash'), 'Workflow AI Security Review powinien wykorzystywać aktualny model gemini-3.5-flash');
+    assert.ok(content.includes('15-Model Cascade'), 'Workflow AI Security Review powinien wskazywać aktualną architekturę 15-Model Cascade');
+    assert.doesNotMatch(content, /11-Model Cascade/i, 'W workflow pozostał nieaktualny opis 11-Model Cascade');
+  });
+
+  it('plik .htaccess powinien wymuszać HTTPS, chronić przed PHP2Shell, blokować pliki wrażliwe i wystawiać nagłówki HSTS/CSP/COOP/CORP', () => {
+    const htaccessPath = path.join(ROOT_DIR, '.htaccess');
+    assert.ok(fs.existsSync(htaccessPath), 'Brak pliku .htaccess');
+    const htaccess = fs.readFileSync(htaccessPath, 'utf-8');
+
+    assert.match(htaccess, /RewriteCond\s+%\{HTTPS\}\s+!=on/i, 'Brak przekierowania HTTPS w .htaccess');
+    assert.match(htaccess, /allow_url_include/, 'Brak ochrony allow_url_include (PHP2Shell) w .htaccess');
+    assert.match(htaccess, /auto_prepend_file/, 'Brak ochrony auto_prepend_file (PHP2Shell) w .htaccess');
+    assert.match(htaccess, /php:\/\//, 'Brak blokady php:// w .htaccess');
+    assert.match(htaccess, /phar:\/\//, 'Brak blokady phar:// w .htaccess');
+
+    for (const token of ['\\.env', '\\.git', 'sqlite', 'db', 'pem', 'key', 'kdbx', 'package(-lock)?\\.json', 'composer\\.(json|lock)', '\\.npmrc', '\\.gitleaks\\.toml', 'md']) {
+      assert.ok(htaccess.includes(token), `Brak blokady dla wzorca ${token} w .htaccess`);
+    }
+
+    assert.match(htaccess, /AddType\s+image\/avif\s+\.avif/i);
+    assert.match(htaccess, /AddType\s+image\/webp\s+\.webp/i);
+    assert.match(htaccess, /AddType\s+text\/markdown\s+\.md/i);
+    assert.match(htaccess, /AddType\s+application\/manifest\+json\s+\.webmanifest/i);
+
+    assert.match(htaccess, /Strict-Transport-Security/i);
+    assert.match(htaccess, /Content-Security-Policy/i);
+    assert.match(htaccess, /Cross-Origin-Opener-Policy/i);
+    assert.match(htaccess, /Cross-Origin-Resource-Policy/i);
   });
 
   it('kluczowe pliki źródłowe nie mogą zawierać pozostałości po konfliktach gita (merge conflict markers)', () => {
@@ -72,11 +168,17 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     assert.ok(fs.existsSync(path.join(ROOT_DIR, '.github', 'ISSUE_TEMPLATE', 'config.yml')), 'Brak config.yml');
   });
 
-  it('git hook (.githooks/pre-commit) powinien istnieć, posiadać shebang bash, blokadę sekretów i uruchamiać npm run check', () => {
-    const hookPath = path.join(ROOT_DIR, '.githooks', 'pre-commit');
-    assert.ok(fs.existsSync(hookPath), 'Brak .githooks/pre-commit');
+  it('git hooki (.githooks/pre-commit i commit-msg) oraz skrypty .sh muszą używać końców linii LF (bez CRLF)', () => {
+    const hookDir = path.join(ROOT_DIR, '.githooks');
+    for (const name of fs.readdirSync(hookDir)) {
+      const fullPath = path.join(hookDir, name);
+      const rawBuf = fs.readFileSync(fullPath);
+      assert.strictEqual(rawBuf.includes(0x0d), false, `Plik .githooks/${name} zawiera niedozwolone znaki CR (CRLF)`);
+    }
+
+    const hookPath = path.join(hookDir, 'pre-commit');
     const content = fs.readFileSync(hookPath, 'utf-8');
-    const firstLine = content.split(/\r?\n/)[0];
+    const firstLine = content.split('\n')[0];
 
     assert.match(firstLine, /^#!\/(usr\/bin\/env bash|bin\/bash)\s*$/, 'Hook pre-commit nie posiada poprawnego shebangu bash');
     assert.ok(content.includes('\\.env'), 'Hook pre-commit powinien chronić przed zatwierdzeniem plików .env');
@@ -87,23 +189,24 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     const hookPath = path.join(ROOT_DIR, '.githooks', 'commit-msg');
     assert.ok(fs.existsSync(hookPath), 'Brak .githooks/commit-msg');
     const content = fs.readFileSync(hookPath, 'utf-8');
-    const firstLine = content.split(/\r?\n/)[0];
+    const firstLine = content.split('\n')[0];
 
     assert.match(firstLine, /^#!\/(usr\/bin\/env bash|bin\/bash)\s*$/, 'Hook commit-msg nie posiada poprawnego shebangu bash');
     assert.match(content, /build\|chore\|ci\|docs\|feat\|fix\|perf\|refactor\|revert\|style\|test/i);
     assert.match(content, /Conventional Commits/i);
   });
 
-  it('plik .gitattributes powinien normalizować końce linii LF dla skryptów i hooków', () => {
+  it('plik .gitattributes powinien normalizować końce linii LF dla skryptów .sh i hooków', () => {
     const gitAttrPath = path.join(ROOT_DIR, '.gitattributes');
     assert.ok(fs.existsSync(gitAttrPath), 'Brak .gitattributes');
     const content = fs.readFileSync(gitAttrPath, 'utf-8');
 
     assert.match(content, /\* text=auto eol=lf/i);
+    assert.match(content, /\*\.sh text eol=lf/i);
     assert.match(content, /\.githooks\/\* text eol=lf/i);
   });
 
-  it('skrypty narzędziowe (scripts/generate-pdf.js oraz scripts/serve.js) powinny istnieć i chronić przed Directory Traversal', () => {
+  it('serwer deweloperski (scripts/serve.js) powinien wystawiać nagłówki nosniff/DENY i blokować traversal, dot-files oraz package.json', () => {
     const scriptPath = path.join(ROOT_DIR, 'scripts', 'generate-pdf.js');
     assert.ok(fs.existsSync(scriptPath), 'Brak scripts/generate-pdf.js');
     assert.ok(fs.existsSync(path.join(ROOT_DIR, 'scripts', 'serve.js')), 'Brak scripts/serve.js');
@@ -115,13 +218,60 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     const serveModule = require('../../scripts/serve');
     assert.strictEqual(typeof serveModule.resolveSafeFilePath, 'function');
     assert.strictEqual(serveModule.SECURITY_HEADERS['X-Content-Type-Options'], 'nosniff');
+    assert.strictEqual(serveModule.SECURITY_HEADERS['X-Frame-Options'], 'DENY');
     assert.ok(serveModule.MIME_TYPES['.webmanifest']);
+    assert.ok(serveModule.MIME_TYPES['.avif']);
 
-    const validResult = serveModule.resolveSafeFilePath('/index.html', ROOT_DIR);
-    assert.strictEqual(validResult.isAllowed, true);
+    assert.strictEqual(serveModule.resolveSafeFilePath('/index.html', ROOT_DIR).isAllowed, true);
+    assert.strictEqual(serveModule.resolveSafeFilePath('/llms.txt', ROOT_DIR).isAllowed, true);
+    assert.strictEqual(
+      serveModule.resolveSafeFilePath('/.well-known/security.txt', ROOT_DIR).isAllowed,
+      true,
+      'Plik /.well-known/security.txt musi być jawnie dozwolony'
+    );
 
-    const traversalResult = serveModule.resolveSafeFilePath('/../../etc/passwd', ROOT_DIR);
-    assert.strictEqual(traversalResult.isAllowed, false, 'Serwer powinien blokować próby Directory Traversal');
+    const blockedPaths = [
+      '/../../etc/passwd',
+      '/%2e%2e/%2e%2e/etc/passwd',
+      '/.env',
+      '/.env.production',
+      '/.git/HEAD',
+      '/.npmrc',
+      '/.gitleaks.toml',
+      '/.htaccess',
+      '/.well-known/../.env',
+      '/package.json',
+      '/composer.json',
+      '/AGENTS.md',
+    ];
+
+    for (const forbidden of blockedPaths) {
+      const res = serveModule.resolveSafeFilePath(forbidden, ROOT_DIR);
+      assert.strictEqual(res.isAllowed, false, `Serwer powinien zablokować ścieżkę: ${forbidden}`);
+    }
+
+    const malformed = serveModule.resolveSafeFilePath('/%E0%A4%A', ROOT_DIR);
+    assert.strictEqual(malformed.isMalformed, true);
+    assert.strictEqual(malformed.isAllowed, false);
+  });
+
+  it('standardy RFC 9116 (/.well-known/security.txt), GEO (/llms.txt) oraz Zero-Inline (brak style/onclick) muszą być spełnione', () => {
+    const secTxtPath = path.join(ROOT_DIR, '.well-known', 'security.txt');
+    assert.ok(fs.existsSync(secTxtPath), 'Brak /.well-known/security.txt');
+    const secTxt = fs.readFileSync(secTxtPath, 'utf-8');
+    const expiresMatch = secTxt.match(/^Expires:\s*(.+)$/m);
+    assert.ok(expiresMatch, 'Brak pola Expires: w /.well-known/security.txt');
+    const expiresDate = new Date(expiresMatch[1].trim());
+    assert.ok(!Number.isNaN(expiresDate.getTime()), 'Nieprawidłowy format daty Expires: w security.txt');
+    assert.ok(expiresDate.getTime() > Date.now(), 'Data Expires: w /.well-known/security.txt wygasła!');
+
+    const llmsPath = path.join(ROOT_DIR, 'llms.txt');
+    assert.ok(fs.existsSync(llmsPath), 'Brak /llms.txt');
+
+    const htmlContent = fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf-8');
+    assert.match(htmlContent, /<link\s+[^>]*rel=["']alternate["'][^>]*type=["']text\/markdown["'][^>]*href=["']\/?llms\.txt["']/i);
+    assert.doesNotMatch(htmlContent, /\sstyle\s*=\s*["']/i, 'Wykryto zabroniony atrybut inline style="..." w index.html');
+    assert.doesNotMatch(htmlContent, /\son[a-z]+\s*=\s*["']/i, 'Wykryto zabroniony handler inline on*="..." w index.html');
   });
 
   it('konfiguracja audytu Lighthouse CI (.lighthouserc.json) powinna istnieć i definiować asercje jakościowe', () => {
@@ -135,7 +285,7 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     assert.ok(config.ci.assert.assertions['categories:seo']);
   });
 
-  it('pliki robots.txt, sitemap.xml oraz site.webmanifest powinny istnieć i definiować poprawne reguły', () => {
+  it('pliki robots.txt, sitemap.xml oraz site.webmanifest powinny istnieć i definiować poprawne reguły (w tym Allow: /llms.txt)', () => {
     const manifestPath = path.join(ROOT_DIR, 'site.webmanifest');
     assert.ok(fs.existsSync(manifestPath), 'Brak site.webmanifest');
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
@@ -145,6 +295,7 @@ describe('Higiena repozytorium (Repo Hygiene wzorowane na Gal Anonim i _site-tem
     assert.ok(fs.existsSync(robotsPath), 'Brak robots.txt');
     const robotsContent = fs.readFileSync(robotsPath, 'utf-8');
     assert.match(robotsContent, /User-agent:\s*\*/i);
+    assert.match(robotsContent, /Allow:\s*\/llms\.txt/i);
     assert.match(robotsContent, /Sitemap:\s*https:\/\/krzysztofpoczatek\.pl\/sitemap\.xml/i);
 
     const sitemapPath = path.join(ROOT_DIR, 'sitemap.xml');

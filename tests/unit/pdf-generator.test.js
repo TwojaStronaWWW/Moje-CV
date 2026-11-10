@@ -1,8 +1,23 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const os = require('node:os');
 const path = require('node:path');
+const { execFileSync } = require('node:child_process');
 const { findBrowserBinary, generatePdf, OUTPUT_PDF } = require('../../scripts/generate-pdf');
+
+function withTempPdfDir(fn) {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'moje-cv-pdf-test-'));
+  try {
+    return fn(tempDir);
+  } finally {
+    try {
+      fs.rmSync(tempDir, { recursive: true, force: true });
+    } catch {
+      // Ignoruj ewentualne blokady plików tymczasowych systemu Windows
+    }
+  }
+}
 
 describe('Generator oficjalnego PDF (scripts/generate-pdf.js)', () => {
   it('powinien poprawnie wykryć silnik Chromium w systemie lub honorować CHROME_PATH', () => {
@@ -33,20 +48,26 @@ describe('Generator oficjalnego PDF (scripts/generate-pdf.js)', () => {
     assert.ok(OUTPUT_PDF.includes('dist'));
   });
 
-  it('powinien poprawnie wygenerować plik PDF i zwrócić metadane o pliku', () => {
-    const testPdfPath = path.join(__dirname, '..', '..', 'dist', 'test-output.pdf');
+  it('powinien poprawnie wygenerować plik PDF w os.tmpdir() bez modyfikacji dist/ i zwrócić metadane o pliku', () => {
+    const prodExistsBefore = fs.existsSync(OUTPUT_PDF);
+    const prodMtimeBefore = prodExistsBefore ? fs.statSync(OUTPUT_PDF).mtimeMs : null;
 
-    const result = generatePdf(testPdfPath);
-    assert.ok(result);
-    assert.strictEqual(result.filePath, testPdfPath);
-    assert.ok(result.sizeBytes > 50000, `Rozmiar wygenerowanego PDF jest za mały: ${result.sizeBytes} B`);
-    assert.ok(fs.existsSync(testPdfPath));
+    withTempPdfDir((tempDir) => {
+      const testPdfPath = path.join(tempDir, 'test-output.pdf');
+      const result = generatePdf(testPdfPath);
 
-    // Porządki po teście
-    try {
-      fs.unlinkSync(testPdfPath);
-    } catch {
-      // Ignoruj błąd usunięcia
+      assert.ok(result);
+      assert.strictEqual(result.filePath, testPdfPath);
+      assert.ok(result.sizeBytes > 50000, `Rozmiar wygenerowanego PDF jest za mały: ${result.sizeBytes} B`);
+      assert.ok(fs.existsSync(testPdfPath));
+    });
+
+    if (prodExistsBefore) {
+      assert.strictEqual(
+        fs.statSync(OUTPUT_PDF).mtimeMs,
+        prodMtimeBefore,
+        'Test jednostkowy nie może nadpisywać produkcyjnego pliku PDF w dist/'
+      );
     }
   });
 
@@ -92,26 +113,32 @@ describe('Generator oficjalnego PDF (scripts/generate-pdf.js)', () => {
     });
 
     it('generatePdf powinien rzucić błąd, gdy wskazany plik wejściowy HTML nie istnieje', () => {
-      assert.throws(
-        () => {
-          generatePdf('dist/dummy.pdf', { inputHtml: 'non-existent-file.html' });
-        },
-        /Plik źródłowy HTML nie istnieje/i
-      );
+      withTempPdfDir((tempDir) => {
+        const dummyPath = path.join(tempDir, 'dummy.pdf');
+        assert.throws(
+          () => {
+            generatePdf(dummyPath, { inputHtml: path.join(tempDir, 'non-existent-file.html') });
+          },
+          /Plik źródłowy HTML nie istnieje/i
+        );
+      });
     });
 
     it('generatePdf powinien rzucić błąd, gdy silnik przeglądarki nie zostanie znaleziony', () => {
-      assert.throws(
-        () => {
-          generatePdf('dist/dummy.pdf', { browser: '' });
-        },
-        /Nie znaleziono silnika Chromium/i
-      );
+      withTempPdfDir((tempDir) => {
+        const dummyPath = path.join(tempDir, 'dummy.pdf');
+        assert.throws(
+          () => {
+            generatePdf(dummyPath, { browser: '' });
+          },
+          /Nie znaleziono silnika Chromium/i
+        );
+      });
     });
 
     it('generatePdf powinien rzucić błąd, gdy rozmiar pliku wyjściowego jest mniejszy niż minSize', () => {
-      const testPdfPath = path.join(__dirname, '..', '..', 'dist', 'size-test.pdf');
-      try {
+      withTempPdfDir((tempDir) => {
+        const testPdfPath = path.join(tempDir, 'size-test.pdf');
         assert.throws(
           () => {
             // Wymuszamy nierealistyczny minimalny rozmiar 1 GB
@@ -119,21 +146,18 @@ describe('Generator oficjalnego PDF (scripts/generate-pdf.js)', () => {
           },
           /Wygenerowany plik PDF jest podejrzanie mały/i
         );
-      } finally {
-        try {
-          fs.unlinkSync(testPdfPath);
-        } catch {
-          // Ignoruj
-        }
-      }
+      });
     });
 
-    it('skrypt powinien poprawnie wykonać się jako samodzielne polecenie CLI (require.main === module)', () => {
+    it('skrypt powinien poprawnie wykonać się jako samodzielne polecenie CLI z zapisem do os.tmpdir()', () => {
       const scriptPath = path.join(__dirname, '..', '..', 'scripts', 'generate-pdf.js');
-      const { execFileSync } = require('node:child_process');
-      const output = execFileSync(process.execPath, [scriptPath], { encoding: 'utf-8' });
-      assert.ok(output.includes('[PDF Generator]'));
-      assert.ok(output.includes('Sukces'));
+      withTempPdfDir((tempDir) => {
+        const cliPdfPath = path.join(tempDir, 'cli-output.pdf');
+        const output = execFileSync(process.execPath, [scriptPath, cliPdfPath], { encoding: 'utf-8' });
+        assert.ok(output.includes('[PDF Generator]'));
+        assert.ok(output.includes('Sukces'));
+        assert.ok(fs.existsSync(cliPdfPath), 'Tryb CLI nie wygenerował pliku w katalogu tymczasowym');
+      });
     });
   });
 });

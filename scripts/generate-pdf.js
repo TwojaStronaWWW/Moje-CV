@@ -133,7 +133,8 @@ function generatePdf(destinationPath = OUTPUT_PDF, options = {}) {
 
 if (require.main === module) {
   try {
-    generatePdf();
+    const cliTargetPath = process.argv[2] || process.env.PDF_OUTPUT_PATH || OUTPUT_PDF;
+    generatePdf(cliTargetPath);
   } catch (err) {
     console.error(`[PDF Generator] Błąd: ${err.message}`);
     process.exit(1);
