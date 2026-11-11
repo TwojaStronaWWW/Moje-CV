@@ -1,14 +1,16 @@
-# Krzysztof Początek — Specjalista IT / Administrator Systemów Medycznych HIS (AMMS, KS-SOMED) & DevOps
+# Krzysztof Początek — Specjalista IT & Wdrożeniowiec | Systemy Medyczne HIS (AMMS, KS-SOMED), Audytor ISO/IEC 27001:2023 & ITIL® 4
 
-> Oficjalne interaktywne CV i portfolio inżynierskie Krzysztofa Początka (https://krzysztofpoczatek.pl). Specjalizacja: utrzymanie systemów szpitalnych HIS (Asseco AMMS, Kamsoft KS-SOMED), integracje P1 / HL7 / EDM, bezpieczeństwo ISO/IEC 27001, infrastruktura Linux/Windows Server, Docker, Prometheus/Grafana oraz architektura systemów AI RAG.
+> Oficjalne interaktywne CV i portfolio inżynierskie Krzysztofa Początka (https://krzysztofpoczatek.pl). Specjalizacja: wdrożenia i wsparcie L2 systemów szpitalnych HIS (Asseco AMMS, Kamsoft KS-SOMED), zarządzanie usługami ITIL 4, audyt bezpieczeństwa ISO/IEC 27001:2023, sieci Cisco CCNA, infrastruktura Linux/Windows Server, Docker, Prometheus/Grafana, C# (.NET 10) oraz architektura systemów AI RAG.
 
-## Kluczowe Kompetencje
-- **Systemy Medyczne (HIS/PACS/P1):** Asseco AMMS, Kamsoft KS-SOMED, e-Zdrowie P1 (e-Recepta, e-Skierowanie, EDM, Zdarzenia Medyczne), rozliczenia NFZ (SZOI/ISI, SWIAD, eWUŚ).
-- **Infrastruktura i Bezpieczeństwo (ISO 27001):** Active Directory, GPO, Windows Server, Linux (Debian/Ubuntu), Docker Compose, Cloudflare WAF/CDN, Hardening SSH/TLS, audyty bezpieczeństwa.
-- **Monitoring i Automatyzacja (DevOps & AI):** Prometheus, Grafana, Uptime Kuma, GitHub Actions CI/CD, kaskadowe routery LLM RAG (PHP/Python/C#).
+## Kluczowe Kompetencje i Certyfikaty
+- **Certyfikaty:** ITIL® 4 Foundation (GR671883352KP), Audytor Wewnętrzny ISO/IEC 27001:2023 (186/PWS/2026), Cisco Networking Academy CCNA (ITN, SRWE, ENSA), Specjalista zapytań SQL (IEES 100%).
+- **Systemy Medyczne i ITSM:** Asseco AMMS, Kamsoft KS-SOMED, integracje P1 (EDM, e-Recepta, e-Skierowanie), HL7, rozliczenia NFZ, Oracle SQL, Jira Service Management, osTicket, wsparcie L1/L2 w reżimie SLA.
+- **Infrastruktura, Sieci i Bezpieczeństwo:** Active Directory, GPO, Windows Server, Linux Hardening (CIS, UFW, Fail2Ban), Docker Compose, Cloudflare Zero Trust / WAF / R2, kopie zapasowe AES-256.
+- **Development, Dane i AI:** C# (.NET 10, Windows Forms, WebView2), PHP 8, Vanilla JS (ES6+, SPA/PWA), SQL (Oracle, SQLite FTS5), kaskadowe routery Multi-LLM RAG, GitHub Actions CI/CD, Playwright.
 
-## Projekty Własne i Open-Source
-- [Radar P1](https://radar-p1.pages.dev): Niezależny monitor dostępności systemów e-Zdrowia (P1, eWUŚ, SZOI/NFZ, KSeF, ZUS) z procedurami ciągłości działania dla szpitali i przychodni.
-- [Gal Anonim](https://github.com/zeslownikiem/galanonim-release): Narzędzie do anonimizacji dokumentacji (RODO / ISO 27001).
-- [TwojaStronaWWW](https://twojastronawww.pl): Architektura szybkich systemów webowych i asystentów AI RAG.
-- [Kato Salsa Hub](https://katosalsahub.pl): Portal społecznościowy i encyklopedia taneczna z autorską wyszukiwarką i asystentem AI.
+## Projekty Własne i Rozwiązania Autorskie
+- [Gal Anonim](https://github.com/zeslownikiem/galanonim-release): Autorska aplikacja desktopowa w C# (.NET 10) do automatycznej anonimizacji danych osobowych (RODO / ISO 27001) w plikach Word, PDF, ODT i TXT.
+- [DevOps Stack, AI Router & Monitoring](https://github.com/TwojaStronaWWW/devops-stack): Kontenerowa infrastruktura serwerowa w architekturze Cloudflare Zero Trust z monitoringiem Prometheus/Grafana, bramką AI RAG (SQLite FTS5) i kopiami AES-256 do R2.
+- [_site-template](https://github.com/TwojaStronaWWW/_site-template): Publiczny szablon architektoniczny i sekwencyjny potok Zero-Trust CI/CD (node:test, Playwright, Gitleaks, Lighthouse CI).
+- [HD Service Desk](https://hd.twojastronawww.pl): Wdrożona i administrowana instancja helpdesk osTicket w standardzie ITIL 4 z centralnym API zgłoszeń.
+- [TwojaStronaWWW.pl](https://twojastronawww.pl) & [Kato Salsa Hub](https://katosalsahub.pl): Marka własna oraz ekosystem SPA/PWA społeczności tanecznej z Radio Playerem, bazą wiedzy Salsopedia, asystentem AI RAG i agregatorem DancePuls.

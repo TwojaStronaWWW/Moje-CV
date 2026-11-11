@@ -24,10 +24,10 @@ Nigdy nie pisz CV w stylu pasywnej listy obowiązków („odpowiedzialność za 
 *Zamiast:* „Wsparcie użytkowników i rozwiązywanie problemów L2”  
 *Pisz:* „Samodzielne rozwiązywanie złożonych incydentów L2 w środowisku korporacyjnym dla ponad 300 stacji roboczych, skracając czas przestoju stanowisk pracy o 30% zgodnie ze standardami SLA/ITIL.”
 
-### C. Optymalizacja pod ATS (Applicant Tracking Systems)
-- Stosuj branżowy, powszechnie wyszukiwany żargon technologiczny (Active Directory, Group Policy, SLA, ITIL 4, ISO/IEC 27001, AMMS, KS-SOMED, TCP/IP, VLAN, OSPF, Jira Service Management, C# .NET, Cloudflare, AI Prompting).
-- Dbaj o obecność twardych słów kluczowych odpowiadających ogłoszeniom o pracę.
-- Zachowuj logiczny podział kompetencji (np. Systemy, Sieci, Bezpieczeństwo/Audyt, Development i Bazy danych).
+### C. Optymalizacja pod ATS i AI-Screening (Standardy 2026/2027)
+- **Kanoniczne nagłówki sekcji:** Używaj rozpoznawalnych przez polskie i globalne parsery ATS (eRecruiter, Traffit, Workday, Greenhouse) nazw sekcji: `Certyfikaty i Standardy`, `Doświadczenie zawodowe`, `Własne Projekty i Rozwiązania Autorskie`, `Wykształcenie`.
+- **Separator Stanowisko – Firma:** Zawsze rozdzielaj nazwę stanowiska od nazwy pracodawcy/marki **półpauzą otoczoną spacjami (` – `)** (np. `Specjalista ds. Oprogramowania – Maxbit`). Nigdy nie zostawiaj samej spacji (ryzyko sklejenia słów przy ekstrakcji plain-text), unikaj dwukropka (`:`) oraz kreski pionowej (`|`) w nagłówkach historii zatrudnienia.
+- **Słowa kluczowe i podział kompetencji:** Stosuj branżowy, powszechnie wyszukiwany żargon technologiczny (Active Directory, Group Policy, SLA, ITIL 4, ISO/IEC 27001, AMMS, KS-SOMED, TCP/IP, VLAN, OSPF, Jira Service Management, Toad for Oracle, C# .NET, Cloudflare, AI RAG). Zachowuj czysty podział lewego paska na `Systemy i Infrastruktura`, `Sieci i Cloud Security`, `Development i Dane` oraz `Narzędzia IT`.
 
 ### D. Zero „lania wody” i banałów
 - Bezwzględnie eliminuj puste buzzwordy bez pokrycia („komunikatywny”, „odporny na stres”, „elastyczny”), chyba że wynikają wprost z konkretnych faktów i liczb (np. koordynacja dużych grup, rozwiązywanie sytuacji kryzysowych z klientami, szkolenia personelu medycznego).
