@@ -142,13 +142,13 @@ aside section {
 /* ===== MAIN ===== */
 main {
 	background: white !important;
-	padding: 20px 18px 14px 24px !important;
+	padding: 16px 18px 10px 24px !important;
 	font-size: 10.5px;
 	color: var(--color-text-dark);
 }
 
 main p {
-	margin-bottom: 8px !important;
+	margin-bottom: 6px !important;
 }
 
 main > p:first-child {
@@ -164,7 +164,7 @@ main h2 {
 	font-weight: 700;
 	border-bottom: 1.5px solid var(--color-primary) !important;
 	padding-bottom: 2px !important;
-	margin: 13px 0 6px !important;
+	margin: 10px 0 5px !important;
 	page-break-after: avoid;
 }
 
@@ -175,7 +175,7 @@ main h2:first-of-type {
 main h3 {
 	font-size: 11px !important;
 	font-weight: 700;
-	margin: 7px 0 2px !important;
+	margin: 5px 0 2px !important;
 	color: var(--color-text-dark);
 	page-break-after: avoid;
 }
@@ -196,12 +196,12 @@ main .accent {
 main ul {
 	list-style: disc !important;
 	padding-left: 16px !important;
-	margin-bottom: 8px !important;
+	margin-bottom: 5px !important;
 }
 
 main li {
 	font-size: 10px;
-	line-height: 1.38;
+	line-height: 1.36;
 	margin-bottom: 2px !important;
 	color: var(--color-text-dark);
 }
@@ -213,13 +213,13 @@ main a {
 
 article {
 	page-break-inside: avoid;
-	margin-bottom: 6px;
+	margin-bottom: 4px;
 }
 
 /* Wymuszenie strony 2 */
 .page-break-before {
 	page-break-before: always;
-	padding-top: 10px;
+	padding-top: 4px;
 }
 
 /* Projekty */
@@ -231,16 +231,16 @@ article {
 
 .projects-list li {
 	font-size: 10px;
-	line-height: 1.4;
-	margin-bottom: 3px !important;
+	line-height: 1.36;
+	margin-bottom: 2.5px !important;
 }
 
 /* RODO */
 .gdpr {
 	font-size: 8px !important;
 	color: #666 !important;
-	margin-top: 14px !important;
-	padding-top: 8px !important;
+	margin-top: 8px !important;
+	padding-top: 6px !important;
 	border-top: 1px solid #ccc !important;
 	page-break-inside: avoid;
 	background: transparent !important;

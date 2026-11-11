@@ -40,7 +40,7 @@ Nigdy nie pisz CV w stylu pasywnej listy obowiązków („odpowiedzialność za 
 Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
 - **Doświadczenie:** 10+ lat w sektorze IT i technicznym:
   * **Maxbit (03.2026 – Obecnie):** Specjalista ds. Oprogramowania – wsparcie L2 dla szpitali i przychodni w systemie AMMS (Asseco), wdrożenia i uruchomienia szpitalne, szkolenia personelu.
-  * **Freelance IT & Dev (02.2024 – Obecnie):** Prowadzona równolegle działalność projektowa – systemy webowe i platformy SPA/PWA (TwojaStronaWWW, Raricart, FuegoLingua, KatoSalsaHub, DancePuls), potoki Zero-Trust CI/CD (_site-template), hosting, Cloudflare Zero Trust/R2/WAF.
+  * **TwojaStronaWWW.pl – Marka własna / Freelance IT & Dev (02.2024 – Obecnie):** Prowadzona równolegle działalność projektowa – systemy webowe i platformy SPA/PWA (TwojaStronaWWW, Raricart, FuegoLingua, KatoSalsaHub, DancePuls), potoki Zero-Trust CI/CD (_site-template), hosting, Cloudflare Zero Trust/R2/WAF.
   * **Kamsoft S.A. (01.2022 – 06.2024):** Ponad 20 wdrożeń systemu medycznego KS-SOMED.
   * **PKO Bank Polski (01.2021 – 12.2021):** Wsparcie L1/L2, rygor bankowy, praca zdalna, SLA.
   * **Euvic IT (07.2018 – 12.2020):** Starszy Specjalista Serwisu IT (L2 on-site), Active Directory, redukcja przestojów o 30%.
@@ -56,7 +56,9 @@ Zawsze pamiętaj o profilu zawodowym i mocnych stronach Krzysztofa:
      * **Repozytoria publiczne:** github.com/TwojaStronaWWW (organizacja firmowa).
      * PHP 8, Vanilla JavaScript (ES6+, SPA/PWA), SQL (Oracle, SQLite FTS5, MySQL – 100% certyfikat IEES), AI RAG & Prompt Engineering, CI/CD (GitHub Actions, Playwright, Gitleaks), HTML5/CSS3.
      * *(Uwaga: Krzysztof programuje w C#, nie w Pythonie).*
-  5. **Leadership & Działalność Społeczna:** Fundator i Prezes Zarządu Fundacji Kato Salsa Hub (inicjatywa oddolna od 01.2020 r., notarialne powołanie 2026 r., w trakcie rejestracji w KRS; organizacja spotkań salsowych w plenerze i lokalach, wyjazdy integracyjne, monorepo SPA/PWA katosalsahub.pl z Radio Playerem, bazą wiedzy Salsopedia, asystentem AI RAG i silnikiem agregacji DancePuls).
+  5. **Leadership & Działalność Społeczna:**
+     * **Fundacja Kato Salsa Hub:** Fundator i Prezes Zarządu (inicjatywa oddolna od 01.2020 r., notarialne powołanie 2026 r., w trakcie rejestracji w KRS; organizacja spotkań salsowych w plenerze i lokalach, wyjazdy integracyjne, monorepo SPA/PWA katosalsahub.pl z Radio Playerem, bazą wiedzy Salsopedia, asystentem AI RAG i silnikiem agregacji DancePuls).
+     * **Wspólna Kamienica – Społeczny Komitet Mieszkańców:** Inicjator i Koordynator (2026 – Obecnie; audyt zgodności i bezpieczeństwa budynku pod kątem Prawa budowlanego, ppoż., norm sanitarnych i RODO dla monitoringu wizyjnego części wspólnych; cyfryzacja komunikacji lokatorskiej oraz obiegu dokumentacji z zarządcą KZGM i organami nadzoru PINB/Sanepid/PSP).
 
 ---
 
