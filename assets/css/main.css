@@ -216,8 +216,9 @@ button:focus {
 	margin-bottom: var(--spacing-sm);
 }
 
-/* === Unified Print Buttons === */
-.btn-print {
+/* === Unified PDF Download & Print Buttons === */
+.btn-print,
+.btn-download-pdf {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -229,47 +230,93 @@ button:focus {
 	border-radius: 25px;
 	padding: 10px 22px;
 	width: fit-content;
+	text-decoration: none;
 	transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
-.btn-print svg {
+.btn-print svg,
+.btn-download-pdf svg {
 	flex-shrink: 0;
 	transition: stroke 0.2s;
 }
 
 /* Wariant w sidebarze (pod danymi kontaktowymi) */
+aside a.sidebar-print-btn,
 .sidebar-print-btn {
 	background: var(--color-white);
 	color: var(--color-primary);
 	border: 2px solid var(--color-white);
 	margin: 16px auto 0;
 	display: flex;
+	text-decoration: none;
+	opacity: 1;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+aside a.sidebar-print-btn:hover,
+aside a.sidebar-print-btn:focus,
 .sidebar-print-btn:hover {
-	background: rgba(255, 255, 255, 0.9);
+	background: rgba(255, 255, 255, 0.92);
 	color: var(--color-primary-dark);
-	border-color: rgba(255, 255, 255, 0.9);
+	border-color: rgba(255, 255, 255, 0.92);
+	text-decoration: none;
+	opacity: 1;
 	transform: translateY(-2px);
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
+aside a.sidebar-print-btn:active,
 .sidebar-print-btn:active {
 	transform: translateY(0);
 }
 
-/* Wariant na dole strony (w sekcji głównej) */
+/* Pasek akcji na dole sekcji głównej (Pobierz PDF + Drukuj) */
+.cv-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+main a.main-print-btn,
 .main-print-btn {
+	background: var(--color-primary);
+	color: var(--color-white);
+	border: 2px solid var(--color-primary);
+	margin: 0;
+	display: inline-flex;
+	text-decoration: none;
+	box-shadow: 0 4px 12px rgba(0, 91, 130, 0.2);
+}
+
+main a.main-print-btn:hover,
+main a.main-print-btn:focus,
+.main-print-btn:hover {
+	background: var(--color-primary-dark);
+	color: var(--color-white);
+	border-color: var(--color-primary-dark);
+	text-decoration: none;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 91, 130, 0.3);
+}
+
+main a.main-print-btn:active,
+.main-print-btn:active {
+	transform: translateY(0);
+}
+
+.main-print-secondary-btn {
 	background: var(--color-white);
 	color: var(--color-primary);
 	border: 2px solid var(--color-primary);
-	margin: 24px auto 0;
-	display: flex;
-	box-shadow: 0 4px 12px rgba(0, 91, 130, 0.15);
+	margin: 0;
+	display: inline-flex;
+	box-shadow: 0 2px 8px rgba(0, 91, 130, 0.1);
 }
 
-.main-print-btn:hover {
+.main-print-secondary-btn:hover {
 	background: var(--color-primary);
 	color: var(--color-white);
 	border-color: var(--color-primary);
@@ -277,7 +324,7 @@ button:focus {
 	box-shadow: 0 6px 16px rgba(0, 91, 130, 0.25);
 }
 
-.main-print-btn:active {
+.main-print-secondary-btn:active {
 	transform: translateY(0);
 }
 

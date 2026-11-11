@@ -249,6 +249,8 @@ article {
 /* Ukrycie elementów interaktywnych */
 button,
 .toggle-menu,
-.btn-print {
+.btn-print,
+.btn-download-pdf,
+.cv-actions {
 	display: none !important;
 }

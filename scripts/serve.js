@@ -70,7 +70,15 @@ function resolveSafeFilePath(rawUrl = '/', rootDir = ROOT_DIR) {
 
   const resolvedRoot = path.resolve(rootDir);
   const relativeTarget = reqUrl.replace(/^[\/\\]+/, '');
-  const filePath = path.resolve(resolvedRoot, relativeTarget);
+  let filePath = path.resolve(resolvedRoot, relativeTarget);
+
+  if (
+    relativeTarget === 'Krzysztof_Poczatek_CV.pdf' &&
+    !fs.existsSync(filePath) &&
+    fs.existsSync(path.resolve(resolvedRoot, 'dist', 'Krzysztof_Poczatek_CV.pdf'))
+  ) {
+    filePath = path.resolve(resolvedRoot, 'dist', 'Krzysztof_Poczatek_CV.pdf');
+  }
 
   const insideLexicalRoot =
     filePath === resolvedRoot ||

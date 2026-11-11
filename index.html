@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/main.css?v=1.1">
-  <link rel="stylesheet" href="assets/css/print.css?v=1.2" media="print">
+  <link rel="stylesheet" href="assets/css/main.css?v=1.2">
+  <link rel="stylesheet" href="assets/css/print.css?v=1.3" media="print">
 
   <meta name="description"
     content="Specjalista IT z ponad 10-letnim doświadczeniem: wdrożenia systemów medycznych AMMS/KS-SOMED, wsparcie L1/L2, audyt ISO/IEC 27001, ITIL 4, Cisco CCNA, C# .NET.">
@@ -112,14 +112,14 @@
           <li>Katowice (Śląsk / Zdalnie)</li>
           <li>Współpraca: B2B / UoP</li>
         </ul>
-        <button type="button" class="btn-print sidebar-print-btn" aria-label="Pobierz CV w formacie PDF lub wydrukuj">
+        <a href="Krzysztof_Poczatek_CV.pdf" download="Krzysztof_Poczatek_CV.pdf" class="btn-download-pdf sidebar-print-btn" aria-label="Pobierz oficjalne CV w formacie PDF (2 strony A4)">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 9V2h12v7"></path>
-            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-            <rect x="6" y="14" width="12" height="8"></rect>
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          <span>Pobierz PDF / Drukuj</span>
-        </button>
+          <span>Pobierz CV (PDF)</span>
+        </a>
       </section>
 
       <section>
@@ -298,18 +298,29 @@
         Wyrażam zgodę na przetwarzanie moich danych osobowych zawartych w niniejszym CV w celu prowadzenia obecnego oraz przyszłych procesów rekrutacyjnych, zgodnie z art. 6 ust. 1 lit. a Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. (RODO).
       </p>
 
-      <button type="button" id="printBtn" class="btn-print main-print-btn" aria-label="Pobierz CV w formacie PDF lub wydrukuj">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 9V2h12v7"></path>
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-          <rect x="6" y="14" width="12" height="8"></rect>
-        </svg>
-        <span>Pobierz PDF / Drukuj</span>
-      </button>
+      <div class="cv-actions">
+        <a href="Krzysztof_Poczatek_CV.pdf" download="Krzysztof_Poczatek_CV.pdf" class="btn-download-pdf main-print-btn" aria-label="Pobierz oficjalne CV w formacie PDF (2 strony A4)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Pobierz CV (PDF)</span>
+        </a>
+
+        <button type="button" id="printBtn" class="btn-print main-print-secondary-btn" aria-label="Wydrukuj CV bezpośrednio z przeglądarki">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9V2h12v7"></path>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Drukuj</span>
+        </button>
+      </div>
     </main>
   </div>
 
-  <script src="assets/js/main.js?v=1.1"></script>
+  <script src="assets/js/main.js?v=1.2"></script>
   <!-- [REF-02] Speculation Rules API (Web Platform Baseline): natychmiastowa nawigacja 0 ms bez SPA przy najechaniu kursorem -->
   <script type="speculationrules">
   {
@@ -320,7 +331,8 @@
             { "href_matches": "/*" },
             { "not": { "href_matches": "/api/*" } },
             { "not": { "href_matches": "/assets/php/*" } },
-            { "not": { "href_matches": "/admin/*" } }
+            { "not": { "href_matches": "/admin/*" } },
+            { "not": { "href_matches": "/*.pdf" } }
           ]
         },
         "eagerness": "moderate"

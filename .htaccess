@@ -89,5 +89,5 @@ ServerSignature Off
   ExpiresByType image/jpeg "access plus 6 months"
   ExpiresByType image/svg+xml "access plus 6 months"
   ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType application/pdf "access plus 1 day"
+  ExpiresByType application/pdf "access plus 0 seconds"
 </IfModule>

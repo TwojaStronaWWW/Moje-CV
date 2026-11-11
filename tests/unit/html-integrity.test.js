@@ -2,6 +2,7 @@ const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const { OUTPUT_PDF } = require('../../scripts/generate-pdf');
 
 const HTML_PATH = path.join(__dirname, '..', '..', 'index.html');
 
@@ -131,8 +132,19 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
       }
     });
 
+    it('powinien udostępniać bezpośrednie pobieranie wygenerowanego pliku PDF (download="Krzysztof_Poczatek_CV.pdf") i wykluczać *.pdf ze Speculation Rules', () => {
+      const pdfFileName = path.basename(OUTPUT_PDF);
+      const downloadLinks = htmlContent.match(/<a\s+[^>]*download=["']Krzysztof_Poczatek_CV\.pdf["'][^>]*>/gi) || [];
+      assert.strictEqual(downloadLinks.length, 2, 'Oczekiwano dwóch przycisków pobierania PDF (w sidebarze oraz na dole strony)');
+      for (const link of downloadLinks) {
+        assert.ok(link.includes(`href="${pdfFileName}"`), `Link pobierania powinien wskazywać na ${pdfFileName}`);
+      }
+      assert.match(htmlContent, /"href_matches"\s*:\s*"\/\*\.pdf"/i, 'Speculation Rules powinny wykluczać prerendering plików /*.pdf');
+    });
+
     it('wszystkie lokalne zasoby powiązane w index.html (CSS, JS, grafiki, manifest) powinny fizycznie istnieć na dysku (Zero-Dependency Asset Integrity)', () => {
       const rootDir = path.join(__dirname, '..', '..');
+      const expectedPdfArtifactName = path.basename(OUTPUT_PDF);
       const attrRegex = /(?:src|href)=["']([^"']+)["']/gi;
       let match;
       let checkedCount = 0;
@@ -150,6 +162,12 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
         }
 
         const cleanRelativePath = rawRef.split('?')[0].split('#')[0];
+        if (cleanRelativePath === expectedPdfArtifactName) {
+          // Artefakt kompilowany w kroku build:pdf i umieszczany obok index.html w dist/
+          checkedCount++;
+          continue;
+        }
+
         const resolvedPath = path.join(rootDir, cleanRelativePath);
         assert.ok(
           fs.existsSync(resolvedPath),
