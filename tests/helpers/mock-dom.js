@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Lekki helper Mock DOM do testów jednostkowych JavaScript w Node.js
  * Nie wymaga zewnętrznych zależności (np. jsdom), działa błyskawicznie w node:test.

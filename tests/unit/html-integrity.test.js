@@ -1,3 +1,5 @@
+'use strict';
+
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -59,8 +61,8 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
     });
   });
 
-  describe('Strukturyzowane dane Schema.org (JSON-LD)', () => {
-    it('powinien zawierać poprawny składniowo blok JSON-LD ze schematem Person', () => {
+  describe('Strukturyzowane dane Schema.org (JSON-LD @graph)', () => {
+    it('powinien zawierać poprawny składniowo blok JSON-LD z pełnym grafem @graph (Person, WebSite, ProfilePage)', () => {
       const match = htmlContent.match(/<script\s+type="application\/ld\+json">(.*?)<\/script>/s);
       assert.ok(match, 'Brak bloku Schema.org JSON-LD w index.html');
 
@@ -70,19 +72,46 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
       }, 'Skrypt JSON-LD zawiera błąd składni JSON!');
 
       assert.strictEqual(schema['@context'], 'https://schema.org');
-      assert.strictEqual(schema['@type'], 'Person');
-      assert.strictEqual(schema.name, 'Krzysztof Początek');
-      assert.ok(schema.jobTitle && schema.jobTitle.length > 5);
-      assert.strictEqual(schema.url, 'https://krzysztofpoczatek.pl');
-      assert.ok(Array.isArray(schema.knowsAbout), 'knowsAbout musi być tablicą');
-      assert.ok(schema.knowsAbout.includes('ISO/IEC 27001'));
-      assert.ok(schema.knowsAbout.includes('ITIL 4'));
-      assert.ok(schema.knowsAbout.includes('AMMS'));
-      assert.ok(schema.knowsAbout.includes('KS-SOMED'));
+      assert.ok(Array.isArray(schema['@graph']), 'JSON-LD powinien definiować tablicę @graph ([REF-08])');
+
+      const person = schema['@graph'].find((node) => node['@type'] === 'Person');
+      const website = schema['@graph'].find((node) => node['@type'] === 'WebSite');
+      const profilePage = schema['@graph'].find((node) => node['@type'] === 'ProfilePage');
+
+      assert.ok(person, 'Brak encji Person w @graph');
+      assert.ok(website, 'Brak encji WebSite w @graph');
+      assert.ok(profilePage, 'Brak encji ProfilePage w @graph');
+
+      assert.strictEqual(person.name, 'Krzysztof Początek');
+      assert.ok(person.jobTitle && person.jobTitle.length > 5);
+      assert.strictEqual(person.url, 'https://krzysztofpoczatek.pl');
+      assert.ok(Array.isArray(person.knowsAbout), 'knowsAbout musi być tablicą');
+      assert.ok(person.knowsAbout.includes('ISO/IEC 27001'));
+      assert.ok(person.knowsAbout.includes('ITIL 4'));
+      assert.ok(person.knowsAbout.includes('AMMS'));
+      assert.ok(person.knowsAbout.includes('KS-SOMED'));
     });
   });
 
-  describe('Dostępność (a11y) i semantyka HTML5', () => {
+  describe('Dostępność (WCAG 2.2 AA) i semantyka HTML5', () => {
+    it('powinien posiadać link pomijania nawigacji (.skip-link) oraz region aria-live (#a11y-status) ([REF-04])', () => {
+      assert.match(
+        htmlContent,
+        /<a\s+href="#main-content"\s+class="skip-link">/i,
+        'Brak linku .skip-link prowadzącego do #main-content'
+      );
+      assert.match(
+        htmlContent,
+        /<div\s+id="a11y-status"[^>]+role="status"[^>]+aria-live="polite"/i,
+        'Brak regionu #a11y-status z role="status" i aria-live="polite"'
+      );
+      assert.match(
+        htmlContent,
+        /<main\s+id="main-content"/i,
+        'Główny kontener <main> powinien posiadać id="main-content"'
+      );
+    });
+
     it('powinien posiadać dokładnie jeden nagłówek poziomu pierwszego <h1> (nazwisko kandydata)', () => {
       const h1Matches = htmlContent.match(/<h1[^>]*>(.*?)<\/h1>/gi);
       assert.ok(h1Matches, 'Brak nagłówka <h1>');
@@ -90,7 +119,7 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
       assert.match(h1Matches[0], /Krzysztof Początek/i);
     });
 
-    it('wszystkie znaczniki <img> powinny posiadać atrybuty alt, width oraz height dla CLS/a11y', () => {
+    it('wszystkie znaczniki <img> powinny posiadać atrybuty alt, width, height oraz fetchpriority="high" dla LCP ([REF-02])', () => {
       const imgRegex = /<img\s+([^>]+)>/gi;
       let match;
       let count = 0;
@@ -102,6 +131,7 @@ describe('Integralność semantyczna i SEO (index.html)', () => {
         assert.match(imgAttributes, /height="[^"]*"/i, `Obraz ${match[0]} nie posiada atrybutu height`);
       }
       assert.ok(count > 0, 'Powinien istnieć co najmniej jeden znacznik <img> (np. zdjęcie profilowe)');
+      assert.match(htmlContent, /<img[^>]+class="profile-photo"[^>]+fetchpriority="high"/i);
     });
 
     it('przycisk mobilnego menu powinien posiadać atrybuty ARIA (aria-expanded, aria-controls)', () => {

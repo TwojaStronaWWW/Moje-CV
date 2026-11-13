@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Lekki, bezbiblioteczny serwer HTTP do lokalnego podglądu CV.
  * Zero zewnętrznych zależności - wykorzystuje wbudowany moduł node:http.
@@ -36,10 +38,12 @@ const MIME_TYPES = {
 const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
+  'X-Permitted-Cross-Domain-Policies': 'none',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
   'Cross-Origin-Resource-Policy': 'same-site',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+  'Content-Security-Policy': "default-src 'self'; script-src 'self' 'inline-speculation-rules'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
 };
 
 const ALLOWED_DOT_PATHS = new Set([
@@ -47,7 +51,14 @@ const ALLOWED_DOT_PATHS = new Set([
 ]);
 
 const BLOCKED_BASENAME_PATTERN = /^(package(-lock)?\.json|composer\.(json|lock))$/i;
-const BLOCKED_EXTENSION_PATTERN = /\.(php|bak|tmp|log|sql|sh|swp|pem|key|kdbx|pfx|p12|sqlite3?|db|ya?ml|toml|ini|md)$/i;
+const BLOCKED_EXTENSION_PATTERN = /\.(php|bak|tmp|log|sql|sh|ps1|bat|cmd|swp|pem|key|kdbx|pfx|p12|sqlite3?|db|db-wal|db-shm|csv|json|ya?ml|toml|ini|md)$/i;
+
+function isCrossSiteSubrequest(req) {
+  if (!req || !req.headers) return false;
+  const secFetchSite = String(req.headers['sec-fetch-site'] || '').toLowerCase();
+  const secFetchMode = String(req.headers['sec-fetch-mode'] || '').toLowerCase();
+  return secFetchSite === 'cross-site' && secFetchMode !== 'navigate';
+}
 
 function resolveSafeFilePath(rawUrl = '/', rootDir = ROOT_DIR) {
   const rawStr = String(rawUrl);
@@ -120,6 +131,15 @@ function resolveSafeFilePath(rawUrl = '/', rootDir = ROOT_DIR) {
 }
 
 const server = http.createServer((req, res) => {
+  if (isCrossSiteSubrequest(req)) {
+    res.writeHead(403, {
+      'Content-Type': 'text/plain; charset=utf-8',
+      ...SECURITY_HEADERS,
+    });
+    res.end('403 Cross-Site Subrequest Forbidden');
+    return;
+  }
+
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, {
       'Content-Type': 'text/plain; charset=utf-8',
@@ -206,11 +226,25 @@ const server = http.createServer((req, res) => {
         }
 
         const stream = fs.createReadStream(realFile);
+        stream.on('error', () => {
+          if (!res.headersSent) {
+            res.writeHead(500, {
+              'Content-Type': 'text/plain; charset=utf-8',
+              ...SECURITY_HEADERS,
+            });
+            res.end('500 Błąd odczytu pliku');
+          } else {
+            res.destroy();
+          }
+        });
         stream.pipe(res);
       });
     });
   });
 });
+
+server.requestTimeout = 10000;
+server.headersTimeout = 5000;
 
 if (require.main === module) {
   server.listen(PORT, '127.0.0.1', () => {
@@ -225,4 +259,5 @@ module.exports = {
   MIME_TYPES,
   SECURITY_HEADERS,
   resolveSafeFilePath,
+  isCrossSiteSubrequest,
 };

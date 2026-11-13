@@ -1,3 +1,5 @@
+'use strict';
+
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -38,6 +40,7 @@ describe('Standardy wydruku A4 i generowania PDF (print.css)', () => {
   it('powinien ukrywać elementy czysto ekranowe/interaktywne w widoku druku (display: none)', () => {
     assert.match(printCss, /\.toggle-menu/i);
     assert.match(printCss, /\.btn-print/i);
+    assert.match(printCss, /\.skip-link/i);
     assert.match(printCss, /display:\s*none\s*!important/i);
   });
 

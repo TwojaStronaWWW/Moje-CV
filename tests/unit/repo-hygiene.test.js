@@ -1,3 +1,5 @@
+'use strict';
+
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -114,7 +116,7 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
     assert.match(htaccess, /php:\/\//, 'Brak blokady php:// w .htaccess');
     assert.match(htaccess, /phar:\/\//, 'Brak blokady phar:// w .htaccess');
 
-    for (const token of ['\\.env', '\\.git', 'sqlite', 'db', 'pem', 'key', 'kdbx', 'package(-lock)?\\.json', 'composer\\.(json|lock)', '\\.npmrc', '\\.gitleaks\\.toml', 'md']) {
+    for (const token of ['\\.env', '\\.git', 'sqlite', 'db', 'csv', 'json', 'pem', 'key', 'kdbx', 'package(-lock)?\\.json', 'composer\\.(json|lock)', '\\.npmrc', '\\.gitleaks\\.toml', 'md']) {
       assert.ok(htaccess.includes(token), `Brak blokady dla wzorca ${token} w .htaccess`);
     }
 
@@ -206,7 +208,7 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
     assert.match(content, /\.githooks\/\* text eol=lf/i);
   });
 
-  it('serwer deweloperski (scripts/serve.js) powinien wystawiać nagłówki nosniff/DENY i blokować traversal, dot-files oraz package.json', () => {
+  it('serwer deweloperski (scripts/serve.js) powinien wystawiać nagłówki nosniff/DENY/CSP i blokować traversal, dot-files oraz pliki wrażliwe', () => {
     const scriptPath = path.join(ROOT_DIR, 'scripts', 'generate-pdf.js');
     assert.ok(fs.existsSync(scriptPath), 'Brak scripts/generate-pdf.js');
     assert.ok(fs.existsSync(path.join(ROOT_DIR, 'scripts', 'serve.js')), 'Brak scripts/serve.js');
@@ -217,13 +219,26 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
 
     const serveModule = require('../../scripts/serve');
     assert.strictEqual(typeof serveModule.resolveSafeFilePath, 'function');
+    assert.strictEqual(typeof serveModule.isCrossSiteSubrequest, 'function');
     assert.strictEqual(serveModule.SECURITY_HEADERS['X-Content-Type-Options'], 'nosniff');
     assert.strictEqual(serveModule.SECURITY_HEADERS['X-Frame-Options'], 'DENY');
+    assert.strictEqual(serveModule.SECURITY_HEADERS['X-Permitted-Cross-Domain-Policies'], 'none');
+    assert.ok(serveModule.SECURITY_HEADERS['Content-Security-Policy'], 'Brak Content-Security-Policy w SECURITY_HEADERS');
     assert.ok(serveModule.MIME_TYPES['.webmanifest']);
     assert.ok(serveModule.MIME_TYPES['.avif']);
 
+    assert.strictEqual(
+      serveModule.isCrossSiteSubrequest({ headers: { 'sec-fetch-site': 'cross-site', 'sec-fetch-mode': 'cors' } }),
+      true
+    );
+    assert.strictEqual(
+      serveModule.isCrossSiteSubrequest({ headers: { 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors' } }),
+      false
+    );
+
     assert.strictEqual(serveModule.resolveSafeFilePath('/index.html', ROOT_DIR).isAllowed, true);
     assert.strictEqual(serveModule.resolveSafeFilePath('/llms.txt', ROOT_DIR).isAllowed, true);
+    assert.strictEqual(serveModule.resolveSafeFilePath('/site.webmanifest', ROOT_DIR).isAllowed, true);
     assert.strictEqual(
       serveModule.resolveSafeFilePath('/.well-known/security.txt', ROOT_DIR).isAllowed,
       true,
@@ -242,6 +257,8 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
       '/.well-known/../.env',
       '/package.json',
       '/composer.json',
+      '/leads.csv',
+      '/data.json',
       '/AGENTS.md',
     ];
 
@@ -259,6 +276,9 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
     const secTxtPath = path.join(ROOT_DIR, '.well-known', 'security.txt');
     assert.ok(fs.existsSync(secTxtPath), 'Brak /.well-known/security.txt');
     const secTxt = fs.readFileSync(secTxtPath, 'utf-8');
+    assert.match(secTxt, /^Contact:\s*mailto:/m, 'Brak pola Contact: w security.txt');
+    assert.match(secTxt, /^Canonical:\s*https:\/\/krzysztofpoczatek\.pl\/\.well-known\/security\.txt/m, 'Brak pola Canonical: w security.txt');
+    assert.match(secTxt, /^Policy:\s*https:\/\//m, 'Brak pola Policy: w security.txt ([REF-06])');
     const expiresMatch = secTxt.match(/^Expires:\s*(.+)$/m);
     assert.ok(expiresMatch, 'Brak pola Expires: w /.well-known/security.txt');
     const expiresDate = new Date(expiresMatch[1].trim());
@@ -313,7 +333,7 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
     assert.match(content, /package-ecosystem:\s*"npm"/i);
   });
 
-  it('plik README.md powinien istnieć, posiadać odznaki statusu i poprawne ścieżki do grafik z assets/images/', () => {
+  it('plik README.md powinien istnieć, posiadać odznaki statusu, poprawne ścieżki do grafik i brak inline style/onerror', () => {
     const readmePath = path.join(ROOT_DIR, 'README.md');
     assert.ok(fs.existsSync(readmePath), 'Brak README.md');
     const content = fs.readFileSync(readmePath, 'utf-8');
@@ -323,5 +343,22 @@ describe('Higiena repozytorium i Threat Protection (ISO/IEC 27001 & Evergreen We
     assert.strictEqual(content.includes('assets/img/'), false, 'W README.md pozostały nieistniejące ścieżki assets/img/');
     assert.ok(content.includes('assets/images/photo.jpg'));
     assert.ok(content.includes('assets/images/og-preview.png'));
+    assert.doesNotMatch(content, /\sonerror\s*=\s*["']/i, 'Wykryto inline onerror w README.md');
+  });
+
+  it('wszystkie moduły JS powinny używać trybu ścisłego ("use strict") a pliki źródłowe końców linii LF', () => {
+    const jsFiles = [
+      'assets/js/main.js',
+      'scripts/serve.js',
+      'scripts/generate-pdf.js',
+      'tests/helpers/mock-dom.js',
+    ];
+    for (const rel of jsFiles) {
+      const fullPath = path.join(ROOT_DIR, rel);
+      const content = fs.readFileSync(fullPath, 'utf-8');
+      assert.match(content, /^'use strict';/, `Brak deklaracji 'use strict'; na początku pliku ${rel}`);
+      const rawBuf = fs.readFileSync(fullPath);
+      assert.strictEqual(rawBuf.includes(0x0d), false, `Plik ${rel} zawiera znaki CR (CRLF)`);
+    }
   });
 });

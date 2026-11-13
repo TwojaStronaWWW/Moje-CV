@@ -13,4 +13,4 @@
 - [DevOps Stack, AI Router & Monitoring](https://github.com/TwojaStronaWWW/devops-stack): Kontenerowa infrastruktura serwerowa w architekturze Cloudflare Zero Trust z monitoringiem Prometheus/Grafana, bramką AI RAG (SQLite FTS5) i kopiami AES-256 do R2.
 - [_site-template](https://github.com/TwojaStronaWWW/_site-template): Publiczny szablon architektoniczny i sekwencyjny potok Zero-Trust CI/CD (node:test, Playwright, Gitleaks, Lighthouse CI).
 - [HD Service Desk](https://hd.twojastronawww.pl): Wdrożona i administrowana instancja helpdesk osTicket w standardzie ITIL 4 z centralnym API zgłoszeń.
-- [TwojaStronaWWW.pl](https://twojastronawww.pl) & [Kato Salsa Hub](https://katosalsahub.pl): Marka własna oraz ekosystem SPA/PWA społeczności tanecznej z Radio Playerem, bazą wiedzy Salsopedia, asystentem AI RAG i agregatorem DancePuls.
+- [Krzysztof Początek IT](https://twojastronawww.pl) & [Kato Salsa Hub](https://katosalsahub.pl): Działalność inżynierska IT/Dev (m.in. TwojaStronaWWW.pl) oraz ekosystem SPA/PWA społeczności tanecznej z Radio Playerem, bazą wiedzy Salsopedia, asystentem AI RAG i agregatorem DancePuls.

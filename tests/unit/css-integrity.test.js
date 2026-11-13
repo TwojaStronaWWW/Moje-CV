@@ -1,3 +1,5 @@
+'use strict';
+
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -48,13 +50,23 @@ describe('Integralność i składnia arkuszy stylów CSS', () => {
     assert.match(mainCss, /--color-text-light:/i);
   });
 
+  it('główny arkusz powinien spełniać standardy CSS Baseline [REF-03] oraz WCAG 2.2 [REF-04]', () => {
+    assert.match(mainCss, /color-scheme:\s*dark\s+light/i, 'Brak color-scheme: dark light w :root ([REF-03])');
+    assert.match(mainCss, /scrollbar-gutter:\s*stable/i, 'Brak scrollbar-gutter: stable na html ([REF-03])');
+    assert.match(mainCss, /@view-transition\s*\{\s*navigation:\s*auto;\s*\}/i, 'Brak @view-transition ([REF-03])');
+    assert.match(mainCss, /text-wrap:\s*balance/i, 'Brak text-wrap: balance dla nagłówków ([REF-03])');
+    assert.match(mainCss, /text-wrap:\s*pretty/i, 'Brak text-wrap: pretty dla akapitów ([REF-03])');
+    assert.match(mainCss, /\.skip-link/i, 'Brak stylów dla .skip-link ([REF-04])');
+    assert.match(mainCss, /:focus-visible/i, 'Brak stylów :focus-visible ([REF-04])');
+    assert.match(mainCss, /prefers-reduced-motion:\s*reduce/i, 'Brak obsługi prefers-reduced-motion: reduce ([REF-04])');
+  });
+
   it('arkusz print.css powinien nadpisywać zmienne i wymuszać print-color-adjust', () => {
     assert.match(printCss, /print-color-adjust:\s*exact/i);
     assert.match(printCss, /--color-primary:/i);
   });
 
   it('arkusze nie powinny zawierać pustych reguł CSS bez deklaracji właściwości', () => {
-    // Sprawdza czy nie ma konstrukcji typu `selector { }` lub `selector {\n}`
     const emptyRuleRegex = /[^{}]+\{\s*\}/g;
     const emptyInMain = mainCss.match(emptyRuleRegex);
     const emptyInPrint = printCss.match(emptyRuleRegex);

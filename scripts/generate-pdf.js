@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Skrypt generowania oficjalnego pliku PDF dla CV Krzysztofa Początka.
  * Wykorzystuje natywny silnik Chromium (Edge na Windows, Chrome/Chromium na Linux w CI/CD).
@@ -47,7 +49,11 @@ function findBrowserBinary(platform = process.platform, env = process.env, which
     ];
 
     const runWhich = whichExecutor || ((cmd, args) => {
-      return execFileSync(cmd, args, { encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+      return execFileSync(cmd, args, {
+        encoding: 'utf-8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+        timeout: 5000,
+      }).trim();
     });
 
     for (const name of candidates) {
@@ -106,7 +112,7 @@ function generatePdf(destinationPath = OUTPUT_PDF, options = {}) {
   console.log(`[PDF Generator] Generowanie: ${resolvedDest}...`);
 
   try {
-    execFileSync(browser, args, { stdio: 'inherit' });
+    execFileSync(browser, args, { stdio: 'inherit', timeout: 30000 });
   } finally {
     try {
       fs.rmSync(tempProfileDir, { recursive: true, force: true });

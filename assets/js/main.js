@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Skrypt interaktywny dla CV Krzysztofa Początka
  * Obsługa mobilnego menu bocznego oraz akcji drukowania / generowania PDF.
@@ -13,6 +15,7 @@ function initSidebar(
 
   const toggleBtn = doc.getElementById('toggleBtn');
   const sidebar = doc.getElementById('sidebar');
+  const a11yStatus = typeof doc.getElementById === 'function' ? doc.getElementById('a11y-status') : null;
 
   if (!toggleBtn || !sidebar) return null;
 
@@ -22,11 +25,18 @@ function initSidebar(
   }
   toggleBtn._sidebarInitialized = true;
 
+  const announceStatus = (message) => {
+    if (a11yStatus) {
+      a11yStatus.textContent = message;
+    }
+  };
+
   const closeSidebar = () => {
     if (sidebar.classList.contains('active')) {
       sidebar.classList.remove('active');
       toggleBtn.setAttribute('aria-expanded', 'false');
       toggleBtn.textContent = 'Menu';
+      announceStatus('Menu boczne zamknięte');
       if (typeof toggleBtn.focus === 'function') {
         toggleBtn.focus();
       }
@@ -37,6 +47,7 @@ function initSidebar(
     const isExpanded = sidebar.classList.toggle('active');
     toggleBtn.setAttribute('aria-expanded', String(isExpanded));
     toggleBtn.textContent = isExpanded ? 'Ukryj menu' : 'Menu';
+    announceStatus(isExpanded ? 'Menu boczne otwarte' : 'Menu boczne zamknięte');
   };
 
   const handleOutsideClick = (e) => {
@@ -49,7 +60,7 @@ function initSidebar(
     }
   };
 
-  // Obsługa klawiatury (WCAG 2.1): zamykanie menu klawiszem Escape
+  // Obsługa klawiatury (WCAG 2.2): zamykanie menu klawiszem Escape
   const handleKeyDown = (e) => {
     if (e && (e.key === 'Escape' || e.key === 'Esc')) {
       closeSidebar();
@@ -123,4 +134,3 @@ if (typeof module !== 'undefined' && module.exports) {
     MOBILE_BREAKPOINT,
   };
 }
-

@@ -1,5 +1,6 @@
-/* === CSS Variables === */
+/* === CSS Variables & [REF-03] Vanilla CSS Baseline === */
 :root {
+	color-scheme: dark light;
 	--color-primary: #005b82;
 	--color-primary-dark: #004362;
 	--color-text-dark: #1a1a1a;
@@ -15,6 +16,12 @@
 	--spacing-lg: 30px;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+	}
+}
+
 /* === Reset & Base === */
 * {
 	margin: 0;
@@ -22,11 +29,63 @@
 	box-sizing: border-box;
 }
 
+html {
+	scrollbar-gutter: stable;
+	scroll-behavior: smooth;
+}
+
 body {
 	font-family: var(--font-main);
 	font-size: 14px;
 	color: var(--color-text-dark);
+	background-color: var(--color-bg-light);
 	line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+	text-wrap: balance;
+}
+
+p,
+li {
+	text-wrap: pretty;
+}
+
+/* === [REF-04] WCAG 2.2 AA Skip Link & Focus Visible === */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: 12px;
+	z-index: 1000;
+	background: var(--color-primary-dark);
+	color: var(--color-white);
+	padding: 10px 18px;
+	border-radius: 6px;
+	font-weight: 700;
+	text-decoration: none;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	transition: top 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+	top: 12px;
+	outline: 3px solid var(--color-white);
+	outline-offset: 2px;
 }
 
 .container {
@@ -104,15 +163,26 @@ aside a {
 }
 
 aside a:hover,
-aside a:focus {
+aside a:focus,
+aside a:focus-visible {
 	opacity: 0.8;
 	text-decoration: underline;
+}
+
+aside a:focus-visible {
+	outline: 2px solid var(--color-white);
+	outline-offset: 2px;
+	border-radius: 2px;
 }
 
 /* === Right Panel === */
 main {
 	background: var(--color-bg-light);
 	padding: 40px;
+}
+
+main:focus {
+	outline: none;
 }
 
 main p {
@@ -165,9 +235,16 @@ main a {
 }
 
 main a:hover,
-main a:focus {
+main a:focus,
+main a:focus-visible {
 	color: var(--color-primary-dark);
 	text-decoration: underline;
+}
+
+main a:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+	border-radius: 2px;
 }
 
 .projects-list li {
@@ -205,7 +282,8 @@ button:active {
 	transform: scale(0.98);
 }
 
-button:focus {
+button:focus,
+button:focus-visible {
 	outline: 2px solid var(--color-primary);
 	outline-offset: 2px;
 }
@@ -255,6 +333,7 @@ aside a.sidebar-print-btn,
 
 aside a.sidebar-print-btn:hover,
 aside a.sidebar-print-btn:focus,
+aside a.sidebar-print-btn:focus-visible,
 .sidebar-print-btn:hover {
 	background: rgba(255, 255, 255, 0.92);
 	color: var(--color-primary-dark);
@@ -293,6 +372,7 @@ main a.main-print-btn,
 
 main a.main-print-btn:hover,
 main a.main-print-btn:focus,
+main a.main-print-btn:focus-visible,
 .main-print-btn:hover {
 	background: var(--color-primary-dark);
 	color: var(--color-white);
@@ -356,3 +436,18 @@ main a.main-print-btn:active,
 	}
 }
 
+/* === [REF-04] Poszanowanie prefers-reduced-motion === */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

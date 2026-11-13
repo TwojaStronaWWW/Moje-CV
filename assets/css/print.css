@@ -17,12 +17,17 @@
 }
 
 :root {
+	color-scheme: light;
 	--color-primary: #005b82;
 	--color-text-dark: #1a1a1a;
 	--color-text-light: #555;
 	--color-text-muted: #888;
 	--color-bg-light: #f8f9fa;
 	--color-white: #ffffff;
+}
+
+html {
+	scrollbar-gutter: auto !important;
 }
 
 body {
@@ -251,6 +256,9 @@ button,
 .toggle-menu,
 .btn-print,
 .btn-download-pdf,
-.cv-actions {
+.cv-actions,
+.skip-link,
+.sr-only,
+#a11y-status {
 	display: none !important;
 }

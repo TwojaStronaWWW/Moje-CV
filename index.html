@@ -42,46 +42,77 @@
   <link rel="manifest" href="site.webmanifest">
   <meta name="theme-color" content="#005b82">
 
-  <!-- Dane strukturalne Schema.org -->
+  <!-- [REF-08] Dane strukturalne Schema.org (@graph: Person + WebSite + ProfilePage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Krzysztof Początek",
-    "jobTitle": "Specjalista IT & Wdrożeniowiec | Audytor Wewnętrzny ISO 27001 | ITIL® 4",
-    "url": "https://krzysztofpoczatek.pl",
-    "image": "https://krzysztofpoczatek.pl/assets/images/photo.jpg",
-    "email": "mailto:poczatek.krzysztof@gmail.com",
-    "telephone": "+48535050460",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Katowice",
-      "addressRegion": "Śląsk",
-      "addressCountry": "PL"
-    },
-    "sameAs": [
-      "https://linkedin.com/in/krzysztof-pocz%C4%85tek-a94a06166",
-      "https://github.com/orgs/TwojaStronaWWW/repositories",
-      "https://github.com/zeslownikiem/galanonim-release"
-    ],
-    "knowsAbout": [
-      "AMMS",
-      "KS-SOMED",
-      "ISO/IEC 27001",
-      "ITIL 4",
-      "Active Directory",
-      "Docker",
-      "Prometheus",
-      "Grafana",
-      "Cisco CCNA",
-      "C# .NET",
-      "Cloudflare",
-      "AI RAG",
-      "PHP",
-      "SQL",
-      "Oracle SQL",
-      "HL7",
-      "EDM"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://krzysztofpoczatek.pl/#person",
+        "name": "Krzysztof Początek",
+        "jobTitle": "Specjalista IT & Wdrożeniowiec | Audytor Wewnętrzny ISO 27001 | ITIL® 4",
+        "url": "https://krzysztofpoczatek.pl",
+        "image": "https://krzysztofpoczatek.pl/assets/images/photo.jpg",
+        "email": "mailto:poczatek.krzysztof@gmail.com",
+        "telephone": "+48535050460",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Katowice",
+          "addressRegion": "Śląsk",
+          "addressCountry": "PL"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/krzysztof-pocz%C4%85tek-a94a06166",
+          "https://github.com/orgs/TwojaStronaWWW/repositories",
+          "https://github.com/zeslownikiem/galanonim-release"
+        ],
+        "knowsAbout": [
+          "AMMS",
+          "KS-SOMED",
+          "ISO/IEC 27001",
+          "ITIL 4",
+          "Active Directory",
+          "Docker",
+          "Prometheus",
+          "Grafana",
+          "Cisco CCNA",
+          "C# .NET",
+          "Cloudflare",
+          "AI RAG",
+          "PHP",
+          "SQL",
+          "Oracle SQL",
+          "HL7",
+          "EDM"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://krzysztofpoczatek.pl/#website",
+        "url": "https://krzysztofpoczatek.pl/",
+        "name": "Krzysztof Początek – CV Portfolio",
+        "inLanguage": "pl-PL",
+        "publisher": {
+          "@id": "https://krzysztofpoczatek.pl/#person"
+        }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://krzysztofpoczatek.pl/#profilepage",
+        "url": "https://krzysztofpoczatek.pl/",
+        "name": "Krzysztof Początek – Specjalista IT & Wdrożeniowiec | CV Portfolio",
+        "inLanguage": "pl-PL",
+        "isPartOf": {
+          "@id": "https://krzysztofpoczatek.pl/#website"
+        },
+        "about": {
+          "@id": "https://krzysztofpoczatek.pl/#person"
+        },
+        "mainEntity": {
+          "@id": "https://krzysztofpoczatek.pl/#person"
+        }
+      }
     ]
   }
   </script>
@@ -89,6 +120,9 @@
 </head>
 
 <body>
+  <a href="#main-content" class="skip-link">Przejdź do głównej treści</a>
+  <div id="a11y-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
   <button type="button" class="toggle-menu" id="toggleBtn" aria-expanded="false" aria-controls="sidebar">
     Menu
   </button>
@@ -96,7 +130,7 @@
   <div class="container">
     <aside id="sidebar" aria-label="Informacje kontaktowe i umiejętności">
       <header>
-        <img src="assets/images/photo.jpg" alt="Zdjęcie profilowe - Krzysztof Początek" class="profile-photo" width="180" height="225">
+        <img src="assets/images/photo.jpg" alt="Zdjęcie profilowe - Krzysztof Początek" class="profile-photo" width="180" height="225" fetchpriority="high" decoding="async">
         <h1>Krzysztof Początek</h1>
         <p class="occupation">Specjalista IT &amp; Wdrożeniowiec | Audytor Wewnętrzny ISO 27001 | ITIL® 4</p>
       </header>
@@ -175,7 +209,7 @@
       </section>
     </aside>
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <p>
         Specjalista IT z ponad 10-letnim doświadczeniem w operacjach, wdrożeniach i wsparciu technicznym (L1/L2) w sektorach ochrony zdrowia, bankowości i telekomunikacji. Łączę praktyczną biegłość w infrastrukturze i systemach dziedzinowych (AMMS, KS-SOMED) z kompetencjami zarządzania usługami (ITIL 4), audytowania bezpieczeństwa informacji (ISO/IEC 27001), programowaniem w C# (.NET) oraz wykorzystaniem narzędzi AI do optymalizacji pracy.
       </p>
@@ -205,7 +239,7 @@
         </article>
 
         <article>
-          <h3>Freelance IT Specialist &amp; Web Developer – <span class="accent">TwojaStronaWWW.pl (Marka własna)</span></h3>
+          <h3>Specjalista IT &amp; Web Developer – <span class="accent">Krzysztof Początek IT</span></h3>
           <p class="time">02.2024 - Obecnie</p>
           <ul>
             <li><strong>Projektowanie i wdrożenia:</strong> Realizacja autorskich systemów webowych i platform SPA/PWA (m.in. TwojaStronaWWW.pl, Raricart.pl, FuegoLingua.pl, KatoSalsaHub.pl), w tym budowa paneli administracyjnych w PHP 8, integracja z bramką AI RAG i automatyzacja obsługi leadów (osTicket / Ntfy).</li>

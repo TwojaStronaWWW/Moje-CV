@@ -43,7 +43,7 @@ ServerSignature Off
 </IfModule>
 
 # 4. Blokada dostępu do plików wrażliwych, konfiguracyjnych, baz danych i dokumentacji roboczej
-<FilesMatch "(?i)(^\.env|^\.git|^\.npmrc$|^\.gitleaks\.toml$|^\.htaccess$|^\.htpasswd$|^\.editorconfig$|^\.lighthouserc\.json$|^package(-lock)?\.json$|^composer\.(json|lock)$|\.(sqlite3?|db|pem|key|kdbx|pfx|p12|md|bak|sql|log|sh|swp|ya?ml|toml|ini))$">
+<FilesMatch "(?i)(^\.env|^\.git|^\.npmrc$|^\.gitleaks\.toml$|^\.htaccess$|^\.htpasswd$|^\.editorconfig$|^\.lighthouserc\.json$|^package(-lock)?\.json$|^composer\.(json|lock)$|\.(sqlite3?|db|db-wal|db-shm|csv|json|pem|key|kdbx|pfx|p12|md|bak|sql|log|sh|ps1|bat|cmd|swp|ya?ml|toml|ini))$">
   <IfModule mod_authz_core.c>
     Require all denied
   </IfModule>
